@@ -6,7 +6,8 @@ import { Button } from '@/components/ui/Button'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 export const Nav = () => {
-	const media = useMediaQuery('(min-width: 768px)')
+	const media = useMediaQuery('(min-width: 576px)')
+	
 	return (
 		<div className='flex justify-between dark:text-white'>
 			<div className='flex flex-col'>

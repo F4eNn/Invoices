@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='en'>
-			<body className={`${leagueSpartan.className} bg-lightGray dark:bg-black flex flex-col lg:flex-row transition-colors duration-500 `}>
+			<body className={`${leagueSpartan.className} bg-lightGray dark:bg-black flex flex-col lg:flex-row transition-colors duration-250 `}>
 				<nav>
 					<Pannel />
 				</nav>

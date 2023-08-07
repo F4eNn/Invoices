@@ -3,7 +3,12 @@ import React, { useEffect } from 'react'
 
 import { useToggle } from '@/hooks/useToggle'
 
-const getTheme = () => {
+type ThemeState = {
+	currentTheme: boolean | null
+} | undefined
+
+const getTheme = (): ThemeState => {
+	if(typeof window === 'undefined') return
 	const theme = localStorage.getItem('theme')
 	const prefferenceTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
 
@@ -12,9 +17,10 @@ const getTheme = () => {
 	}
 }
 export const SwitchModeBtn = () => {
-	const { currentTheme: themeState } = getTheme()
-	const [theme, setTheme] = useToggle(themeState)
+	const { currentTheme: themeState } = getTheme() || {currentTheme: null}
+	const refinedThemeState: boolean = themeState !== null ? themeState: false
 
+	const [theme, setTheme] = useToggle(refinedThemeState) 
 	useEffect(() => {
 		localStorage.setItem('theme', JSON.stringify(theme))
 		// eslint-disable-next-line no-unused-expressions

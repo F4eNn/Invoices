@@ -36,15 +36,15 @@ module.exports = {
 					},
 				],
 				headingM: [
-					'1.4rem',
+					'2rem',
 					{
 						fontWeight: 'bold',
-						lineHeight: '22px',
+						lineHeight: '28px',
 						letterSpacing: '-0.75px',
 					},
 				],
 				headingS: [
-					'1.1rem',
+					'1.5rem',
 					{
 						fontWeight: 'bold',
 						lineHeight: '24px',
