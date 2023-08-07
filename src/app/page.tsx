@@ -1,11 +1,12 @@
 import { Nav } from '@/components/content/nav/Nav'
+import { ContentWrapper } from '@/components/ui/ContentWrapper'
 
 export default function Home() {
 	return (
 		<main className='flex-grow'>
-			<div className='flex justify-center '>
+			<ContentWrapper>
 				<Nav />
-			</div>
+			</ContentWrapper>
 		</main>
 	)
 }

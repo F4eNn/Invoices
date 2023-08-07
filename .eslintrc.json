@@ -25,6 +25,11 @@
 						"position": "after"
 					},
 					{
+						"pattern": "mui/**",
+						"group": "external",
+						"position": "after"
+					},
+					{
 						"pattern": "helpers/**",
 						"group": "external",
 						"position": "after"
