@@ -12,6 +12,7 @@ type ThemeState =
 	  }
 	| undefined
 
+	
 const getTheme = (): ThemeState => {
 	if (typeof window === 'undefined') return
 	const theme = localStorage.getItem('theme')
