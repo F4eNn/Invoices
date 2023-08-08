@@ -9,7 +9,7 @@ interface ButtonProps {
 
 export const Button = ({ children, bg, bgHover }: ButtonProps) => {
 	return (
-		<MuiButton className={`rounded-3xl text-red flex justify-start gap-2 normal-case 3 ${bg} ${bgHover}`}>
+		<MuiButton className={`rounded-3xl text-white flex justify-start gap-2 normal-case 3 ${bg} ${bgHover}`}>
 			{children}
 		</MuiButton>
 	)
