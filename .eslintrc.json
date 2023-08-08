@@ -18,35 +18,11 @@
 		"import/order": [
 			"error",
 			{
-				"pathGroups": [
-					{
-						"pattern": "components/**",
-						"group": "external",
-						"position": "after"
-					},
-					{
-						"pattern": "mui/**",
-						"group": "external",
-						"position": "after"
-					},
-					{
-						"pattern": "helpers/**",
-						"group": "external",
-						"position": "after"
-					},
-					{
-						"pattern": "context/**",
-						"group": "external",
-						"position": "after"
-					},
-					{
-						"pattern": "hooks/**",
-						"group": "external",
-						"position": "after"
-					}
-				],
-				"pathGroupsExcludedImportTypes": ["builtin"],
-				"newlines-between": "always"
+				"newlines-between": "always",
+				"groups": [
+					["builtin", "external"],
+					["internal", "parent", "sibling", "index"]
+				]
 			}
 		]
 	}

@@ -7,7 +7,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 export const Nav = () => {
 	const media = useMediaQuery('(min-width: 576px)')
-	
+
 	return (
 		<div className='flex justify-between dark:text-white'>
 			<div className='flex flex-col'>
@@ -16,9 +16,10 @@ export const Nav = () => {
 			</div>
 			<div>
 				<Button
+					paddingR='pr-4'
 					bg='bg-primary'
 					bgHover='hover:bg-secondary'>
-					<span className='flex justify-center items-center h-8 w-8 bg-white rounded-full'>
+					<span className='flex justify-center ml-[-3px] items-center h-8 w-8 bg-white rounded-full'>
 						<Image
 							alt=''
 							src='./assets/icon-plus.svg'
