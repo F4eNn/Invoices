@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FormEvent } from 'react'
 import { Input } from '@mui/joy'
 
 import { FormContainer } from './ui/FormContainer'
@@ -26,9 +26,13 @@ export const inputStyle = {
 }
 
 export const Login = () => {
+	const login = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+	}
+
 	return (
 		<FormContainer>
-			<form>
+			<form onSubmit={login}>
 				<h1 className='text-headingL mb-5'>Invoices</h1>
 				<div>
 					<label htmlFor='email'>Email</label>
