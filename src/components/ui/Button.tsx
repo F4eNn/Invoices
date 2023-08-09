@@ -13,7 +13,7 @@ export const Button = ({ children, bg, bgHover, type, paddingR }: ButtonProps) =
 	return (
 		<MuiButton
 			type={type}
-			className={`rounded-3xl text-white flex justify-center w-full ${paddingR} gap-2 normal-case 3 ${bg} ${bgHover}`}>
+			className={`rounded-3xl text-white flex justify-center w-full ${paddingR} gap-2 normal-case font-[500] text-lg tracking-wider ${bg} ${bgHover}`}>
 			{children}
 		</MuiButton>
 	)

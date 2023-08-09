@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Input from '@mui/joy/Input'
+import { useRouter } from 'next/navigation'
 
 import { inputStyle } from './Login'
 import { Button } from '../ui/Button'
@@ -16,6 +17,7 @@ type FormValues = {
 }
 
 export const Signup = () => {
+	const [isAccountExists, setIsAccountExists] = useState(false)
 	const { formState, handleSubmit, register, reset, watch } = useForm<FormValues>({
 		defaultValues: {
 			email: '',
@@ -25,21 +27,64 @@ export const Signup = () => {
 		},
 	})
 	const { errors } = formState
+	const router = useRouter()
 
-	const signup = (data: FormValues) => {
-		reset()
+	const signup = async (data: FormValues) => {
+		try {
+			const resUserExists = await fetch('api/userExists', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ email: data.email }),
+			})
+
+			const { user } = await resUserExists.json()
+
+			if (user) {
+				setIsAccountExists(true)
+				return
+			}
+			setIsAccountExists(false)
+			const res = await fetch('api/register', {
+				method: 'POST',
+				headers: {
+					'Content-type': 'application/json',
+				},
+				body: JSON.stringify({
+					name: data.name,
+					email: data.email,
+					password: data.password,
+				}),
+			})
+			if (res.ok) {
+				reset()
+				router.push('/')
+			} else {
+				console.error('User registration failed')
+			}
+		} catch (error) {
+			console.error('Error during registration', error)
+		}
 	}
 
 	return (
 		<form
 			onSubmit={handleSubmit(signup)}
 			noValidate>
+			<div className='text-center w-full'>
+				<ErrorMessage
+					isValid={isAccountExists}
+					msg='Email is in use'
+				/>
+			</div>
 			<InputWrapper>
 				<label htmlFor='name'>Name</label>
 				<Input
 					{...inputStyle}
 					error={errors.name ? true : false}
 					id='name'
+					autoFocus
 					type='name'
 					placeholder='John'
 					{...register('name', nameValidation)}
@@ -86,7 +131,7 @@ export const Signup = () => {
 					error={errors.password2 ? true : false}
 					id='repeatPassword'
 					type='Password'
-					placeholder='Repeat password'
+					placeholder='Confirm password'
 					{...register('password2', {
 						required: 'Confirm password is required',
 						validate: password => {

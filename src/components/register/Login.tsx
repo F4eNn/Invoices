@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
 import { Input } from '@mui/joy'
 
 import { Button } from '../ui/Button'
@@ -33,61 +35,87 @@ interface LoginFormValues {
 }
 
 export const Login = () => {
+	const [isValidCredentials, setIsValidCredentials] = useState(true)
 	const { register, handleSubmit, formState } = useForm<LoginFormValues>({
 		defaultValues: {
 			email: '',
 			password: '',
 		},
 	})
-
 	const { errors } = formState
 
-	const login = (data: LoginFormValues) => {}
+	const router = useRouter()
+
+	const login = async (data: LoginFormValues) => {
+		try {
+			const res = await signIn('credentials', {
+				email: data.email,
+				password: data.password,
+				redirect: false,
+			})
+			setIsValidCredentials(true)
+			if (res?.error) {
+				return setIsValidCredentials(false)
+			}
+			router.replace('/')
+		} catch (error) {
+			console.error(error)
+		}
+	}
 
 	return (
-			<form onSubmit={handleSubmit(login)}>
-				<InputWrapper>
-					<label htmlFor='email'>Email</label>
-					<Input
-						{...inputStyle}
-						error={errors.email ? true : false}
-						id='email'
-						type='email'
-						placeholder='John@doehub.com'
-						{...register('email', {
-							required: 'Email is required',
-						})}
-					/>
-					<ErrorMessage
-						error={errors.email}
-						msg={errors.email?.message}
-					/>
-				</InputWrapper>
-				<InputWrapper>
-					<label htmlFor='password'>Password</label>
-					<Input
-						{...inputStyle}
-						error={errors.password ? true : false}
-						id='password'
-						placeholder='Password'
-						type='password'
-						{...register('password', {
-							required: 'Password is required',
-						})}
-					/>
-					<ErrorMessage
-						error={errors.password}
-						msg={errors.password?.message}
-					/>
-				</InputWrapper>
-				<div className='mt-5'>
-					<Button
-						type='submit'
-						bg='bg-primary'
-						bgHover='hover:bg-secondary'>
-						Enter
-					</Button>
-				</div>
-			</form>
+		<form
+			onSubmit={handleSubmit(login)}
+			noValidate>
+			<div className='text-center'>
+				<ErrorMessage
+					isValid={!isValidCredentials}
+					msg='Invalid credentials'
+				/>
+			</div>
+			<InputWrapper>
+				<label htmlFor='email'>Email</label>
+				<Input
+					{...inputStyle}
+					error={errors.email ? true : false}
+					id='email'
+					type='email'
+					autoFocus
+					placeholder='John@doehub.com'
+					{...register('email', {
+						required: 'Email is required',
+					})}
+				/>
+				<ErrorMessage
+					error={errors.email}
+					msg={errors.email?.message}
+				/>
+			</InputWrapper>
+			<InputWrapper>
+				<label htmlFor='password'>Password</label>
+				<Input
+					{...inputStyle}
+					error={errors.password ? true : false}
+					id='password'
+					placeholder='Password'
+					type='password'
+					{...register('password', {
+						required: 'Password is required',
+					})}
+				/>
+				<ErrorMessage
+					error={errors.password}
+					msg={errors.password?.message}
+				/>
+			</InputWrapper>
+			<div className='mt-5'>
+				<Button
+					type='submit'
+					bg='bg-primary'
+					bgHover='hover:bg-secondary'>
+					Enter
+				</Button>
+			</div>
+		</form>
 	)
 }

@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
+import {signOut} from 'next-auth/react'
 
 import { Button } from '@/components/ui/Button'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
@@ -30,6 +31,7 @@ export const Nav = () => {
 					{media ? 'New Invoice' : 'New'}
 				</Button>
 			</div>
+				<button onClick={() => signOut()} className='bg-red rounded-xl p-3'>Logout</button>
 		</div>
 	)
 }

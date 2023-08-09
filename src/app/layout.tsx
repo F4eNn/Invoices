@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { League_Spartan } from 'next/font/google'
 
+import { AuthProvider } from './Providers'
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] })
 
@@ -18,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang='en'>
 			<body className={`${leagueSpartan.className} bg-lightGray dark:bg-black transition-colors duration-250 `}>
-				{children}
+				<AuthProvider>{children}</AuthProvider>
 			</body>
 		</html>
 	)
