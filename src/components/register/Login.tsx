@@ -1,8 +1,10 @@
-import React, { FormEvent } from 'react'
+import React from 'react'
+import { useForm } from 'react-hook-form'
 import { Input } from '@mui/joy'
 
-import { FormContainer } from './ui/FormContainer'
 import { Button } from '../ui/Button'
+import { InputWrapper } from './ui/InputWrapper'
+import { ErrorMessage } from './ui/ErrorMessage'
 
 export const inputStyle = {
 	className: 'mb-5',
@@ -25,42 +27,67 @@ export const inputStyle = {
 	},
 }
 
+interface LoginFormValues {
+	email: string
+	password: string
+}
+
 export const Login = () => {
-	const login = (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
-	}
+	const { register, handleSubmit, formState } = useForm<LoginFormValues>({
+		defaultValues: {
+			email: '',
+			password: '',
+		},
+	})
+
+	const { errors } = formState
+
+	const login = (data: LoginFormValues) => {}
 
 	return (
-		<FormContainer>
-			<form onSubmit={login}>
-				<h1 className='text-headingL mb-5'>Invoices</h1>
-				<div>
+			<form onSubmit={handleSubmit(login)}>
+				<InputWrapper>
 					<label htmlFor='email'>Email</label>
 					<Input
 						{...inputStyle}
+						error={errors.email ? true : false}
 						id='email'
 						type='email'
 						placeholder='John@doehub.com'
-						variant='soft'
+						{...register('email', {
+							required: 'Email is required',
+						})}
 					/>
-				</div>
-				<div>
+					<ErrorMessage
+						error={errors.email}
+						msg={errors.email?.message}
+					/>
+				</InputWrapper>
+				<InputWrapper>
 					<label htmlFor='password'>Password</label>
 					<Input
 						{...inputStyle}
+						error={errors.password ? true : false}
 						id='password'
 						placeholder='Password'
 						type='password'
-						variant='soft'
+						{...register('password', {
+							required: 'Password is required',
+						})}
 					/>
+					<ErrorMessage
+						error={errors.password}
+						msg={errors.password?.message}
+					/>
+				</InputWrapper>
+				<div className='mt-5'>
+					<Button
+						type='submit'
+						bg='bg-primary'
+						bgHover='hover:bg-secondary'>
+						Enter
+					</Button>
 				</div>
-				<Button
-					type='submit'
-					bg='bg-primary'
-					bgHover='hover:bg-secondary'>
-					Enter
-				</Button>
 			</form>
-		</FormContainer>
 	)
 }
