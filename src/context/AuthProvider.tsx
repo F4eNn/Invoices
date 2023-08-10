@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation'
 
 import { auth } from '@/config/firebase'
 import { AuthCtx } from './AuthCtx'
+import { navigation } from '@/navigation_paths'
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [user, setUser] = useState<User | null>(null)
@@ -25,7 +26,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 			if (isAccount.length > 0) return setIsAccountExists(true)
 			setIsAccountExists(false)
 			await createUserWithEmailAndPassword(auth, email, password)
-			router.replace('/')
+			router.replace(navigation.home.path)
 		} catch (error) {
 			console.error('Failed create user:', error)
 		}
@@ -35,7 +36,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		try {
 			setInvalidCredentials(false)
 			await signInWithEmailAndPassword(auth, email, password)
-			router.replace('/')
+			router.replace(navigation.home.path)
 		} catch (error) {
 			setInvalidCredentials(true)
 			console.error('Log in failed:', error)
@@ -52,7 +53,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		logInUser,
 		isAccountExists,
 		invalidCredentials,
-        isAuthenticated: user
+		isAuthenticated: user,
 	}
 	return <AuthCtx.Provider value={value}>{children}</AuthCtx.Provider>
 }

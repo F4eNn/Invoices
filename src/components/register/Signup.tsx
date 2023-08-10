@@ -2,7 +2,6 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import Input from '@mui/joy/Input'
 import dynamic from 'next/dynamic'
-import { redirect } from 'next/navigation'
 
 import { inputStyle } from './Login'
 import { ErrorMessage } from './ui/ErrorMessage'

@@ -8,6 +8,7 @@ import { Login } from '@/components/register/Login'
 import { Signup } from '@/components/register/Signup'
 import { FormContainer } from '@/components/register/ui/FormContainer'
 import { useAuth } from '@/hooks/useAuth'
+import { navigation } from '@/navigation_paths'
 
 const RegisterPage = () => {
 	const searchParams = useSearchParams()
@@ -15,9 +16,12 @@ const RegisterPage = () => {
 	const { isAuthenticated } = useAuth()
 
 	useEffect(() => {
-		if (isAuthenticated) redirect('/')
+		if (isAuthenticated) redirect(navigation.home.path)
 	}, [isAuthenticated])
 
+	const label = isLogin ? navigation.signUp.label : navigation.login.label
+	const path = isLogin ? navigation.signUp.path : navigation.login.path
+	
 	return (
 		<div className='h-full bg-secondary pt-20 px-3'>
 			<FormContainer>
@@ -39,7 +43,8 @@ const RegisterPage = () => {
 					{isLogin ? 'No account?' : 'Have an account already?'}{' '}
 					<Link
 						className='text-primary'
-						href={`?mode=${isLogin ? 'signup' : 'login'}`}>
+						aria-label={label}
+						href={path}>
 						{isLogin ? 'Sign up' : 'Log in'}
 					</Link>
 				</p>

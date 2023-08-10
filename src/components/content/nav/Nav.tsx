@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { auth } from '@/config/firebase'
+import { navigation } from '@/navigation_paths'
 
 export const Nav = () => {
 	const media = useMediaQuery('(min-width: 576px)')
@@ -14,8 +15,7 @@ export const Nav = () => {
 	const logOut = async () => {
 		try {
 			await signOut(auth)
-			router.replace('/register?mode=login')
-			console.log('wylogowano')
+			router.replace(navigation.login.path)
 		} catch (error) {
 			console.error('Log out failed:', error)
 		}
