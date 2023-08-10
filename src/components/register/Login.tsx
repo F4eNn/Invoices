@@ -3,10 +3,12 @@ import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import { Input } from '@mui/joy'
+import dynamic from 'next/dynamic'
 
-import { Button } from '../ui/Button'
 import { InputWrapper } from './ui/InputWrapper'
 import { ErrorMessage } from './ui/ErrorMessage'
+
+const LoadingButton = dynamic(() => import('../ui/LoadingButton').then(mod => mod.LoadingButton), { ssr: false })
 
 export const inputStyle = {
 	className: 'mb-5',
@@ -42,7 +44,7 @@ export const Login = () => {
 			password: '',
 		},
 	})
-	const { errors } = formState
+	const { errors, isSubmitting } = formState
 
 	const router = useRouter()
 
@@ -109,12 +111,7 @@ export const Login = () => {
 				/>
 			</InputWrapper>
 			<div className='mt-5'>
-				<Button
-					type='submit'
-					bg='bg-primary'
-					bgHover='hover:bg-secondary'>
-					Enter
-				</Button>
+				<LoadingButton isSubmitting={isSubmitting}>Enter</LoadingButton>
 			</div>
 		</form>
 	)

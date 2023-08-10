@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Input from '@mui/joy/Input'
 import { useRouter } from 'next/navigation'
+import dynamic from 'next/dynamic'
+import { signIn } from 'next-auth/react'
 
 import { inputStyle } from './Login'
-import { Button } from '../ui/Button'
 import { ErrorMessage } from './ui/ErrorMessage'
 import { InputWrapper } from './ui/InputWrapper'
 import { emailValidation, nameValidation, passwordValidation } from '@/helpers/formValidation'
+
+const LoadingButton = dynamic(() => import('../ui/LoadingButton').then(mod => mod.LoadingButton), { ssr: false })
 
 type FormValues = {
 	email: string
@@ -18,7 +21,7 @@ type FormValues = {
 
 export const Signup = () => {
 	const [isAccountExists, setIsAccountExists] = useState(false)
-	const { formState, handleSubmit, register, reset, watch } = useForm<FormValues>({
+	const { formState, handleSubmit, register, watch } = useForm<FormValues>({
 		defaultValues: {
 			email: '',
 			name: '',
@@ -26,7 +29,7 @@ export const Signup = () => {
 			password2: '',
 		},
 	})
-	const { errors } = formState
+	const { errors, isSubmitting } = formState
 	const router = useRouter()
 
 	const signup = async (data: FormValues) => {
@@ -58,8 +61,12 @@ export const Signup = () => {
 				}),
 			})
 			if (res.ok) {
-				reset()
-				router.push('/')
+				await signIn('credentials', {
+					email: data.email,
+					password: data.password,
+					redirect: false,
+				})
+				router.replace('/')
 			} else {
 				console.error('User registration failed')
 			}
@@ -144,13 +151,10 @@ export const Signup = () => {
 					msg={errors.password2?.message}
 				/>
 			</InputWrapper>
-			<div className='mt-10'>
-				<Button
-					type='submit'
-					bg='bg-primary'
-					bgHover='hover:bg-secondary'>
-					Create
-				</Button>
+			<div className='mt-5'>
+				<LoadingButton isSubmitting={isSubmitting}>
+					<span>Create</span>
+				</LoadingButton>
 			</div>
 		</form>
 	)

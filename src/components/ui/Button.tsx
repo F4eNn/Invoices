@@ -6,7 +6,7 @@ interface ButtonProps {
 	bg: 'bg-red' | 'bg-primary' | 'bg-lightGray'
 	bgHover: 'hover:bg-lightRed' | 'hover:bg-secondary' | 'hover:bg-rose'
 	type?: 'submit'
-	paddingR?: 'pr-4' 
+	paddingR?: 'pr-4'
 }
 
 export const Button = ({ children, bg, bgHover, type, paddingR }: ButtonProps) => {
