@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-import { signIn } from 'next-auth/react'
 import { Input } from '@mui/joy'
 import dynamic from 'next/dynamic'
 
 import { InputWrapper } from './ui/InputWrapper'
 import { ErrorMessage } from './ui/ErrorMessage'
+import { useAuth } from '@/hooks/useAuth'
 
 const LoadingButton = dynamic(() => import('../ui/LoadingButton').then(mod => mod.LoadingButton), { ssr: false })
 
@@ -37,7 +37,7 @@ interface LoginFormValues {
 }
 
 export const Login = () => {
-	const [isValidCredentials, setIsValidCredentials] = useState(true)
+	const { logInUser, invalidCredentials } = useAuth()
 	const { register, handleSubmit, formState } = useForm<LoginFormValues>({
 		defaultValues: {
 			email: '',
@@ -46,23 +46,8 @@ export const Login = () => {
 	})
 	const { errors, isSubmitting } = formState
 
-	const router = useRouter()
-
 	const login = async (data: LoginFormValues) => {
-		try {
-			const res = await signIn('credentials', {
-				email: data.email,
-				password: data.password,
-				redirect: false,
-			})
-			setIsValidCredentials(true)
-			if (res?.error) {
-				return setIsValidCredentials(false)
-			}
-			router.replace('/')
-		} catch (error) {
-			console.error(error)
-		}
+			await logInUser(data.email, data.password)
 	}
 
 	return (
@@ -71,7 +56,7 @@ export const Login = () => {
 			noValidate>
 			<div className='text-center'>
 				<ErrorMessage
-					isValid={!isValidCredentials}
+					isValid={invalidCredentials}
 					msg='Invalid credentials'
 				/>
 			</div>

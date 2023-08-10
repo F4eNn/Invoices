@@ -1,16 +1,23 @@
 'use client'
-import React from 'react'
-import { useSearchParams } from 'next/navigation'
+import React, { useEffect } from 'react'
+import { redirect, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 
 import { Login } from '@/components/register/Login'
 import { Signup } from '@/components/register/Signup'
 import { FormContainer } from '@/components/register/ui/FormContainer'
+import { useAuth } from '@/hooks/useAuth'
 
 const RegisterPage = () => {
 	const searchParams = useSearchParams()
 	const isLogin = searchParams.get('mode') === 'login'
+	const { isAuthenticated } = useAuth()
+
+	useEffect(() => {
+		if (isAuthenticated) redirect('/')
+	}, [isAuthenticated])
+
 	return (
 		<div className='h-full bg-secondary pt-20 px-3'>
 			<FormContainer>

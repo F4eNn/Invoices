@@ -1,13 +1,25 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
-import {signOut} from 'next-auth/react'
+import { signOut } from 'firebase/auth'
+import { useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/Button'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { auth } from '@/config/firebase'
 
 export const Nav = () => {
 	const media = useMediaQuery('(min-width: 576px)')
+	const router = useRouter()
+	const logOut = async () => {
+		try {
+			await signOut(auth)
+			router.replace('/register?mode=login')
+			console.log('wylogowano')
+		} catch (error) {
+			console.error('Log out failed:', error)
+		}
+	}
 
 	return (
 		<div className='flex justify-between dark:text-white'>
@@ -31,7 +43,11 @@ export const Nav = () => {
 					{media ? 'New Invoice' : 'New'}
 				</Button>
 			</div>
-				<button onClick={() => signOut()} className='bg-red rounded-xl p-3'>Logout</button>
+			<button
+				onClick={logOut}
+				className='bg-red rounded-2xl p-3'>
+				Logout
+			</button>
 		</div>
 	)
 }

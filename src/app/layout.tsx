@@ -2,7 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { League_Spartan } from 'next/font/google'
 
-import { AuthProvider } from './Providers'
+import { AuthProvider } from '@/context/AuthProvider'
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] })
 

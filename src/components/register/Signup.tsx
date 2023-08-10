@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import Input from '@mui/joy/Input'
-import { useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
-import { signIn } from 'next-auth/react'
+import { redirect } from 'next/navigation'
 
 import { inputStyle } from './Login'
 import { ErrorMessage } from './ui/ErrorMessage'
 import { InputWrapper } from './ui/InputWrapper'
 import { emailValidation, nameValidation, passwordValidation } from '@/helpers/formValidation'
+import { useAuth } from '@/hooks/useAuth'
 
 const LoadingButton = dynamic(() => import('../ui/LoadingButton').then(mod => mod.LoadingButton), { ssr: false })
 
@@ -20,7 +20,9 @@ type FormValues = {
 }
 
 export const Signup = () => {
-	const [isAccountExists, setIsAccountExists] = useState(false)
+	const { createUser, isAccountExists } = useAuth()
+
+	
 	const { formState, handleSubmit, register, watch } = useForm<FormValues>({
 		defaultValues: {
 			email: '',
@@ -30,49 +32,9 @@ export const Signup = () => {
 		},
 	})
 	const { errors, isSubmitting } = formState
-	const router = useRouter()
 
 	const signup = async (data: FormValues) => {
-		try {
-			const resUserExists = await fetch('api/userExists', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ email: data.email }),
-			})
-
-			const { user } = await resUserExists.json()
-
-			if (user) {
-				setIsAccountExists(true)
-				return
-			}
-			setIsAccountExists(false)
-			const res = await fetch('api/register', {
-				method: 'POST',
-				headers: {
-					'Content-type': 'application/json',
-				},
-				body: JSON.stringify({
-					name: data.name,
-					email: data.email,
-					password: data.password,
-				}),
-			})
-			if (res.ok) {
-				await signIn('credentials', {
-					email: data.email,
-					password: data.password,
-					redirect: false,
-				})
-				router.replace('/')
-			} else {
-				console.error('User registration failed')
-			}
-		} catch (error) {
-			console.error('Error during registration', error)
-		}
+		await createUser(data.email, data.password)
 	}
 
 	return (
