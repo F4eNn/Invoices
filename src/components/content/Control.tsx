@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
+import { Button as TestButton } from '@mui/material'
 
 import { Button } from '@/components/ui/Button'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
@@ -29,6 +30,8 @@ export const Control = () => {
 					</span>
 					{media ? 'New Invoice' : 'New'}
 				</Button>
+				<TestButton>New</TestButton>
+				
 			</div>
 		</div>
 	)

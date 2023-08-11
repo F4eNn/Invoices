@@ -1,10 +1,10 @@
 import { useRef } from 'react'
 
-import { Avatar, Tooltip, IconButton, Divider } from '@/lib/muiMaterial'
+import { Avatar, Tooltip, IconButton, Divider } from '@/components/lib/muiMaterial'
 import { SwitchModeBtn } from './SwitchModeBtn'
 import { Logo } from './Logo'
 import { useOutsideClick } from '@/hooks/useOutsideClick'
-import { motion } from '@/lib/motion'
+import { motion } from '@/components/lib/motion'
 import { UserIcon } from '../icons/User'
 import { LogoutIcon } from '../icons/Logout'
 import { SettingsIcon } from '../icons/Settings'
