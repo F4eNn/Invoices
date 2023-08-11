@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation'
 
 import { auth } from '@/config/firebase'
 import { AuthCtx } from './AuthCtx'
-import { navigation } from '@/navigation_paths'
+import { navigation } from '@/app/layout'
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [user, setUser] = useState<User | null>(null)

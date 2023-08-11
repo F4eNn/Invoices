@@ -1,6 +1,6 @@
 import { useRef } from 'react'
-import { Avatar, Tooltip, IconButton, Divider } from '@mui/material'
 
+import { Avatar, Tooltip, IconButton, Divider } from '@/lib/muiMaterial'
 import { SwitchModeBtn } from './SwitchModeBtn'
 import { Logo } from './Logo'
 import { useOutsideClick } from '@/hooks/useOutsideClick'
