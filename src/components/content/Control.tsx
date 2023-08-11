@@ -1,24 +1,18 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
-import { signOut } from 'firebase/auth'
-import { useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/Button'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { auth } from '@/config/firebase'
-import { navigation } from '@/navigation_paths'
+import { useAuth } from '@/hooks/useAuth'
 
-export const Nav = () => {
+export const Control = () => {
 	const media = useMediaQuery('(min-width: 576px)')
-	const router = useRouter()
-	const logOut = async () => {
-		try {
-			await signOut(auth)
-			router.replace(navigation.login.path)
-		} catch (error) {
-			console.error('Log out failed:', error)
-		}
+
+	const { logout } = useAuth()
+
+	const logoutUser = async () => {
+		await logout()
 	}
 
 	return (
@@ -44,7 +38,7 @@ export const Nav = () => {
 				</Button>
 			</div>
 			<button
-				onClick={logOut}
+				onClick={logoutUser}
 				className='bg-red rounded-2xl p-3'>
 				Logout
 			</button>

@@ -2,6 +2,7 @@
 import React, { ReactNode, useEffect, useState } from 'react'
 import {
 	User,
+    signOut,
 	createUserWithEmailAndPassword,
 	onAuthStateChanged,
 	signInWithEmailAndPassword,
@@ -43,6 +44,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		}
 	}
 
+	const logout = async () => {
+		try {
+			await signOut(auth)
+			router.replace(navigation.login.path)
+		} catch (error) {
+			console.error('Log out failed:', error)
+		}
+	}
+
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, setUser)
 		return () => unsubscribe()
@@ -51,6 +61,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const value = {
 		createUser,
 		logInUser,
+        logout,
 		isAccountExists,
 		invalidCredentials,
 		isAuthenticated: user,

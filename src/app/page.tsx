@@ -2,7 +2,7 @@
 import { redirect } from 'next/navigation'
 import { useEffect } from 'react'
 
-import { Nav } from '@/components/content/nav/Nav'
+import { Control } from '@/components/content/Control'
 import { Pannel } from '@/components/pannel/Pannel'
 import { ContentWrapper } from '@/components/ui/ContentWrapper'
 import { useAuth } from '@/hooks/useAuth'
@@ -18,7 +18,7 @@ export default function Home() {
 		<main className='h-full flex flex-col lg:flex-row'>
 			<Pannel />
 			<ContentWrapper>
-				<Nav />
+				<Control />
 			</ContentWrapper>
 		</main>
 	)

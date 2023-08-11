@@ -1,9 +1,8 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 
-import { IconMoon } from './IconMoon'
-import { IconSun } from './IconSun'
-
+import { IconMoon } from '../icons/IconMoon'
+import { IconSun } from '../icons/IconSun'
 import { useToggle } from '@/hooks/useToggle'
 
 type ThemeState =
@@ -11,7 +10,6 @@ type ThemeState =
 			currentTheme: boolean | null
 	  }
 	| undefined
-
 	
 const getTheme = (): ThemeState => {
 	if (typeof window === 'undefined') return

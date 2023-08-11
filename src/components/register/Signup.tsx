@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic'
 import { inputStyle } from './Login'
 import { ErrorMessage } from './ui/ErrorMessage'
 import { InputWrapper } from './ui/InputWrapper'
-import { emailValidation, nameValidation, passwordValidation } from '@/helpers/formValidation'
+import { emailValidation, nameValidation, passwordValidation } from '@/components/register/formValidation'
 import { useAuth } from '@/hooks/useAuth'
 
 const LoadingButton = dynamic(() => import('../ui/LoadingButton').then(mod => mod.LoadingButton), { ssr: false })
