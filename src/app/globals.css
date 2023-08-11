@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+	.base-button {
+		@apply bg-primary hover:bg-secondary text-white w-full;
+	}
+}
 *,
 ::after,
 ::before {

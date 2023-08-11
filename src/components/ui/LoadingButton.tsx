@@ -7,7 +7,7 @@ export const LoadingButton = ({ children, isSubmitting }: { children: ReactNode;
 		<MuiLoadingButton
 			type='submit'
 			loading={isSubmitting}
-			className='bg-primary hover:bg-secondary text-white w-full'>
+			className='base-button'>
 			{children}
 		</MuiLoadingButton>
 	)
