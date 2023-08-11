@@ -1,8 +1,8 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import Input from '@mui/joy/Input'
 import dynamic from 'next/dynamic'
 
+import { Input } from '@/lib/muiJoy'
 import { inputStyle } from './Login'
 import { ErrorMessage } from './ui/ErrorMessage'
 import { InputWrapper } from './ui/InputWrapper'

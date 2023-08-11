@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
-import { LoadingButton as MuiLoadingButton } from '@mui/lab'
+
+import { MuiLoadingButton } from '@/lib/muiLab';
 
 export const LoadingButton = ({ children, isSubmitting }: { children: ReactNode; isSubmitting: boolean }) => {
 	return (

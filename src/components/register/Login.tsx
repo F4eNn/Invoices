@@ -1,11 +1,11 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { Input } from '@mui/joy'
 import dynamic from 'next/dynamic'
 
 import { InputWrapper } from './ui/InputWrapper'
 import { ErrorMessage } from './ui/ErrorMessage'
 import { useAuth } from '@/hooks/useAuth'
+import {Input} from '@/lib/muiJoy'
 
 const LoadingButton = dynamic(() => import('../ui/LoadingButton').then(mod => mod.LoadingButton), { ssr: false })
 
