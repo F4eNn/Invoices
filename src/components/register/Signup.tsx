@@ -2,8 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import dynamic from 'next/dynamic'
 
-import { Input } from '@/lib/muiJoy'
-import { inputStyle } from './Login'
+import { Input } from '@/lib/muiMaterial'
 import { ErrorMessage } from './ui/ErrorMessage'
 import { InputWrapper } from './ui/InputWrapper'
 import { emailValidation, nameValidation, passwordValidation } from '@/components/register/formValidation'
@@ -34,7 +33,6 @@ export const Signup = () => {
 	const signup = async (data: FormValues) => {
 		await createUser(data.email, data.password)
 	}
-
 	return (
 		<form
 			onSubmit={handleSubmit(signup)}
@@ -45,10 +43,11 @@ export const Signup = () => {
 					msg='Email is in use'
 				/>
 			</div>
-			<InputWrapper>
+		<div className='flex flex-col gap-5'>
+		<InputWrapper>
 				<label htmlFor='name'>Name</label>
 				<Input
-					{...inputStyle}
+
 					error={errors.name ? true : false}
 					id='name'
 					autoFocus
@@ -64,7 +63,6 @@ export const Signup = () => {
 			<InputWrapper>
 				<label htmlFor='email'>Email</label>
 				<Input
-					{...inputStyle}
 					error={errors.email ? true : false}
 					id='email'
 					type='email'
@@ -79,7 +77,6 @@ export const Signup = () => {
 			<InputWrapper>
 				<label htmlFor='password'>Password</label>
 				<Input
-					{...inputStyle}
 					error={errors.password ? true : false}
 					id='password'
 					type='Password'
@@ -94,7 +91,6 @@ export const Signup = () => {
 			<InputWrapper>
 				<label htmlFor='repeatPassword'>Confirm Password</label>
 				<Input
-					{...inputStyle}
 					error={errors.password2 ? true : false}
 					id='repeatPassword'
 					type='Password'
@@ -111,6 +107,7 @@ export const Signup = () => {
 					msg={errors.password2?.message}
 				/>
 			</InputWrapper>
+		</div>
 			<div className='mt-5'>
 				<LoadingButton isSubmitting={isSubmitting}>
 					<span>Create</span>

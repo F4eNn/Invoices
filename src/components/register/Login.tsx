@@ -5,30 +5,11 @@ import dynamic from 'next/dynamic'
 import { InputWrapper } from './ui/InputWrapper'
 import { ErrorMessage } from './ui/ErrorMessage'
 import { useAuth } from '@/hooks/useAuth'
-import {Input} from '@/lib/muiJoy'
+import {Input} from '@/lib/muiMaterial'
 
 const LoadingButton = dynamic(() => import('../ui/LoadingButton').then(mod => mod.LoadingButton), { ssr: false })
 
-export const inputStyle = {
-	className: 'mb-5',
-	sx: {
-		'&::before': {
-			border: '1.5px solid #7C5DFA',
-			transform: 'scaleX(0)',
-			left: '2.5px',
-			right: '2.5px',
-			bottom: 0,
-			top: 'unset',
-			transition: 'transform .15s cubic-bezier(0.1,0.9,0.2,1)',
-			borderRadius: 0,
-			borderBottomLeftRadius: '64px 20px',
-			borderBottomRightRadius: '64px 20px',
-		},
-		'&:focus-within::before': {
-			transform: 'scaleX(1)',
-		},
-	},
-}
+
 
 interface LoginFormValues {
 	email: string
@@ -59,10 +40,10 @@ export const Login = () => {
 					msg='Invalid credentials'
 				/>
 			</div>
+			<div className='flex flex-col gap-5'>
 			<InputWrapper>
 				<label htmlFor='email'>Email</label>
 				<Input
-					{...inputStyle}
 					error={errors.email ? true : false}
 					id='email'
 					type='email'
@@ -80,7 +61,6 @@ export const Login = () => {
 			<InputWrapper>
 				<label htmlFor='password'>Password</label>
 				<Input
-					{...inputStyle}
 					error={errors.password ? true : false}
 					id='password'
 					placeholder='Password'
@@ -94,6 +74,7 @@ export const Login = () => {
 					msg={errors.password?.message}
 				/>
 			</InputWrapper>
+			</div>
 			<div className='mt-5'>
 				<LoadingButton isSubmitting={isSubmitting}>Enter</LoadingButton>
 			</div>
