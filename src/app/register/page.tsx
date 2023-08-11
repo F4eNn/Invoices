@@ -21,7 +21,7 @@ const RegisterPage = () => {
 
 	const label = isLogin ? navigation.signUp.label : navigation.login.label
 	const path = isLogin ? navigation.signUp.path : navigation.login.path
-	
+
 	return (
 		<div className='h-full bg-secondary pt-20 px-3'>
 			<FormContainer>

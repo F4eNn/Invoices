@@ -46,7 +46,7 @@ export const Login = () => {
 	const { errors, isSubmitting } = formState
 
 	const login = async (data: LoginFormValues) => {
-			await logInUser(data.email, data.password)
+		await logInUser(data.email, data.password)
 	}
 
 	return (

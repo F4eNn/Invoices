@@ -21,7 +21,6 @@ type FormValues = {
 export const Signup = () => {
 	const { createUser, isAccountExists } = useAuth()
 
-	
 	const { formState, handleSubmit, register, watch } = useForm<FormValues>({
 		defaultValues: {
 			email: '',

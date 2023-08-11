@@ -4,16 +4,9 @@ import Image from 'next/image'
 
 import { Button } from '@/components/ui/Button'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { useAuth } from '@/hooks/useAuth'
 
 export const Control = () => {
 	const media = useMediaQuery('(min-width: 576px)')
-
-	const { logout } = useAuth()
-
-	const logoutUser = async () => {
-		await logout()
-	}
 
 	return (
 		<div className='flex justify-between dark:text-white'>
@@ -37,11 +30,6 @@ export const Control = () => {
 					{media ? 'New Invoice' : 'New'}
 				</Button>
 			</div>
-			<button
-				onClick={logoutUser}
-				className='bg-red rounded-2xl p-3'>
-				Logout
-			</button>
 		</div>
 	)
 }
