@@ -10,9 +10,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
-    "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
-    "@mui/lab": "^5.0.0-alpha.139",
     "@mui/material": "^5.14.4",
     "@types/node": "20.4.8",
     "@types/react": "18.2.18",
@@ -27,15 +25,13 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.4",
+    "react-spinners": "^0.13.8",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6",
-    "uninstall": "^0.0.0",
     "validator": "^13.11.0"
   },
   "devDependencies": {
     "@types/validator": "^13.11.1",
-    "encoding": "^0.1.13",
-    "prettier": "^3.0.1",
-    "prettier-plugin-tailwindcss": "^0.5.1"
+    "encoding": "^0.1.13"
   }
 }

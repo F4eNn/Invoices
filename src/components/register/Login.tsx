@@ -1,11 +1,12 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import dynamic from 'next/dynamic'
+import { TextField,styled } from '@mui/material'
+
 
 import { InputWrapper } from './ui/InputWrapper'
 import { ErrorMessage } from './ui/ErrorMessage'
 import { useAuth } from '@/hooks/useAuth'
-import { Input } from '@/components/lib/muiMaterial'
 
 const LoadingButton = dynamic(() => import('../ui/LoadingButton').then(mod => mod.LoadingButton), { ssr: false })
 
@@ -13,6 +14,22 @@ interface LoginFormValues {
 	email: string
 	password: string
 }
+
+
+export const Input = styled(TextField)({
+	'& label.Mui-focused': {
+	  color: '#9277ff',
+	},
+	'& .MuiOutlinedInput-root': {
+	  '&:hover fieldset': {
+		borderColor: '#9277ff',
+	  },
+	  '&.Mui-focused fieldset': {
+		borderColor: '#9277ff',
+	  },
+	},
+  });
+
 
 export const Login = () => {
 	const { logInUser, invalidCredentials } = useAuth()
@@ -38,14 +55,16 @@ export const Login = () => {
 					msg='Invalid credentials'
 				/>
 			</div>
-			<div className='flex flex-col gap-5'>
+			<div className='flex flex-col gap-3'>
+				
 				<InputWrapper>
-					<label htmlFor='email'>Email</label>
 					<Input
 						error={errors.email ? true : false}
 						id='email'
 						type='email'
 						autoFocus
+						label='Email'
+						variant='outlined'
 						placeholder='John@doehub.com'
 						{...register('email', {
 							required: 'Email is required',
@@ -57,12 +76,11 @@ export const Login = () => {
 					/>
 				</InputWrapper>
 				<InputWrapper>
-					<label htmlFor='password'>Password</label>
 					<Input
 						error={errors.password ? true : false}
 						id='password'
-						placeholder='Password'
 						type='password'
+						label='Password'
 						{...register('password', {
 							required: 'Password is required',
 						})}

@@ -1,14 +1,13 @@
 import React, { ReactNode } from 'react'
-
-import { MuiLoadingButton } from '@/components/lib/muiLab'
+import {Button as MuiButton } from '@mui/material'
+import PulseLoader from 'react-spinners/PulseLoader'
 
 export const LoadingButton = ({ children, isSubmitting }: { children: ReactNode; isSubmitting: boolean }) => {
 	return (
-		<MuiLoadingButton
+		<MuiButton
 			type='submit'
-			loading={isSubmitting}
-			className='base-button'>
-			{children}
-		</MuiLoadingButton>
+			className=' w-full !bg-primary hover:!bg-secondary !text-white  !h-[40px] !rounded-xl !text-base  '>
+				{isSubmitting ? <PulseLoader color='#fff' size={10}/> : <span>{children}</span>}
+		</MuiButton>
 	)
 }

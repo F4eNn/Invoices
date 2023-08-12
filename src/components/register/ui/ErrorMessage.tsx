@@ -8,5 +8,5 @@ interface ErrorMessageProps {
 }
 
 export const ErrorMessage = ({ error, msg, isValid }: ErrorMessageProps) => {
-	return <div className='text-lightRed -mt-4 mb-2'>{(error || isValid) && msg}</div>
+	return <div className='text-lightRed mt-2 ml-1 mb-2'>{(error || isValid) && msg}</div>
 }

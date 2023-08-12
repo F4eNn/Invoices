@@ -1,10 +1,10 @@
 import { useRef } from 'react'
+import { Avatar, Tooltip, IconButton, Divider } from '@mui/material'
 
-import { Avatar, Tooltip, IconButton, Divider } from '@/components/lib/muiMaterial'
 import { SwitchModeBtn } from './SwitchModeBtn'
 import { Logo } from './Logo'
 import { useOutsideClick } from '@/hooks/useOutsideClick'
-import { motion } from '@/components/lib/motion'
+import { motion } from '@/lib/motion'
 import { UserIcon } from '../icons/User'
 import { LogoutIcon } from '../icons/Logout'
 import { SettingsIcon } from '../icons/Settings'
@@ -42,11 +42,11 @@ export const Pannel = () => {
 						placement='right'>
 						<IconButton
 							onClick={toggleState}
-							className='w-28 flex justify-center items-center lg:w-auto lg:h-28 '>
+							className='w-28 h-full flex justify-center items-center lg:w-full lg:h-28 '>
 							<Avatar
 								src='./s'
 								alt='Mateusz'
-								className='bg-secondary w-12 h-12'
+								className='!bg-secondary w-12 h-12'
 							/>
 						</IconButton>
 					</Tooltip>

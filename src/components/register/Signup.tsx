@@ -2,11 +2,11 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import dynamic from 'next/dynamic'
 
-import { Input } from '@/components/lib/muiMaterial'
 import { ErrorMessage } from './ui/ErrorMessage'
 import { InputWrapper } from './ui/InputWrapper'
 import { emailValidation, nameValidation, passwordValidation } from '@/components/register/formValidation'
 import { useAuth } from '@/hooks/useAuth'
+import { Input } from './Login'
 
 const LoadingButton = dynamic(() => import('../ui/LoadingButton').then(mod => mod.LoadingButton), { ssr: false })
 
@@ -43,13 +43,13 @@ export const Signup = () => {
 					msg='Email is in use'
 				/>
 			</div>
-			<div className='flex flex-col gap-5'>
+			<div className='flex flex-col gap-3'>
 				<InputWrapper>
-					<label htmlFor='name'>Name</label>
 					<Input
 						error={errors.name ? true : false}
 						id='name'
 						autoFocus
+						label='Name'
 						type='name'
 						placeholder='John'
 						{...register('name', nameValidation)}
@@ -59,12 +59,12 @@ export const Signup = () => {
 						msg={errors.name?.message}
 					/>
 				</InputWrapper>
-				<InputWrapper>
-					<label htmlFor='email'>Email</label>
+				<InputWrapper>			
 					<Input
 						error={errors.email ? true : false}
 						id='email'
 						type='email'
+						label='Email'
 						placeholder='John@doehub.com'
 						{...register('email', emailValidation)}
 					/>
@@ -74,12 +74,11 @@ export const Signup = () => {
 					/>
 				</InputWrapper>
 				<InputWrapper>
-					<label htmlFor='password'>Password</label>
 					<Input
 						error={errors.password ? true : false}
 						id='password'
 						type='Password'
-						placeholder='Password'
+						label='Password'
 						{...register('password', passwordValidation)}
 					/>
 					<ErrorMessage
@@ -88,12 +87,11 @@ export const Signup = () => {
 					/>
 				</InputWrapper>
 				<InputWrapper>
-					<label htmlFor='repeatPassword'>Confirm Password</label>
 					<Input
 						error={errors.password2 ? true : false}
 						id='repeatPassword'
 						type='Password'
-						placeholder='Confirm password'
+						label='Confirm Password'
 						{...register('password2', {
 							required: 'Confirm password is required',
 							validate: password => {

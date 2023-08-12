@@ -42,7 +42,7 @@ const RegisterPage = () => {
 				<p className='mt-5'>
 					{isLogin ? 'No account?' : 'Have an account already?'}{' '}
 					<Link
-						className='text-primary'
+						className='text-primary relative underlineLink'
 						aria-label={label}
 						href={path}>
 						{isLogin ? 'Sign up' : 'Log in'}

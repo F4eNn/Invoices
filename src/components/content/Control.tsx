@@ -1,25 +1,24 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
-import { Button as TestButton } from '@mui/material'
 
 import { Button } from '@/components/ui/Button'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 export const Control = () => {
-	const media = useMediaQuery('(min-width: 576px)')
+	const targetReached = useMediaQuery('576')
 
 	return (
 		<div className='flex justify-between dark:text-white'>
 			<div className='flex flex-col'>
 				<h1 className='text-headingM lg:text-headingL '>Invoices</h1>
-				<p className='text-[.7em] '>{media ? 'There are 7 total invoices' : '7 invoices '}</p>
+				<p className='text-[.7em] '>{targetReached ? 'There are 7 total invoices' : '7 invoices '}</p>
 			</div>
 			<div>
 				<Button
-					paddingR='pr-4'
-					bg='bg-primary'
-					bgHover='hover:bg-secondary'>
+					paddingR='!pr-4'
+					bg='!bg-primary'
+					bgHover='hover:!bg-secondary'>
 					<span className='flex justify-center ml-[-3px] items-center h-8 w-8 bg-white rounded-full'>
 						<Image
 							alt=''
@@ -28,10 +27,8 @@ export const Control = () => {
 							height={12}
 						/>
 					</span>
-					{media ? 'New Invoice' : 'New'}
+					{targetReached ? 'New Invoice' : 'New'}
 				</Button>
-				<TestButton>New</TestButton>
-				
 			</div>
 		</div>
 	)

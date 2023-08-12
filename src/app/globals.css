@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-	.base-button {
-		@apply bg-primary hover:bg-secondary text-white w-full;
-	}
-}
 *,
 ::after,
 ::before {
@@ -44,6 +39,16 @@ h6 {
 	font-size: inherit;
 	font-weight: inherit;
 }
-label {
-	display: block;
+.underlineLink::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+	width: 25%;
+	height: 1px;
+	background-color: #9277ff;
+	transition: width 0.3s;
+}
+.underlineLink:hover::after {
+	width: 100%;
 }
