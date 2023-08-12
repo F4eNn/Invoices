@@ -1,15 +1,15 @@
 import { useRef } from 'react'
-import { Avatar, Tooltip, IconButton} from '@mui/material'
+import { Avatar, Tooltip, IconButton } from '@mui/material'
 
 import { useOutsideClick } from '@/hooks/useOutsideClick'
 import { SwitchModeBtn } from './SwitchModeBtn'
 import { Logo } from './Logo'
+import { AnimatePresence } from '@/lib/motion'
 import { Menu } from './Menu'
 
 export const Pannel = () => {
 	const menuRef = useRef<HTMLElement>(null)
 	const { isOpen, toggleState } = useOutsideClick(menuRef)
-
 	return (
 		<div className='h-24 flex  justify-between bg-secondaryDark w-full lg:rounded-r-3xl  lg:h-full lg:w-24 lg:flex-col lg:left-0'>
 			<Logo />
@@ -30,7 +30,7 @@ export const Pannel = () => {
 							/>
 						</IconButton>
 					</Tooltip>
-					{isOpen && <Menu />}
+					<AnimatePresence mode='wait'>{isOpen && <Menu isOpen />}</AnimatePresence>
 				</div>
 			</div>
 		</div>

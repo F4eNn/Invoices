@@ -1,1 +1,1 @@
-export { motion } from 'framer-motion'
+export { motion, AnimatePresence } from 'framer-motion'

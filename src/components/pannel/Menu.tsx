@@ -6,6 +6,7 @@ import { LogoutIcon } from '../icons/Logout'
 import { SettingsIcon } from '../icons/Settings'
 import { motion } from '@/lib/motion'
 import { useAuth } from '@/hooks/useAuth'
+import { menuAnimation } from '@/animations/animations'
 
 const menuValues = [
 	[<UserIcon key={1} />, 'Profile'],
@@ -20,9 +21,11 @@ const menuValues = [
 	[<LogoutIcon key={4} />, 'Log out'],
 ]
 
+interface MenuProps {
+	isOpen: boolean
+}
 
-export const Menu = () => {
-
+export const Menu = ({ isOpen }: MenuProps) => {
 	const { logout } = useAuth()
 
 	const logoutUser = async () => {
@@ -30,7 +33,12 @@ export const Menu = () => {
 	}
 
 	return (
-		<motion.menu className='absolute  -left-[175px] w-[275px] lg:top-[-80px] lg:left-[110px] top-[100px] rounded-md p-1 gap-5 inline-block bg-slate-100  shadow-md z-50 '>
+		<motion.menu
+			variants={menuAnimation}
+			initial='hidden'
+			animate={isOpen ? 'visible' : 'hidden'}
+			exit='exit'
+			className='absolute  -left-[175px] w-[275px] lg:top-[-80px] lg:left-[110px] top-[100px] rounded-md p-1 gap-5 inline-block bg-slate-100  shadow-md z-50 '>
 			{menuValues.map(([icon, title], index) => (
 				<li key={index}>
 					{index === 2 ? (

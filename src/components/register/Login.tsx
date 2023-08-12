@@ -1,8 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import dynamic from 'next/dynamic'
-import { TextField,styled } from '@mui/material'
-
+import { TextField, styled } from '@mui/material'
 
 import { InputWrapper } from './ui/InputWrapper'
 import { ErrorMessage } from './ui/ErrorMessage'
@@ -15,21 +14,22 @@ interface LoginFormValues {
 	password: string
 }
 
-
 export const Input = styled(TextField)({
 	'& label.Mui-focused': {
-	  color: '#9277ff',
+		color: '#9277ff',
 	},
 	'& .MuiOutlinedInput-root': {
-	  '&:hover fieldset': {
-		borderColor: '#9277ff',
-	  },
-	  '&.Mui-focused fieldset': {
-		borderColor: '#9277ff',
-	  },
+		'& fieldset': {
+			borderColor: '#9277ff',
+		},
+		'&:hover fieldset': {
+			borderColor: '#9277ff',
+		},
+		'&.Mui-focused fieldset': {
+			borderColor: '#9277ff',
+		},
 	},
-  });
-
+})
 
 export const Login = () => {
 	const { logInUser, invalidCredentials } = useAuth()
@@ -56,7 +56,6 @@ export const Login = () => {
 				/>
 			</div>
 			<div className='flex flex-col gap-3'>
-				
 				<InputWrapper>
 					<Input
 						error={errors.email ? true : false}
