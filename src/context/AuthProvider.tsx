@@ -2,24 +2,44 @@
 import React, { ReactNode, useEffect, useState } from 'react'
 import {
 	User,
-    signOut,
+	signOut,
 	createUserWithEmailAndPassword,
 	onAuthStateChanged,
 	signInWithEmailAndPassword,
 	fetchSignInMethodsForEmail as checkEmailExist,
 } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
+import { doc, setDoc } from 'firebase/firestore'
 
-import { auth } from '@/config/firebase'
+import { auth, db } from '@/config/firebase'
 import { AuthCtx } from './AuthCtx'
 import { navigation } from '@/navigation_paths'
 
+export type UserInfoType = Readonly<{
+	email: string
+	name: string
+	created: string
+	image: string
+}>
+
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-	const [user, setUser] = useState<User | null>(null)
+	const [authUser, setAuthUser] = useState<User | null>(null)
 	const [isAccountExists, setIsAccountExists] = useState(false)
 	const [invalidCredentials, setInvalidCredentials] = useState(false)
 
+
 	const router = useRouter()
+
+	const getUserInfo = async ({ ...userInfo }: Partial<UserInfoType>) => {
+		if (authUser && authUser.email) {
+			const userRef = doc(db, 'user', authUser.email)
+			await setDoc(userRef, { ...userInfo }, { merge: true })
+		}else {
+			const userRef = doc(db, 'user', userInfo.email!)
+			await setDoc(userRef, { ...userInfo }, { merge: true })
+
+		}
+	}
 
 	const createUser = async (email: string, password: string) => {
 		try {
@@ -54,17 +74,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	}
 
 	useEffect(() => {
-		const unsubscribe = onAuthStateChanged(auth, setUser)
+		const unsubscribe = onAuthStateChanged(auth, setAuthUser)
 		return () => unsubscribe()
-	}, [user])
+	}, [authUser])
 
 	const value = {
 		createUser,
 		logInUser,
-        logout,
+		logout,
+		getUserInfo,
 		isAccountExists,
 		invalidCredentials,
-		isAuthenticated: user,
+		isAuthenticated: authUser,
 	}
 	return <AuthCtx.Provider value={value}>{children}</AuthCtx.Provider>
 }

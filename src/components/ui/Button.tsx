@@ -1,23 +1,16 @@
 import React, { ReactNode } from 'react'
-import { Button as MuiButton } from '@mui/material'
 
-interface ButtonProps {
+type ButtonProps = {
 	children: ReactNode
-	bg: '!bg-red' | '!bg-primary' | '!bg-lightGray'
-	bgHover: 'hover:!bg-lightRed' | 'hover:!bg-secondary' | 'hover:!bg-rose'
-	type?: 'submit'
-	paddingR?: '!pr-4'
+	onClick: () => void
 }
 
-export const Button = ({ children, bg, bgHover, type, paddingR }: ButtonProps) => {
+export const Button = ({ children, onClick }: ButtonProps) => {
 	return (
-		<>
-		<MuiButton
-			type={type}
-			className={`!rounded-3xl !text-white !flex !justify-center w-full ${paddingR} !gap-2 !normal-case !font-[500] !text-lg !tracking-wider ${bg} ${bgHover}`}>
+		<button
+			onClick={onClick}
+			className='bg-primary hover:bg-secondary w-full text-white rounded-3xl p-[7px] text-xl font-[500] hover:scale-[1.02] transition-transform tracking-wide'>
 			{children}
-		</MuiButton>
-		
-		</>
+		</button>
 	)
 }

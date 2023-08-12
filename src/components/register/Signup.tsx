@@ -7,6 +7,7 @@ import { InputWrapper } from './ui/InputWrapper'
 import { emailValidation, nameValidation, passwordValidation } from '@/components/register/formValidation'
 import { useAuth } from '@/hooks/useAuth'
 import { Input } from './Login'
+import { useDate } from '@/hooks/useDate'
 
 const LoadingButton = dynamic(() => import('../ui/LoadingButton').then(mod => mod.LoadingButton), { ssr: false })
 
@@ -18,8 +19,8 @@ type FormValues = {
 }
 
 export const Signup = () => {
-	const { createUser, isAccountExists } = useAuth()
-
+	const { createUser, isAccountExists, getUserInfo } = useAuth()
+	const currentDate = useDate()
 	const { formState, handleSubmit, register, watch } = useForm<FormValues>({
 		defaultValues: {
 			email: '',
@@ -32,6 +33,8 @@ export const Signup = () => {
 
 	const signup = async (data: FormValues) => {
 		await createUser(data.email, data.password)
+		const userInfo = {name: data.name, email: data.email, created: currentDate}
+		await getUserInfo(userInfo)
 	}
 	return (
 		<form
