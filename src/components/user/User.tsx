@@ -2,23 +2,37 @@
 import React, { useState } from 'react'
 import { Avatar, IconButton } from '@mui/material'
 import { IoCamera } from 'react-icons/io5'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 import { ContentWrapper } from '../ui/ContentWrapper'
 import { Button } from '../ui/Button'
 import { AnimatePresence, motion } from '@/lib/motion'
 import { shuffleAnimation } from '@/animations/animations'
+import { storage } from '@/config/firebase'
 
 export const User = () => {
-	const [isOpen, setIsOpen] = useState(false)
+	const [imageUpload, setUrl] = useState<File>()
+	const [profile, setProfile] = useState('')
 
+	const imageRef = ref(storage, `profiles/mateusz4k@outlook.com`)
+
+	const saveImage = async () => {
+		if (imageUpload == null) return
+		try {
+			await uploadBytes(imageRef, imageUpload)
+			await getDownloadURL(imageRef).then(url => setProfile(url))
+		} catch (error) {
+			console.error(error)
+		}
+	}
 	return (
 		<ContentWrapper>
 			<div className='dark:text-white p-3 flex w-full rounded-lg    '>
-				<div className='m-8 flex flex-col gap-5'>
+				<div className='flex flex-col gap-5 m-8'>
 					<div className='relative'>
 						<Avatar
 							sizes='lg'
-							src='sd'
+							src={profile}
 							alt='M'
 							className='!bg-primary w-[175px] h-[175px] !text-7xl'
 						/>
@@ -30,12 +44,19 @@ export const User = () => {
 								hidden
 								accept='image/*'
 								type='file'
+								onChange={e => setUrl(e.target.files![0])}
 							/>
 							<div className=' text-primaryDark dark:text-lightGray'>
 								<IoCamera size='2.2em' />
 							</div>
 						</IconButton>
 					</div>
+					<button
+						type='submit'
+						className='bg-primary p-2 rounded-lg text-white mt-5 mx-auto'
+						onClick={saveImage}>
+						Save image
+					</button>
 					<p className='text-center text-2xl'>Mateusz</p>
 				</div>
 
@@ -57,7 +78,7 @@ export const User = () => {
 						</div>
 					</div>
 					<div className='flex-1 py-5 px-10  border-t-[1px] border-dashed border-primary mt-5 text-lg    '>
-						<AnimatePresence mode='wait'>
+						{/* <AnimatePresence mode='wait'>
 							{isOpen && (
 								<motion.div
 									key={'updatePicture'}
@@ -79,7 +100,7 @@ export const User = () => {
 									<p>Total Invoices: 27</p>
 								</motion.div>
 							)}
-						</AnimatePresence>
+						</AnimatePresence> */}
 					</div>
 				</div>
 			</div>
