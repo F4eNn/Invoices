@@ -11,17 +11,12 @@ import { menuAnimation } from '@/animations/animations'
 import { navigation } from '@/constants/navigation_paths'
 import { notify } from '@/constants/notify'
 
-interface MenuProps {
-	isOpen: boolean
-}
-
-export const Menu = ({ isOpen }: MenuProps) => {
+export const Menu = () => {
 	const { logout, user } = useAuth()
 
 	const logoutUser = async () => {
 		await logout()
 		notify(`You're now disconnected`)
-
 	}
 	const userProfilePath = `${user?.name}${navigation.userProfile.path}`
 	const userAccountPath = `${user?.name}${navigation.userAccount.path}`
@@ -32,10 +27,7 @@ export const Menu = ({ isOpen }: MenuProps) => {
 
 	return (
 		<motion.menu
-			variants={menuAnimation}
-			initial='hidden'
-			animate={isOpen ? 'visible' : 'hidden'}
-			exit='exit'
+			{...menuAnimation}
 			className='absolute  -left-[175px] w-[275px] lg:top-[-80px] lg:left-[110px] top-[100px] rounded-md p-1 gap-5 inline-block bg-slate-100  shadow-md z-50 '>
 			{menuValues.map(([icon, title, url], index) => (
 				<li key={index}>

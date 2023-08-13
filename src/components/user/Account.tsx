@@ -35,13 +35,10 @@ export const Account = () => {
 	const onUpadteHandler = async (data: EditCredentials) => {
 		await updateCredentials(data.newEmail, data.newPassword)
 		notify('Success! Login details modified')
-
 	}
 
 	return (
-		<motion.div
-			key={'updatePicture'}
-			{...shuffleAnimation}>
+		<motion.div {...shuffleAnimation}>
 			<form
 				onSubmit={handleSubmit(onUpadteHandler)}
 				className='flex flex-col gap-5 w-1/2'>

@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import {Tooltip, IconButton } from '@mui/material'
+import { Tooltip, IconButton } from '@mui/material'
 
 import { useOutsideClick } from '@/hooks/useOutsideClick'
 import { SwitchModeBtn } from './SwitchModeBtn'
@@ -27,7 +27,7 @@ export const Pannel = () => {
 							<Avatar />
 						</IconButton>
 					</Tooltip>
-					<AnimatePresence mode='wait'>{isOpen && <Menu isOpen />}</AnimatePresence>
+					<AnimatePresence>{isOpen && <Menu />}</AnimatePresence>
 				</div>
 			</div>
 		</div>

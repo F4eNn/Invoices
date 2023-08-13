@@ -44,10 +44,7 @@ export const GeneralInfoForm = () => {
 			<AnimatePresence>
 				{updateName && (
 					<motion.form
-						variants={formAnimation}
-						initial='hidden'
-						animate='visible'
-						exit='exit'
+						{...formAnimation}
 						onSubmit={handleSubmit(onUpdateNameHandler)}
 						className='flex-1 gap-5 w-3/4 mt-8 anim'>
 						<InputWrapper>

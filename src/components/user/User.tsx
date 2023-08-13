@@ -37,7 +37,9 @@ export const User = () => {
 						</div>
 					</div>
 					<div className='flex-1 py-5 px-10  border-t-[1px] border-dashed border-primary mt-5 text-lg'>
-						<AnimatePresence mode='wait'>{isProfile ? <GeneralInfo /> : <Account />}</AnimatePresence>
+						<AnimatePresence mode='wait'>
+							{isProfile && <GeneralInfo key='GeneralInfo' />} {!isProfile && <Account key='Account' />}
+						</AnimatePresence>
 					</div>
 				</div>
 			</div>

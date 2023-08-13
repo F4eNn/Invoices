@@ -15,10 +15,7 @@ export const Control = () => {
 				<p className='text-[.7em] '>{targetReached ? 'There are 7 total invoices' : '7 invoices '}</p>
 			</div>
 			<div>
-				<Button
-					paddingR='!pr-4'
-					bg='!bg-primary'
-					bgHover='hover:!bg-secondary'>
+				<Button onClick={() => {}}>
 					<span className='flex justify-center ml-[-3px] items-center h-8 w-8 bg-white rounded-full'>
 						<Image
 							alt=''
