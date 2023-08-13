@@ -32,7 +32,7 @@ export const Profile = () => {
 	}
 	return (
 		<>
-			<div className='relative'>
+			<div className='relative w-max'>
 				<Avatar
 					height='h-[175px]'
 					width='w-[175px]'

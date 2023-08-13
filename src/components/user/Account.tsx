@@ -41,7 +41,7 @@ export const Account = () => {
 		<motion.div {...shuffleAnimation}>
 			<form
 				onSubmit={handleSubmit(onUpadteHandler)}
-				className='flex flex-col gap-5 w-1/2'>
+				className='flex flex-col gap-5 xl:w-3/4'>
 				<h1 className='text-headingL'>Update Profile</h1>
 				<ErrorMessage
 					isValid={isEmailExist}
@@ -74,7 +74,9 @@ export const Account = () => {
 						msg={errors.newPassword?.message}
 					/>
 				</InputWrapper>
-				<SubmitButton isSubmitting={isSubmitting}>Update</SubmitButton>
+				<div className='w-1/2 xl:w-full'>
+					<SubmitButton isSubmitting={isSubmitting}>Update</SubmitButton>
+				</div>
 			</form>
 		</motion.div>
 	)
