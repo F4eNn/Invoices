@@ -11,16 +11,18 @@ type AuthContextValues = {
 	isAccountExists: boolean
 	invalidCredentials: boolean
 	isAuthenticated: User | null
+	user: UserInfoType | undefined
 }
 
 const defaultValue: AuthContextValues = {
 	createUser: async (_email: string, _password: string) => {},
 	logInUser: async (_email: string, _password: string) => {},
 	logout: async () => {},
-	getUserInfo: async (_user :Partial<UserInfoType>) => {},
+	getUserInfo: async (_user: Partial<UserInfoType>) => {},
 	isAccountExists: false,
 	invalidCredentials: false,
 	isAuthenticated: null,
+	user: { created: '', email: '', image: '', name: '' },
 }
 
 export const AuthCtx = createContext<AuthContextValues>(defaultValue)

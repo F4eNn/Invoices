@@ -32,8 +32,8 @@ export const Signup = () => {
 	const { errors, isSubmitting } = formState
 
 	const signup = async (data: FormValues) => {
-		await createUser(data.email, data.password)
-		const userInfo = {name: data.name, email: data.email, created: currentDate}
+		await createUser(data.email.toLowerCase(), data.password)
+		const userInfo = {name: data.name, email: data.email.toLowerCase(), created: currentDate}
 		await getUserInfo(userInfo)
 	}
 	return (

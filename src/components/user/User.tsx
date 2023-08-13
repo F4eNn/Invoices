@@ -6,10 +6,11 @@ import { AnimatePresence, motion } from '@/lib/motion'
 import { shuffleAnimation } from '@/animations/animations'
 import { useToggle } from '@/hooks/useToggle'
 import { Button } from '../ui/Button'
+import { useAuth } from '@/hooks/useAuth'
 
 export const User = () => {
 	const [isProfile, changeCard] = useToggle()
-
+	const { user } = useAuth()
 	return (
 		<ContentWrapper>
 			<div className='dark:text-white p-3 flex w-full rounded-lg    '>
@@ -23,11 +24,7 @@ export const User = () => {
 							<Button onClick={changeCard}>Profile</Button>
 						</div>
 						<div className='w-1/4'>
-							<Button
-								onClick={changeCard}
-								>
-								Account
-							</Button>
+							<Button onClick={changeCard}>Account</Button>
 						</div>
 					</div>
 					<div className='flex-1 py-5 px-10  border-t-[1px] border-dashed border-primary mt-5 text-lg'>
@@ -48,9 +45,9 @@ export const User = () => {
 									{...shuffleAnimation}
 									className='flex flex-col gap-5'>
 									<h1 className='text-headingL'>Details</h1>
-									<p>mateusz4k@outlook.com</p>
-									<p>created at: 08.23.2023</p>
 									<p>Total Invoices: 27</p>
+									<p>{user?.email}</p>
+									<p>created at: {user?.created}</p>
 								</motion.div>
 							)}
 						</AnimatePresence>

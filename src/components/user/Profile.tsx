@@ -9,30 +9,29 @@ import { storage } from '@/config/firebase'
 
 export const Profile = () => {
 	const [imageUpload, setUrl] = useState<File>()
-	const [profile, setProfile] = useState('')
 
-	const { getUserInfo } = useAuth()
+	const { getUserInfo, user } = useAuth()
 
-	const imageRef = ref(storage, `profiles/mateusz4k@outlook.com`)
+	const imageRef = ref(storage, `profiles/${user?.email}`)
 
 	const saveImage = async () => {
 		if (imageUpload == null) return
 		try {
 			await uploadBytes(imageRef, imageUpload)
 			const url = await getDownloadURL(imageRef)
-			setProfile(url)
-			setUrl(undefined)
 			await getUserInfo({ image: url })
+			setUrl(undefined)
 		} catch (error) {
 			console.error(error)
 		}
 	}
+	console.log(user?.email)
 	return (
 		<>
 			<div className='relative'>
 				<Avatar
 					sizes='lg'
-					src={profile}
+					src={user?.image}
 					alt='M'
 					className='!bg-primary !w-[175px] !h-[175px] !text-7xl !border-2 !border-primary'
 				/>
@@ -59,7 +58,7 @@ export const Profile = () => {
 					Save image
 				</button>
 			) : (
-				<p className='text-center text-2xl'>Mateusz</p>
+				<p className='text-center text-2xl'>{user?.name}</p>
 			)}
 		</>
 	)

@@ -45,6 +45,7 @@ export const Menu = ({ isOpen }: MenuProps) => {
 						<div>{icon}</div>
 					) : (
 						<button
+							
 							onClick={index === 3 ? logoutUser : undefined}
 							className={`gap-3 w-full text-left  inline-flex items-center group p-2 hover:bg-primary hover:text-white rounded-md transition-colors  ${
 								index === 3 && 'hover:bg-red'

@@ -9,7 +9,7 @@ import {
 	fetchSignInMethodsForEmail as checkEmailExist,
 } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, onSnapshot, setDoc } from 'firebase/firestore'
 
 import { auth, db } from '@/config/firebase'
 import { AuthCtx } from './AuthCtx'
@@ -24,9 +24,9 @@ export type UserInfoType = Readonly<{
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [authUser, setAuthUser] = useState<User | null>(null)
+	const [user, setUser] = useState<UserInfoType>()
 	const [isAccountExists, setIsAccountExists] = useState(false)
 	const [invalidCredentials, setInvalidCredentials] = useState(false)
-
 
 	const router = useRouter()
 
@@ -34,10 +34,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		if (authUser && authUser.email) {
 			const userRef = doc(db, 'user', authUser.email)
 			await setDoc(userRef, { ...userInfo }, { merge: true })
-		}else {
+		} else {
 			const userRef = doc(db, 'user', userInfo.email!)
 			await setDoc(userRef, { ...userInfo }, { merge: true })
-
 		}
 	}
 
@@ -74,6 +73,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	}
 
 	useEffect(() => {
+		if (authUser?.email) {
+			const docRef = doc(db, 'user', authUser.email)
+			const unsubscribe = onSnapshot(docRef, doc => {
+				const userData = doc.data() as UserInfoType
+				setUser(userData)
+			})
+			return () => unsubscribe()
+		}
+	}, [authUser])
+
+	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, setAuthUser)
 		return () => unsubscribe()
 	}, [authUser])
@@ -86,6 +96,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		isAccountExists,
 		invalidCredentials,
 		isAuthenticated: authUser,
+		user,
 	}
 	return <AuthCtx.Provider value={value}>{children}</AuthCtx.Provider>
 }
