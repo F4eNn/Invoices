@@ -8,7 +8,8 @@ import { SettingsIcon } from '../icons/Settings'
 import { motion } from '@/lib/motion'
 import { useAuth } from '@/hooks/useAuth'
 import { menuAnimation } from '@/animations/animations'
-import { navigation } from '@/navigation_paths'
+import { navigation } from '@/constants/navigation_paths'
+import { notify } from '@/constants/notify'
 
 interface MenuProps {
 	isOpen: boolean
@@ -19,6 +20,8 @@ export const Menu = ({ isOpen }: MenuProps) => {
 
 	const logoutUser = async () => {
 		await logout()
+		notify(`You're now disconnected`)
+
 	}
 	const userProfilePath = `${user?.name}${navigation.userProfile.path}`
 	const userAccountPath = `${user?.name}${navigation.userAccount.path}`

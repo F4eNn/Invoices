@@ -1,11 +1,12 @@
 import { useRef } from 'react'
-import { Avatar, Tooltip, IconButton } from '@mui/material'
+import {Tooltip, IconButton } from '@mui/material'
 
 import { useOutsideClick } from '@/hooks/useOutsideClick'
 import { SwitchModeBtn } from './SwitchModeBtn'
 import { Logo } from './Logo'
 import { AnimatePresence } from '@/lib/motion'
 import { Menu } from './Menu'
+import { Avatar } from '../ui/Avatar'
 
 export const Pannel = () => {
 	const menuRef = useRef<HTMLElement>(null)
@@ -23,11 +24,7 @@ export const Pannel = () => {
 						<IconButton
 							onClick={toggleState}
 							className='w-28 h-full flex justify-center items-center lg:w-full lg:h-28 '>
-							<Avatar
-								src='./s'
-								alt='Mateusz'
-								className='!bg-secondary w-12 h-12'
-							/>
+							<Avatar />
 						</IconButton>
 					</Tooltip>
 					<AnimatePresence mode='wait'>{isOpen && <Menu isOpen />}</AnimatePresence>

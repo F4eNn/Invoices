@@ -3,6 +3,9 @@ import React from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { motion } from '@/lib/motion'
 import { shuffleAnimation } from '@/animations/animations'
+import { GeneralInfoForm } from './GeneralInfoForm'
+
+
 
 export const GeneralInfo = () => {
 	const { user } = useAuth()
@@ -12,19 +15,23 @@ export const GeneralInfo = () => {
 		['Email:', user?.email],
 		['created at:', user?.created],
 	]
+
 	return (
 		<>
-			<motion.div
-				key={'Profile'}
-				{...shuffleAnimation}
-				className='flex flex-col gap-5'>
-				<h1 className='text-headingL'>My Profile</h1>
-				{userProfile.map(([title, data], index) => (
-					<p key={index}>
-						{title} <span className='text-secondary'>{data}</span>
-					</p>
-				))}
-			</motion.div>
+			<div className='flex justify-between items-start'>
+				<motion.div
+					key={'Profile'}
+					{...shuffleAnimation}
+					className='flex flex-col gap-5'>
+					<h1 className='text-headingL'>My Profile</h1>
+					{userProfile.map(([title, data], index) => (
+						<p key={index}>
+							{title} <span className='text-secondary'>{data}</span>
+						</p>
+					))}
+				</motion.div>
+				<GeneralInfoForm />
+			</div>
 		</>
 	)
 }

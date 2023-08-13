@@ -8,6 +8,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { Input } from './Login'
 import { useDate } from '@/hooks/useDate'
 import { SubmitButton } from '../ui/SubmitButton'
+import { notify } from '@/constants/notify'
 
 type FormValues = {
 	email: string
@@ -17,7 +18,7 @@ type FormValues = {
 }
 
 export const Signup = () => {
-	const { createUser, isEmailExist, getUserInfo } = useAuth()
+	const { createUser, isEmailExist, updateUserInfo } = useAuth()
 	const currentDate = useDate()
 	const { formState, handleSubmit, register, watch } = useForm<FormValues>({
 		defaultValues: {
@@ -32,7 +33,9 @@ export const Signup = () => {
 	const signup = async (data: FormValues) => {
 		await createUser(data.email.toLowerCase(), data.password)
 		const userInfo = { name: data.name, email: data.email.toLowerCase(), created: currentDate }
-		await getUserInfo(userInfo)
+		await updateUserInfo(userInfo)
+		notify('Welcome aboard!')
+
 	}
 	return (
 		<form

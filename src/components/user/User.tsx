@@ -7,7 +7,7 @@ import { AnimatePresence } from '@/lib/motion'
 import { GeneralInfo } from './GeneralInfo'
 import { Account } from './Account'
 import { LinkButton } from '../ui/LinkButton'
-import { navigation } from '@/navigation_paths'
+import { navigation } from '@/constants/navigation_paths'
 
 export const User = () => {
 	const searchParams = useSearchParams()

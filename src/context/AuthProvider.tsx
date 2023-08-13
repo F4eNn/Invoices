@@ -15,7 +15,8 @@ import { doc, onSnapshot, setDoc } from 'firebase/firestore'
 
 import { auth, db } from '@/config/firebase'
 import { AuthCtx } from './AuthCtx'
-import { navigation } from '@/navigation_paths'
+import { navigation } from '@/constants/navigation_paths'
+import { notify } from '@/constants/notify'
 
 export type UserInfoType = Readonly<{
 	email: string
@@ -32,7 +33,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 	const router = useRouter()
 
-	const getUserInfo = async ({ ...userInfo }: Partial<UserInfoType>) => {
+	const updateUserInfo = async ({ ...userInfo }: Partial<UserInfoType>) => {
 		try {
 			if (authUser && authUser.email) {
 				const userRef = doc(db, 'user', authUser.email)
@@ -71,6 +72,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 			setInvalidCredentials(false)
 			await signInWithEmailAndPassword(auth, email, password)
 			router.replace(navigation.home.path)
+			notify('Welcome back!')
 		} catch (error) {
 			setInvalidCredentials(true)
 			console.error('Log in failed:', error)
@@ -82,7 +84,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 			await signOut(auth)
 			router.replace(navigation.login.path)
 		} catch (error) {
-			console.error('Log out failed:', error)
+			console.error(`Failed during log out:`, error)
 		}
 	}
 
@@ -122,7 +124,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		createUser,
 		logInUser,
 		logout,
-		getUserInfo,
+		updateUserInfo,
 		updateCredentials,
 		isEmailExist,
 		invalidCredentials,

@@ -8,7 +8,7 @@ import { Login } from '@/components/register/Login'
 import { Signup } from '@/components/register/Signup'
 import { FormContainer } from '@/components/register/ui/FormContainer'
 import { useAuth } from '@/hooks/useAuth'
-import { navigation } from '@/navigation_paths'
+import { navigation } from '@/constants/navigation_paths'
 
 const RegisterPage = () => {
 	const searchParams = useSearchParams()

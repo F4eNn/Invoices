@@ -6,7 +6,7 @@ import { Control } from '@/components/content/Control'
 import { Pannel } from '@/components/pannel/Pannel'
 import { ContentWrapper } from '@/components/ui/ContentWrapper'
 import { useAuth } from '@/hooks/useAuth'
-import { navigation } from '@/navigation_paths'
+import { navigation } from '@/constants/navigation_paths'
 
 export default function Home() {
 	const { isAuthenticated } = useAuth()

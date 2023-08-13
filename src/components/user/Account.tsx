@@ -10,13 +10,14 @@ import { ErrorMessage } from '../ui/Forms/ErrorMessage'
 import { emailValidation, passwordValidation } from '../register/formValidation'
 import { useAuth } from '@/hooks/useAuth'
 import { SubmitButton } from '../ui/SubmitButton'
+import { notify } from '@/constants/notify'
 
 interface EditCredentials {
 	readonly newEmail: string
 	readonly newPassword: string
 }
 
-const CredentialInput = styled(Input)({
+export const CredentialInput = styled(Input)({
 	'& .MuiInputBase-root': {
 		color: '#9277ff',
 	},
@@ -33,6 +34,8 @@ export const Account = () => {
 
 	const onUpadteHandler = async (data: EditCredentials) => {
 		await updateCredentials(data.newEmail, data.newPassword)
+		notify('Success! Login details modified')
+
 	}
 
 	return (
