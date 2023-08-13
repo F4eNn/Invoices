@@ -1,15 +1,13 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import dynamic from 'next/dynamic'
 
-import { ErrorMessage } from './ui/ErrorMessage'
-import { InputWrapper } from './ui/InputWrapper'
+import { ErrorMessage } from '../ui/Forms/ErrorMessage'
+import { InputWrapper } from '../ui/Forms/InputWrapper'
 import { emailValidation, nameValidation, passwordValidation } from '@/components/register/formValidation'
 import { useAuth } from '@/hooks/useAuth'
 import { Input } from './Login'
 import { useDate } from '@/hooks/useDate'
-
-const LoadingButton = dynamic(() => import('../ui/LoadingButton').then(mod => mod.LoadingButton), { ssr: false })
+import { SubmitButton } from '../ui/SubmitButton'
 
 type FormValues = {
 	email: string
@@ -19,7 +17,7 @@ type FormValues = {
 }
 
 export const Signup = () => {
-	const { createUser, isAccountExists, getUserInfo } = useAuth()
+	const { createUser, isEmailExist, getUserInfo } = useAuth()
 	const currentDate = useDate()
 	const { formState, handleSubmit, register, watch } = useForm<FormValues>({
 		defaultValues: {
@@ -33,7 +31,7 @@ export const Signup = () => {
 
 	const signup = async (data: FormValues) => {
 		await createUser(data.email.toLowerCase(), data.password)
-		const userInfo = {name: data.name, email: data.email.toLowerCase(), created: currentDate}
+		const userInfo = { name: data.name, email: data.email.toLowerCase(), created: currentDate }
 		await getUserInfo(userInfo)
 	}
 	return (
@@ -42,7 +40,7 @@ export const Signup = () => {
 			noValidate>
 			<div className='text-center w-full'>
 				<ErrorMessage
-					isValid={isAccountExists}
+					isValid={isEmailExist}
 					msg='Email is in use'
 				/>
 			</div>
@@ -62,7 +60,7 @@ export const Signup = () => {
 						msg={errors.name?.message}
 					/>
 				</InputWrapper>
-				<InputWrapper>			
+				<InputWrapper>
 					<Input
 						error={errors.email ? true : false}
 						id='email'
@@ -109,9 +107,7 @@ export const Signup = () => {
 				</InputWrapper>
 			</div>
 			<div className='mt-5'>
-				<LoadingButton isSubmitting={isSubmitting}>
-					<span>Create</span>
-				</LoadingButton>
+				<SubmitButton isSubmitting={isSubmitting}>Create</SubmitButton>
 			</div>
 		</form>
 	)

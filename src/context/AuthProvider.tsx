@@ -7,6 +7,8 @@ import {
 	onAuthStateChanged,
 	signInWithEmailAndPassword,
 	fetchSignInMethodsForEmail as checkEmailExist,
+	updateEmail,
+	updatePassword,
 } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import { doc, onSnapshot, setDoc } from 'firebase/firestore'
@@ -25,26 +27,38 @@ export type UserInfoType = Readonly<{
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [authUser, setAuthUser] = useState<User | null>(null)
 	const [user, setUser] = useState<UserInfoType>()
-	const [isAccountExists, setIsAccountExists] = useState(false)
+	const [isEmailExist, setIsEmail] = useState(false)
 	const [invalidCredentials, setInvalidCredentials] = useState(false)
 
 	const router = useRouter()
 
 	const getUserInfo = async ({ ...userInfo }: Partial<UserInfoType>) => {
-		if (authUser && authUser.email) {
-			const userRef = doc(db, 'user', authUser.email)
-			await setDoc(userRef, { ...userInfo }, { merge: true })
-		} else {
-			const userRef = doc(db, 'user', userInfo.email!)
-			await setDoc(userRef, { ...userInfo }, { merge: true })
+		try {
+			if (authUser && authUser.email) {
+				const userRef = doc(db, 'user', authUser.email)
+				await setDoc(userRef, { ...userInfo }, { merge: true })
+			} else {
+				const userRef = doc(db, 'user', userInfo.email!)
+				await setDoc(userRef, { ...userInfo }, { merge: true })
+			}
+		} catch (error) {
+			console.error('Failed during set user:', error)
+		}
+	}
+
+	const checkIfEmailExist = async (email: string) => {
+		try {
+			setIsEmail(false)
+			const isAccount = await checkEmailExist(auth, email)
+			if (isAccount.length > 0) return setIsEmail(true)
+		} catch (error) {
+			console.error('Failed during check email:', error)
 		}
 	}
 
 	const createUser = async (email: string, password: string) => {
 		try {
-			const isAccount = await checkEmailExist(auth, email)
-			if (isAccount.length > 0) return setIsAccountExists(true)
-			setIsAccountExists(false)
+			await checkIfEmailExist(email)
 			await createUserWithEmailAndPassword(auth, email, password)
 			router.replace(navigation.home.path)
 		} catch (error) {
@@ -72,6 +86,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		}
 	}
 
+	const updateCredentials = async (newEmail: string, newPassword: string) => {
+		if (!authUser) return
+		try {
+			if (newEmail !== authUser.email) {
+				await checkIfEmailExist(newEmail)
+			}
+			await updateEmail(authUser, newEmail)
+			await updatePassword(authUser, newPassword)
+			await logout()
+			setIsEmail(false)
+		} catch (error) {
+			alert('For your safety, we kindly request you to log in again.')
+			console.error('Error during update credentials:', error)
+		}
+	}
+
 	useEffect(() => {
 		if (authUser?.email) {
 			const docRef = doc(db, 'user', authUser.email)
@@ -93,7 +123,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		logInUser,
 		logout,
 		getUserInfo,
-		isAccountExists,
+		updateCredentials,
+		isEmailExist,
 		invalidCredentials,
 		isAuthenticated: authUser,
 		user,

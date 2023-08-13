@@ -1,13 +1,12 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import dynamic from 'next/dynamic'
 import { TextField, styled } from '@mui/material'
 
-import { InputWrapper } from './ui/InputWrapper'
-import { ErrorMessage } from './ui/ErrorMessage'
+import { InputWrapper } from '../ui/Forms/InputWrapper'
+import { ErrorMessage } from '../ui/Forms/ErrorMessage'
 import { useAuth } from '@/hooks/useAuth'
+import { SubmitButton } from '../ui/SubmitButton'
 
-const LoadingButton = dynamic(() => import('../ui/LoadingButton').then(mod => mod.LoadingButton), { ssr: false })
 
 interface LoginFormValues {
 	email: string
@@ -18,9 +17,11 @@ export const Input = styled(TextField)({
 	'& label.Mui-focused': {
 		color: '#9277ff',
 	},
+
 	'& .MuiOutlinedInput-root': {
 		'& fieldset': {
 			borderColor: '#9277ff',
+			color: '#9277ff',
 		},
 		'&:hover fieldset': {
 			borderColor: '#9277ff',
@@ -91,7 +92,7 @@ export const Login = () => {
 				</InputWrapper>
 			</div>
 			<div className='mt-5'>
-				<LoadingButton isSubmitting={isSubmitting}>Enter</LoadingButton>
+				<SubmitButton isSubmitting={isSubmitting}>Enter</SubmitButton>
 			</div>
 		</form>
 	)

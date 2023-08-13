@@ -25,7 +25,6 @@ export const Profile = () => {
 			console.error(error)
 		}
 	}
-	console.log(user?.email)
 	return (
 		<>
 			<div className='relative'>
@@ -50,16 +49,18 @@ export const Profile = () => {
 					</div>
 				</IconButton>
 			</div>
-			{imageUpload ? (
-				<button
-					type='submit'
-					className='bg-primary p-2 rounded-lg text-white mt-5 mx-auto'
-					onClick={saveImage}>
-					Save image
-				</button>
-			) : (
-				<p className='text-center text-2xl'>{user?.name}</p>
-			)}
+			<div className='mt-4'>
+				{imageUpload ? (
+					<button
+						type='submit'
+						className='bg-primary p-2 rounded-lg text-white mt-5 mx-auto'
+						onClick={saveImage}>
+						Save image
+					</button>
+				) : (
+					<p className='text-center text-3xl capitalize'>{user?.name}</p>
+				)}
+			</div>
 		</>
 	)
 }

@@ -8,7 +8,8 @@ type AuthContextValues = {
 	logInUser: (_email: string, _password: string) => Promise<void>
 	logout: () => Promise<void>
 	getUserInfo: (_user: Partial<UserInfoType>) => Promise<void>
-	isAccountExists: boolean
+	updateCredentials: (_newEmail: string, _newPassword: string) => Promise<void>
+	isEmailExist: boolean
 	invalidCredentials: boolean
 	isAuthenticated: User | null
 	user: UserInfoType | undefined
@@ -19,7 +20,8 @@ const defaultValue: AuthContextValues = {
 	logInUser: async (_email: string, _password: string) => {},
 	logout: async () => {},
 	getUserInfo: async (_user: Partial<UserInfoType>) => {},
-	isAccountExists: false,
+	updateCredentials: async (_newEmail: string, _newPassword: string) => {},
+	isEmailExist: false,
 	invalidCredentials: false,
 	isAuthenticated: null,
 	user: { created: '', email: '', image: '', name: '' },

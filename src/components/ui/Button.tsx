@@ -1,7 +1,9 @@
 import React, { ReactNode } from 'react'
+import Link from 'next/link'
+
 
 type ButtonProps = {
-	children: ReactNode
+	children?: ReactNode
 	onClick: () => void
 }
 
