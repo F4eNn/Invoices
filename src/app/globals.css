@@ -10,7 +10,7 @@
 	margin: 0;
 }
 :root {
-	--toastify-color-success: #9277ff;
+	--toastify-color-success: #9277ff !important;
 }
 body {
 	height: 100vh;

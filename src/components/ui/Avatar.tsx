@@ -1,22 +1,35 @@
 import React from 'react'
-import { Avatar as MuiAvatar } from '@mui/material'
+import Image from 'next/image'
+import { BiSolidUser } from 'react-icons/bi'
 
 import { useAuth } from '@/hooks/useAuth'
 
 interface AvatarProps {
-	height?: 'h-16' | 'h-[175px]'
-	width?: 'w-16' | 'w-[175px]'
+	height?: 60 | 225
+	width?: 60 | 225
 	text?: '7xl'
+	size?: '7em' | '1.4em'
 }
 
-export const Avatar = ({ height = 'h-16', width = 'w-16', text }: AvatarProps) => {
+export const Avatar = ({ height = 60, width = 60, size = '1.4em' }: AvatarProps) => {
 	const { user } = useAuth()
 	return (
-		<MuiAvatar
-			src={user?.image}
-			alt={user?.name}
-			className={`!bg-secondary ${width} ${height} border-2 ${text} border-primary`}>
-			MuiAvatar{' '}
-		</MuiAvatar>
+		<>
+			{user?.image ? (
+				<Image
+					src={user.image}
+					alt='User'
+					quality={100}
+					width={width}
+					height={height}
+					className='rounded-full aspect-square border-2 border-primary'
+				/>
+			) : (
+				<BiSolidUser
+					size={size}
+					color='#fff'
+				/>
+			)}
+		</>
 	)
 }

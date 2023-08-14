@@ -51,7 +51,6 @@ export const GeneralInfoForm = () => {
 							<CredentialInput
 								label={user?.name}
 								className='w-3/4'
-								autoFocus
 								placeholder='New name'
 								{...register('newName', { ...nameValidation })}
 							/>

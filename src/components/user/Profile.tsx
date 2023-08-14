@@ -34,9 +34,10 @@ export const Profile = () => {
 		<>
 			<div className='relative w-max'>
 				<Avatar
-					height='h-[175px]'
-					width='w-[175px]'
+					height={225}
+					width={225}
 					text='7xl'
+					size='7em'
 				/>
 				<IconButton
 					className='!absolute !-bottom-1 text-lightGray !right-3 !bg-black/90 hover:!text-secondary !transition-colors'
@@ -49,7 +50,7 @@ export const Profile = () => {
 						onChange={e => setUrl(e.target.files![0])}
 					/>
 					<div className='  text-inherit'>
-						<IoCamera size='1.2em' />
+						<IoCamera size='1.3em' />
 					</div>
 				</IconButton>
 			</div>
