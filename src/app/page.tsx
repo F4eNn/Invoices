@@ -2,7 +2,7 @@
 import { redirect } from 'next/navigation'
 import { useEffect } from 'react'
 
-import { Control } from '@/components/content/Control'
+import { InvoiceControl } from '@/components/content/InvoiceControl'
 import { Pannel } from '@/components/pannel/Pannel'
 import { ContentWrapper } from '@/components/ui/ContentWrapper'
 import { useAuth } from '@/hooks/useAuth'
@@ -18,7 +18,7 @@ export default function Home() {
 		<main className='h-full flex flex-col lg:flex-row'>
 			<Pannel />
 			<ContentWrapper>
-				<Control />
+				<InvoiceControl />
 			</ContentWrapper>
 		</main>
 	)

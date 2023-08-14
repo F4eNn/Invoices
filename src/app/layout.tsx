@@ -22,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang='en'>
 			<body className={`${leagueSpartan.className} bg-lightGray dark:bg-black transition-colors duration-250 `}>
 				<ToastContainer />
+
 				<AuthProvider>{children}</AuthProvider>
 			</body>
 		</html>

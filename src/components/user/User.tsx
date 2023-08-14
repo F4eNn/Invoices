@@ -15,7 +15,7 @@ export const User = () => {
 	const isProfile = searchParams.get('settings') === 'profile'
 	return (
 		<ContentWrapper>
-			<div className='w-max mt-6 md:mt-0 '>
+			<div className='w-max md:mt-0 '>
 				<LinkButton url='/'>
 					<BiArrowBack size='2em' />
 				</LinkButton>

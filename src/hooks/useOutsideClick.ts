@@ -1,14 +1,17 @@
 import { RefObject, useEffect, useState } from 'react'
 
 import { useToggle } from './useToggle'
-// eslint-disable-next-line no-unused-vars
-export const useOutsideClick = (ref: RefObject<HTMLElement>, defaultState = false) => {
+export const useOutsideClick = (ref: RefObject<HTMLElement>, closeOnItem = true) => {
 	const [refObj, setRef] = useState<RefObject<HTMLElement>>()
 
 	const [isOpen, toggleState] = useToggle()
 
 	const outsideHandler = (e: MouseEvent) => {
-		if ((ref.current && e.target != refObj?.current && isOpen) || isOpen && e.target) {
+		const target = e.target as HTMLElement
+
+		if (!closeOnItem && ref.current?.contains(target)) return
+
+		if ((ref.current && target != refObj?.current && isOpen) || (isOpen && target)) {
 			toggleState()
 		}
 	}
