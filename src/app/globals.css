@@ -11,9 +11,11 @@
 }
 :root {
 	--toastify-color-success: #9277ff !important;
+	scroll-behavior: smooth;
 }
 body {
 	height: 100vh;
+	overflow-x: hidden;
 }
 
 a {

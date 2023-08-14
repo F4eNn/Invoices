@@ -98,6 +98,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 			await updatePassword(authUser, newPassword)
 			await logout()
 			setIsEmail(false)
+			notify('Success! Login details modified')
 		} catch (error) {
 			alert('For your safety, we kindly request you to log in again.')
 			console.error('Error during update credentials:', error)

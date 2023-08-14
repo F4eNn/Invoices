@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSearchParams } from 'next/navigation'
+import { BiArrowBack } from 'react-icons/bi'
 
 import { ContentWrapper } from '../ui/ContentWrapper'
 import { Profile } from './Profile'
@@ -14,8 +15,13 @@ export const User = () => {
 	const isProfile = searchParams.get('settings') === 'profile'
 	return (
 		<ContentWrapper>
-			<div className='dark:text-white p-3 md:flex w-full rounded-lg '>
-				<div className='flex flex-col gap-5 m-8'>
+			<div className='w-max mt-6 md:mt-0 '>
+				<LinkButton url='/'>
+					<BiArrowBack size='2em' />
+				</LinkButton>
+			</div>
+			<div className='dark:text-white p-3 md:inline-flex w-full rounded-lg '>
+				<div className='flex flex-col gap-5 m-8 md:ml-0 lg:m-8'>
 					<Profile />
 				</div>
 
@@ -36,7 +42,7 @@ export const User = () => {
 							</LinkButton>
 						</div>
 					</div>
-					<div className='flex-1 py-5 sm:px-10  border-t-[1px] border-dashed border-primary mt-5 text-lg'>
+					<div className='flex-1 py-5 lg:px-10  border-t-[1px] border-dashed border-primary mt-5 text-lg'>
 						<AnimatePresence mode='wait'>
 							{isProfile && <GeneralInfo key='GeneralInfo' />} {!isProfile && <Account key='Account' />}
 						</AnimatePresence>

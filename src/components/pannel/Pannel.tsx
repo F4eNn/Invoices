@@ -27,6 +27,7 @@ export const Pannel = () => {
 							<Avatar />
 						</IconButton>
 					</Tooltip>
+					<span className='absolute bg-secondary text-white rounded-2xl px-2 text-sm right-1 top-5 '>New!</span>
 					<AnimatePresence>{isOpen && <Menu />}</AnimatePresence>
 				</div>
 			</div>

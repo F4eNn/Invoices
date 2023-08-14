@@ -19,6 +19,7 @@ export const Avatar = ({ height = 60, width = 60, size = '1.4em' }: AvatarProps)
 				<Image
 					src={user.image}
 					alt='User'
+					onLoad={() => <div>hm</div>}
 					quality={100}
 					width={width}
 					height={height}

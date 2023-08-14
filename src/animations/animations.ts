@@ -6,16 +6,16 @@ export const menuAnimation: Variants = {
 	exit: { opacity: 0, scale: 0 },
 }
 export const shuffleAnimation: Variants = {
-	initial: { opacity: 0, x: 200 },
+	initial: { opacity: 0, x: 120 },
 	animate: {
 		opacity: 1,
 		x: 0,
-		transition: { type: 'spring', bounce: 0.4, duration: 0.5 },
+		transition: { type: 'spring', bounce: 0.4, duration: 0.4 },
 	},
-	exit: { opacity: 0, x: 200 },
+	exit: { opacity: 0, x: 120 },
 }
 export const formAnimation: Variants = {
 	initial: { opacity: 0, y: 100 },
 	animate: { opacity: 1, y: 0 },
-	exit: { opacity: 0, y: 200 },
+	exit: { opacity: 0, y: 50 },
 }

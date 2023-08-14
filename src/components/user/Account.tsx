@@ -10,7 +10,6 @@ import { ErrorMessage } from '../ui/Forms/ErrorMessage'
 import { emailValidation, passwordValidation } from '../register/formValidation'
 import { useAuth } from '@/hooks/useAuth'
 import { SubmitButton } from '../ui/SubmitButton'
-import { notify } from '@/constants/notify'
 
 interface EditCredentials {
 	readonly newEmail: string
@@ -28,13 +27,13 @@ export const CredentialInput = styled(Input)({
 
 export const Account = () => {
 	const { isEmailExist, updateCredentials } = useAuth()
-	const { register, handleSubmit, formState } = useForm<EditCredentials>()
+	const { register, handleSubmit, formState, clearErrors } = useForm<EditCredentials>()
 
 	const { errors, isSubmitting } = formState
 
 	const onUpadteHandler = async (data: EditCredentials) => {
 		await updateCredentials(data.newEmail, data.newPassword)
-		notify('Success! Login details modified')
+		clearErrors()
 	}
 
 	return (
