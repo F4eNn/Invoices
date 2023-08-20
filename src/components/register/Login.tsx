@@ -48,7 +48,7 @@ export const Login = () => {
 	return (
 		<form onSubmit={handleSubmit(login)} noValidate>
 			<div className='text-center'>
-				<ErrorMessage isValid={invalidCredentials} msg='Invalid credentials' />
+				<ErrorMessage as='registration' isValid={invalidCredentials} msg='Invalid credentials' />
 			</div>
 			<div className='flex flex-col gap-3'>
 				<InputWrapper>
@@ -64,7 +64,7 @@ export const Login = () => {
 							required: 'Email is required',
 						})}
 					/>
-					<ErrorMessage error={errors.email} msg={errors.email?.message} />
+					<ErrorMessage as='registration' error={errors.email} msg={errors.email?.message} />
 				</InputWrapper>
 				<InputWrapper>
 					<Input
@@ -76,7 +76,7 @@ export const Login = () => {
 							required: 'Password is required',
 						})}
 					/>
-					<ErrorMessage error={errors.password} msg={errors.password?.message} />
+					<ErrorMessage as='registration' error={errors.password} msg={errors.password?.message} />
 				</InputWrapper>
 			</div>
 			<div className='mt-5'>

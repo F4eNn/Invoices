@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+	.invoice-input {
+		@apply w-full rounded-sm border-rose  p-3 caret-primary focus:border-secondary focus:ring-0  dark:border-secondaryDark dark:bg-primaryDark dark:focus:border-primary;
+	}
+}
+@layer utilities {
+	.invoice-error-input {
+		@apply border-lightRed caret-red focus:border-red dark:border-lightRed dark:focus:border-red;
+	}
+}
+
 *,
 ::after,
 ::before {
