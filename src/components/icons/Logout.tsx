@@ -8,7 +8,8 @@ export const LogoutIcon = () => {
 			viewBox='0 0 24 24'
 			strokeWidth={1.5}
 			stroke='currentColor'
-			className='w-6 h-6 text-lightRed group-hover:text-white stroke-2 transition-colors'>
+			className='h-6 w-6 stroke-2 text-lightRed transition-colors  group-hover:text-white'
+		>
 			<path
 				strokeLinecap='round'
 				strokeLinejoin='round'

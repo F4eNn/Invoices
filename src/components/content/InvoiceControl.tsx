@@ -20,15 +20,10 @@ export const InvoiceControl = () => {
 				<div>
 					<Button onClick={() => {}}>
 						<div className='inline-flex items-center gap-3 md:gap-4'>
-							<div className='h-8 w-8   flex items-center justify-center bg-white rounded-full'>
-								<Image
-									alt=''
-									src='./assets/icon-plus.svg'
-									width={14}
-									height={14}
-								/>
+							<div className='flex h-8   w-8 items-center justify-center rounded-full bg-white'>
+								<Image alt='' src='./assets/icon-plus.svg' width={14} height={14} />
 							</div>
-							<span className='text-base h-5 mr-2'>{targetReached ? 'New Invoice' : 'New'}</span>
+							<span className='mr-2 h-5 text-base'>{targetReached ? 'New Invoice' : 'New'}</span>
 						</div>
 					</Button>
 				</div>

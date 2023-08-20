@@ -8,7 +8,8 @@ export const UserIcon = () => {
 			viewBox='0 0 24 24'
 			strokeWidth={1.5}
 			stroke='currentColor'
-			className='w-6 h-6 text-primary group-hover:text-violet-300 stroke-2 transition-colors'>
+			className='h-6 w-6 stroke-2 text-primary transition-colors group-hover:text-violet-300'
+		>
 			<path
 				strokeLinecap='round'
 				strokeLinejoin='round'

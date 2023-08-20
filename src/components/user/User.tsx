@@ -20,29 +20,25 @@ export const User = () => {
 					<BiArrowBack size='2em' />
 				</LinkButton>
 			</div>
-			<div className='dark:text-white p-3 md:inline-flex w-full rounded-lg '>
-				<div className='flex flex-col gap-5 m-8 md:ml-0 lg:m-8'>
+			<div className='w-full rounded-lg p-3 dark:text-white md:inline-flex '>
+				<div className='m-8 flex flex-col gap-5 md:ml-0 lg:m-8'>
 					<Profile />
 				</div>
 
-				<div className='flex flex-col flex-1 mt-4'>
-					<div className='w-full flex justify-around'>
-						<div className='xl:w-1/4 w-1/3'>
-							<LinkButton
-								isSelected={!isProfile}
-								url={navigation.userProfile.path}>
+				<div className='mt-4 flex flex-1 flex-col'>
+					<div className='flex w-full justify-around'>
+						<div className='w-1/3 xl:w-1/4'>
+							<LinkButton isSelected={!isProfile} url={navigation.userProfile.path}>
 								Profile
 							</LinkButton>
 						</div>
-						<div className='xl:w-1/4 w-1/3'>
-							<LinkButton
-								isSelected={isProfile}
-								url={navigation.userAccount.path}>
+						<div className='w-1/3 xl:w-1/4'>
+							<LinkButton isSelected={isProfile} url={navigation.userAccount.path}>
 								Account
 							</LinkButton>
 						</div>
 					</div>
-					<div className='flex-1 py-5 lg:px-10  border-t-[1px] border-dashed border-primary mt-5 text-lg'>
+					<div className='mt-5 flex-1 border-t-[1px]  border-dashed border-primary py-5 text-lg lg:px-10'>
 						<AnimatePresence mode='wait'>
 							{isProfile && <GeneralInfo key='GeneralInfo' />} {!isProfile && <Account key='Account' />}
 						</AnimatePresence>

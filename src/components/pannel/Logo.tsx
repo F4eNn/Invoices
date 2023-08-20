@@ -1,18 +1,13 @@
-import React from 'react'
-import Image from 'next/image'
+import React from 'react';
+import Image from 'next/image';
 
 export const Logo = () => {
 	return (
-		<div className=' w-24 h-full rounded-tr-3xl bg-primary lg:h-28 flex rounded-br-3xl  overflow-hidden relative lg:w-full'>
-			<div className='h-1/2 bg-secondary w-full mt-auto  rounded-tl-3xl'></div>
-			<div className=' w-full h-full flex justify-center items-center absolute'>
-				<Image
-					alt='logo'
-					src='./assets/logo.svg'
-					width={35}
-					height={35}
-				/>
+		<div className=" relative flex h-full w-24 overflow-hidden rounded-br-3xl rounded-tr-3xl  bg-primary lg:h-28 lg:w-full">
+			<div className="mt-auto h-1/2 w-full rounded-tl-3xl  bg-secondary"></div>
+			<div className=" absolute flex h-full w-full items-center justify-center">
+				<Image alt="logo" src="./assets/logo.svg" width={35} height={35} />
 			</div>
 		</div>
-	)
-}
+	);
+};

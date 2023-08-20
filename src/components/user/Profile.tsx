@@ -33,22 +33,13 @@ export const Profile = () => {
 	return (
 		<>
 			<div className='relative w-max'>
-				<Avatar
-					height={225}
-					width={225}
-					text='7xl'
-					size='7em'
-				/>
+				<Avatar height={225} width={225} text='7xl' size='7em' />
 				<IconButton
-					className='!absolute !-bottom-1 text-lightGray !right-3 !bg-black/90 hover:!text-secondary !transition-colors'
+					className='!absolute !-bottom-1 !right-3 !bg-black/90 text-lightGray !transition-colors hover:!text-secondary'
 					component='label'
-					aria-label='upload profile picture'>
-					<input
-						hidden
-						accept='image/*'
-						type='file'
-						onChange={e => setUrl(e.target.files![0])}
-					/>
+					aria-label='upload profile picture'
+				>
+					<input hidden accept='image/*' type='file' onChange={e => setUrl(e.target.files![0])} />
 					<div className='  text-inherit'>
 						<IoCamera size='1.3em' />
 					</div>
@@ -58,16 +49,10 @@ export const Profile = () => {
 				{imageUpload ? (
 					<button
 						type='submit'
-						className='bg-primary p-2 rounded-lg text-white animate-bounce hover:bg-secondary transition-colors w-28 '
-						onClick={saveImage}>
-						{isSaving ? (
-							<PulseLoader
-								color='#fff'
-								size={10}
-							/>
-						) : (
-							'Save Image'
-						)}
+						className='w-28 animate-bounce rounded-lg bg-primary p-2 text-white transition-colors hover:bg-secondary '
+						onClick={saveImage}
+					>
+						{isSaving ? <PulseLoader color='#fff' size={10} /> : 'Save Image'}
 					</button>
 				) : (
 					<p className='text-center text-3xl capitalize'>{user?.name}</p>

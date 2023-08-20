@@ -23,13 +23,10 @@ export const Avatar = ({ height = 60, width = 60, size = '1.4em' }: AvatarProps)
 					quality={100}
 					width={width}
 					height={height}
-					className='rounded-full aspect-square border-2 border-primary'
+					className='aspect-square rounded-full border-2 border-primary'
 				/>
 			) : (
-				<BiSolidUser
-					size={size}
-					color='#fff'
-				/>
+				<BiSolidUser size={size} color='#fff' />
 			)}
 		</>
 	)

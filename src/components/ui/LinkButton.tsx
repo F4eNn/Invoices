@@ -12,10 +12,9 @@ export const LinkButton = ({ children, url, isSelected = false }: LinkProps) => 
 		<button
 			className={`  hover:bg-secondary ${
 				isSelected ? 'bg-gray/50' : ' bg-primary'
-			} w-full text-white rounded-3xl  text-xl font-[500] hover:scale-[1.02] transition-all duration-200 tracking-wide`}>
-			<Link
-				className='w-full block h-full p-[7px] '
-				href={url}>
+			} w-full rounded-3xl text-xl  font-[500] tracking-wide text-white transition-all duration-200 hover:scale-[1.02]`}
+		>
+			<Link className='block h-full w-full p-[7px] ' href={url}>
 				{children}
 			</Link>
 		</button>

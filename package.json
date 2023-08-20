@@ -35,6 +35,8 @@
   },
   "devDependencies": {
     "@types/validator": "^13.11.1",
-    "encoding": "^0.1.13"
+    "encoding": "^0.1.13",
+    "prettier": "^3.0.2",
+    "prettier-plugin-tailwindcss": "^0.5.3"
   }
 }

@@ -7,7 +7,6 @@ import { ErrorMessage } from '../ui/Forms/ErrorMessage'
 import { useAuth } from '@/hooks/useAuth'
 import { SubmitButton } from '../ui/SubmitButton'
 
-
 interface LoginFormValues {
 	email: string
 	password: string
@@ -47,14 +46,9 @@ export const Login = () => {
 	}
 
 	return (
-		<form
-			onSubmit={handleSubmit(login)}
-			noValidate>
+		<form onSubmit={handleSubmit(login)} noValidate>
 			<div className='text-center'>
-				<ErrorMessage
-					isValid={invalidCredentials}
-					msg='Invalid credentials'
-				/>
+				<ErrorMessage isValid={invalidCredentials} msg='Invalid credentials' />
 			</div>
 			<div className='flex flex-col gap-3'>
 				<InputWrapper>
@@ -70,10 +64,7 @@ export const Login = () => {
 							required: 'Email is required',
 						})}
 					/>
-					<ErrorMessage
-						error={errors.email}
-						msg={errors.email?.message}
-					/>
+					<ErrorMessage error={errors.email} msg={errors.email?.message} />
 				</InputWrapper>
 				<InputWrapper>
 					<Input
@@ -85,10 +76,7 @@ export const Login = () => {
 							required: 'Password is required',
 						})}
 					/>
-					<ErrorMessage
-						error={errors.password}
-						msg={errors.password?.message}
-					/>
+					<ErrorMessage error={errors.password} msg={errors.password?.message} />
 				</InputWrapper>
 			</div>
 			<div className='mt-5'>

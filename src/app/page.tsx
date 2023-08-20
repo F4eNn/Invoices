@@ -7,6 +7,7 @@ import { Pannel } from '@/components/pannel/Pannel'
 import { ContentWrapper } from '@/components/ui/ContentWrapper'
 import { useAuth } from '@/hooks/useAuth'
 import { navigation } from '@/constants/navigation_paths'
+import { InvoiceBody } from '@/components/content/InvoiceBody'
 
 export default function Home() {
 	const { isAuthenticated } = useAuth()
@@ -15,10 +16,13 @@ export default function Home() {
 		if (!isAuthenticated) redirect(navigation.login.path)
 	}, [isAuthenticated])
 	return (
-		<main className='h-full flex flex-col lg:flex-row'>
+		<main className='flex lg:flex-row h-full flex-col  '>
 			<Pannel />
 			<ContentWrapper>
-				<InvoiceControl />
+				<div className='flex h-full flex-col'>
+					<InvoiceControl />
+					<InvoiceBody />
+				</div>
 			</ContentWrapper>
 		</main>
 	)

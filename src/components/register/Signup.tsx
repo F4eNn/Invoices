@@ -35,17 +35,11 @@ export const Signup = () => {
 		const userInfo = { name: data.name, email: data.email.toLowerCase(), created: currentDate }
 		await updateUserInfo(userInfo)
 		notify('Welcome aboard!')
-
 	}
 	return (
-		<form
-			onSubmit={handleSubmit(signup)}
-			noValidate>
-			<div className='text-center w-full'>
-				<ErrorMessage
-					isValid={isEmailExist}
-					msg='Email is in use'
-				/>
+		<form onSubmit={handleSubmit(signup)} noValidate>
+			<div className='w-full text-center'>
+				<ErrorMessage isValid={isEmailExist} msg='Email is in use' />
 			</div>
 			<div className='flex flex-col gap-3'>
 				<InputWrapper>
@@ -58,10 +52,7 @@ export const Signup = () => {
 						placeholder='John'
 						{...register('name', nameValidation)}
 					/>
-					<ErrorMessage
-						error={errors.name}
-						msg={errors.name?.message}
-					/>
+					<ErrorMessage error={errors.name} msg={errors.name?.message} />
 				</InputWrapper>
 				<InputWrapper>
 					<Input
@@ -72,10 +63,7 @@ export const Signup = () => {
 						placeholder='John@doehub.com'
 						{...register('email', emailValidation)}
 					/>
-					<ErrorMessage
-						error={errors.email}
-						msg={errors.email?.message}
-					/>
+					<ErrorMessage error={errors.email} msg={errors.email?.message} />
 				</InputWrapper>
 				<InputWrapper>
 					<Input
@@ -85,10 +73,7 @@ export const Signup = () => {
 						label='Password'
 						{...register('password', passwordValidation)}
 					/>
-					<ErrorMessage
-						error={errors.password}
-						msg={errors.password?.message}
-					/>
+					<ErrorMessage error={errors.password} msg={errors.password?.message} />
 				</InputWrapper>
 				<InputWrapper>
 					<Input
@@ -103,10 +88,7 @@ export const Signup = () => {
 							},
 						})}
 					/>
-					<ErrorMessage
-						error={errors.password2}
-						msg={errors.password2?.message}
-					/>
+					<ErrorMessage error={errors.password2} msg={errors.password2?.message} />
 				</InputWrapper>
 			</div>
 			<div className='mt-5'>

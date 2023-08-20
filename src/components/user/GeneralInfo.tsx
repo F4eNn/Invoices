@@ -16,9 +16,7 @@ export const GeneralInfo = () => {
 
 	return (
 		<>
-			<motion.div
-				{...shuffleAnimation}
-				className='flex md:justify-between md:items-start flex-col  md:flex-row'>
+			<motion.div {...shuffleAnimation} className='flex flex-col md:flex-row md:items-start  md:justify-between'>
 				<div className='flex flex-col gap-5'>
 					<h1 className='text-headingL'>My Profile</h1>
 					{userProfile.map(([title, data], index) => (

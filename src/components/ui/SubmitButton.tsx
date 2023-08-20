@@ -5,15 +5,9 @@ export const SubmitButton = ({ children, isSubmitting }: { children: ReactNode; 
 	return (
 		<button
 			type='submit'
-			className=' w-full bg-primary hover:bg-secondary uppercase text-white p-2  transition-colors duration-300 rounded-xl text-base'>
-			{isSubmitting ? (
-				<PulseLoader
-					color='#fff'
-					size={10}
-				/>
-			) : (
-				children
-			)}
+			className=' w-full rounded-xl bg-primary p-2 text-base uppercase  text-white transition-colors duration-300 hover:bg-secondary'
+		>
+			{isSubmitting ? <PulseLoader color='#fff' size={10} /> : children}
 		</button>
 	)
 }

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='en'>
-			<body className={`${leagueSpartan.className} bg-lightGray dark:bg-black transition-colors duration-250 `}>
+			<body className={`${leagueSpartan.className} duration-250 bg-lightGray transition-colors dark:bg-black `}>
 				<ToastContainer />
 
 				<AuthProvider>{children}</AuthProvider>

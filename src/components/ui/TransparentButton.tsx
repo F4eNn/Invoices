@@ -7,9 +7,7 @@ type ButtonProps = {
 
 export const TransparentButton = ({ children, onClickHandler }: ButtonProps) => {
 	return (
-		<button
-			onClick={onClickHandler}
-			className=''>
+		<button onClick={onClickHandler} className=''>
 			{children}
 		</button>
 	)

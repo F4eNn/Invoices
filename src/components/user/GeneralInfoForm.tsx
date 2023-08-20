@@ -36,10 +36,8 @@ export const GeneralInfoForm = () => {
 	}
 
 	return (
-		<div className='flex-1 flex flex-col  md:items-end mb-5 '>
-			<button
-				onClick={toggleForm}
-				className='text-3xl p-2 text-primary hover:text-secondary transition-all mb-5'>
+		<div className='mb-5 flex flex-1  flex-col md:items-end '>
+			<button onClick={toggleForm} className='mb-5 p-2 text-3xl text-primary transition-all hover:text-secondary'>
 				{updateName ? <IoCloseSharp /> : <FiEdit />}
 			</button>
 			<AnimatePresence>
@@ -47,8 +45,9 @@ export const GeneralInfoForm = () => {
 					<motion.form
 						{...formAnimation}
 						onSubmit={handleSubmit(onUpdateNameHandler)}
-						className='flex flex-col w-full md:items-end'>
-						<div className='md:flex md:flex-col md:items-end w-full'>
+						className='flex w-full flex-col md:items-end'
+					>
+						<div className='w-full md:flex md:flex-col md:items-end'>
 							<CredentialInput
 								label={user?.name}
 								className='w-3/4'
@@ -56,13 +55,10 @@ export const GeneralInfoForm = () => {
 								{...register('newName', { ...nameValidation })}
 							/>
 							<div className='w-3/4'>
-								<ErrorMessage
-									msg={errors.newName?.message}
-									error={errors.newName}
-								/>
+								<ErrorMessage msg={errors.newName?.message} error={errors.newName} />
 							</div>
 						</div>
-						<div className=' w-1/3 lg:w-1/4 mt-2 mb-3'>
+						<div className=' mb-3 mt-2 w-1/3 lg:w-1/4'>
 							<SubmitButton isSubmitting={isSubmitting}>Save</SubmitButton>
 						</div>
 					</motion.form>
