@@ -55,7 +55,7 @@ export const GeneralInfoForm = () => {
 								{...register('newName', { ...nameValidation })}
 							/>
 							<div className='w-3/4'>
-								<ErrorMessage msg={errors.newName?.message} error={errors.newName} />
+								<ErrorMessage as='registration' msg={errors.newName?.message} error={errors.newName} />
 							</div>
 						</div>
 						<div className=' mb-3 mt-2 w-1/3 lg:w-1/4'>

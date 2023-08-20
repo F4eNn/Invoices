@@ -40,7 +40,7 @@ export const Account = () => {
 		<motion.div {...shuffleAnimation}>
 			<form onSubmit={handleSubmit(onUpadteHandler)} className='flex flex-col gap-5 xl:w-3/4'>
 				<h1 className='text-headingL'>Update Profile</h1>
-				<ErrorMessage isValid={isEmailExist} msg='Email is in use' />
+				<ErrorMessage as='registration' isValid={isEmailExist} msg='Email is in use' />
 				<InputWrapper>
 					<CredentialInput
 						error={errors.newEmail ? true : false}
@@ -50,7 +50,7 @@ export const Account = () => {
 						placeholder='John@doehub.com'
 						{...register('newEmail', emailValidation)}
 					/>
-					<ErrorMessage error={errors.newEmail} msg={errors.newEmail?.message} />
+					<ErrorMessage as='registration' error={errors.newEmail} msg={errors.newEmail?.message} />
 				</InputWrapper>
 				<InputWrapper>
 					<CredentialInput
@@ -60,7 +60,7 @@ export const Account = () => {
 						label='Password'
 						{...register('newPassword', passwordValidation)}
 					/>
-					<ErrorMessage error={errors.newPassword} msg={errors.newPassword?.message} />
+					<ErrorMessage as='registration' error={errors.newPassword} msg={errors.newPassword?.message} />
 				</InputWrapper>
 				<div className='w-1/2 xl:w-full'>
 					<SubmitButton isSubmitting={isSubmitting}>Update</SubmitButton>

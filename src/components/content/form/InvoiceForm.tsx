@@ -12,6 +12,14 @@ export type InvoiceFormValues = {
 		postCode: string
 		country: string
 	}
+	receiver: {
+		clientName: string
+		clientEmail: string
+		clientStreetAddress: string
+		clientCity: string
+		clientPostCode: string
+		clientCountry: string
+	}
 }
 
 export const InvoiceForm = () => {
@@ -22,6 +30,14 @@ export const InvoiceForm = () => {
 				country: '',
 				postCode: '',
 				streetAddress: '',
+			},
+			receiver: {
+				clientStreetAddress: '',
+				clientName: '',
+				clientCity: '',
+				clientCountry: '',
+				clientEmail: '',
+				clientPostCode: '',
 			},
 		},
 	})
@@ -36,9 +52,9 @@ export const InvoiceForm = () => {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(setInvoice)} className='h-full overflow-auto'>
+		<form onSubmit={handleSubmit(setInvoice)} className='h-full overflow-auto pr-5'>
 			<BillFromForm control={control} error={errors} />
-			<BillToForm />
+			<BillToForm control={control} error={errors}/>
 			<ItemListForm />
 			<button type='submit' id='save' className='border-1 p3 border-red bg-red'>
 				Save & Send
