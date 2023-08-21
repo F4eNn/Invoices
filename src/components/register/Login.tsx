@@ -79,7 +79,7 @@ export const Login = () => {
 					<ErrorMessage as='registration' error={errors.password} msg={errors.password?.message} />
 				</InputWrapper>
 			</div>
-			<div className='mt-5'>
+			<div className='mt-5 overflow-hidden rounded-xl bg-primary text-base text-white hover:bg-secondary '>
 				<SubmitButton isSubmitting={isSubmitting}>Enter</SubmitButton>
 			</div>
 		</form>

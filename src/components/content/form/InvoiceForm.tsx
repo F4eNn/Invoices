@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form'
 import { BillFromForm } from './BillFrom'
 import { BillToForm } from './BillTo'
 import { ItemListForm } from './ItemList'
+import { SubmitButton } from '@/components/ui/SubmitButton'
+import { Button } from '@/components/ui/Button'
 
 export type InvoiceFormValues = {
 	sender: {
@@ -42,26 +44,41 @@ export const InvoiceForm = () => {
 		},
 	})
 
-	const { errors } = formState
+	const { errors, isSubmitting } = formState
 
 	const setInvoice = (data: InvoiceFormValues, e: any) => {
 		const target = (e.nativeEvent as SubmitEvent).submitter?.id
 		if (target === 'save') {
 			console.log(data)
+		}else if( target === 'draft') {
+			console.log(data);
 		}
 	}
 
 	return (
-		<form onSubmit={handleSubmit(setInvoice)} className='h-full overflow-auto pr-5'>
+		<form onSubmit={handleSubmit(setInvoice)} className=' h-full overflow-auto pr-5 '>
 			<BillFromForm control={control} error={errors} />
-			<BillToForm control={control} error={errors}/>
+			<BillToForm control={control} error={errors} />
 			<ItemListForm />
-			<button type='submit' id='save' className='border-1 p3 border-red bg-red'>
-				Save & Send
-			</button>
-			<button type='submit' id='draft'>
-				Save as Draft
-			</button>
+			<div className='shadow-topShadow absolute bottom-0 left-0 right-0 flex justify-between dark:bg-lightDark bg-lightGray py-10 pl-40 pr-10 text-sm text-white rounded-2xl'>
+				<div className='text-darkGray hover:bg-grayishWhite overflow-hidden rounded-3xl dark:bg-lightGray '>
+					<Button padding='px-6' onClick={() => {}}>
+						Discard
+					</Button>
+				</div>
+				<div className='inline-flex gap-5'>
+					<div className='bg-darkGray w-max overflow-hidden rounded-3xl hover:bg-secondaryDark'>
+						<SubmitButton id='draft' padding='p-3' isSubmitting={isSubmitting}>
+							Save as Draft
+						</SubmitButton>
+					</div>
+					<div className='w-max overflow-hidden rounded-3xl bg-primary hover:bg-secondary'>
+						<SubmitButton id='save' padding='p-3' isSubmitting={isSubmitting}>
+							Save & Send
+						</SubmitButton>
+					</div>
+				</div>
+			</div>
 		</form>
 	)
 }

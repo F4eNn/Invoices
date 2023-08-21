@@ -91,7 +91,7 @@ export const Signup = () => {
 					<ErrorMessage as='registration' error={errors.password2} msg={errors.password2?.message} />
 				</InputWrapper>
 			</div>
-			<div className='mt-5'>
+			<div className='mt-5 overflow-hidden rounded-xl  bg-primary text-base text-white hover:bg-secondary'>
 				<SubmitButton isSubmitting={isSubmitting}>Create</SubmitButton>
 			</div>
 		</form>

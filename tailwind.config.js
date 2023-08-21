@@ -8,6 +8,9 @@ module.exports = {
 	darkMode: 'class',
 	theme: {
 		extend: {
+			boxShadow: {
+				'topShadow': '0px 0px 100px rgba(92, 92, 92, 0.25)',
+			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
@@ -24,7 +27,9 @@ module.exports = {
 				red: '#EC5757',
 				lightRed: '#ff9797',
 				lightGray: '#F8F8FB',
+				darkGray: '#373b53',
 				lightDark: '#141625',
+				grayishWhite: '#e3e3e3',
 			},
 			fontSize: {
 				headingL: [

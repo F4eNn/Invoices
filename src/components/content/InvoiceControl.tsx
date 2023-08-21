@@ -15,9 +15,9 @@ export const InvoiceControl = () => {
 				<h1 className='text-headingM lg:text-headingL '>Invoices</h1>
 				<p className='text-[.7em] '>{targetReached ? 'There are 7 total invoices' : '7 invoices '}</p>
 			</div>
-			<div className='inline-flex items-center gap-5 sm:gap-10'>
+			<div className='inline-flex items-center gap-5 sm:gap-10 bg-secondaryDark'>
 				<Filter />
-				<div>
+				<div className='rounded-[30px] bg-primary text-xl hover:bg-secondary overflow-hidden'>
 					<Button onClick={() => {}}>
 						<div className='inline-flex items-center gap-3 md:gap-4'>
 							<div className='flex h-8   w-8 items-center justify-center rounded-full bg-white'>

@@ -62,7 +62,7 @@ export const Account = () => {
 					/>
 					<ErrorMessage as='registration' error={errors.newPassword} msg={errors.newPassword?.message} />
 				</InputWrapper>
-				<div className='w-1/2 xl:w-full'>
+				<div className='w-1/2 overflow-hidden rounded-xl bg-primary text-base hover:bg-secondary xl:w-full'>
 					<SubmitButton isSubmitting={isSubmitting}>Update</SubmitButton>
 				</div>
 			</form>

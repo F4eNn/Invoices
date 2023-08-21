@@ -28,6 +28,9 @@ body {
 	height: 100vh;
 	overflow-x: hidden;
 }
+.shadow {
+	box-shadow: 0px 0px 100px rgba(92, 92, 92, 0.335);
+}
 
 a {
 	text-decoration: none;

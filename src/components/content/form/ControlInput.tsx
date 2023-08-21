@@ -43,7 +43,7 @@ export const ControlInput = ({ id, error, name, control, label }: ControlInputTy
 					<input
 						id={id}
 						type='text'
-						className={`invoice-input form-input ${error && 'invoice-error-input'}`}
+						className={`invoice-input form-input ${error && 'invoice-error-input'} font-bold`}
 						{...field}
 					/>
 				)}
