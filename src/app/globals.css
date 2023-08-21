@@ -6,6 +6,20 @@
 	.invoice-input {
 		@apply w-full rounded-sm border-rose  p-3 caret-primary focus:border-secondary focus:ring-0  dark:border-secondaryDark dark:bg-primaryDark dark:focus:border-primary;
 	}
+	.form-scroll::-webkit-scrollbar,
+	.form-scroll-light::-webkit-scrollbar {
+		width: 10px;
+	}
+	.form-scroll::-webkit-scrollbar-track,
+	.form-scroll-light::-webkit-scrollbar-track {
+		background-color: transparent;
+	}
+	.form-scroll::-webkit-scrollbar-thumb {
+		background-color: #1e2139;
+	}
+	.form-scroll-light::-webkit-scrollbar-thumb {
+		background-color: #dfe3fa;
+	}
 }
 @layer utilities {
 	.invoice-error-input {
@@ -24,6 +38,7 @@
 	--toastify-color-success: #9277ff !important;
 	scroll-behavior: smooth;
 }
+
 body {
 	height: 100vh;
 	overflow-x: hidden;

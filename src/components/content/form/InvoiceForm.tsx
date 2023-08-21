@@ -50,17 +50,20 @@ export const InvoiceForm = () => {
 		const target = (e.nativeEvent as SubmitEvent).submitter?.id
 		if (target === 'save') {
 			console.log(data)
-		}else if( target === 'draft') {
-			console.log(data);
+		} else if (target === 'draft') {
+			console.log(data)
 		}
 	}
 
 	return (
-		<form onSubmit={handleSubmit(setInvoice)} className=' h-full overflow-auto pr-5 '>
+		<form
+			onSubmit={handleSubmit(setInvoice)}
+			className='dark:form-scroll form-scroll-light light-scroll  h-full overflow-auto pr-5'
+		>
 			<BillFromForm control={control} error={errors} />
 			<BillToForm control={control} error={errors} />
 			<ItemListForm />
-			<div className='shadow-topShadow absolute bottom-0 left-0 right-0 flex justify-between dark:bg-lightDark bg-lightGray py-10 pl-40 pr-10 text-sm text-white rounded-2xl'>
+			<div className='shadow-topShadow absolute bottom-0 left-0 right-0 flex justify-between rounded-2xl bg-lightGray py-10 pl-40 pr-10 text-sm text-white dark:bg-lightDark'>
 				<div className='text-darkGray hover:bg-grayishWhite overflow-hidden rounded-3xl dark:bg-lightGray '>
 					<Button padding='px-6' onClick={() => {}}>
 						Discard
