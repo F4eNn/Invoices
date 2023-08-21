@@ -1,11 +1,13 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
+import Datepicker from 'react-tailwindcss-datepicker'
 
 import { BillFromForm } from './BillFrom'
 import { BillToForm } from './BillTo'
 import { ItemListForm } from './ItemList'
 import { SubmitButton } from '@/components/ui/SubmitButton'
 import { Button } from '@/components/ui/Button'
+import { BasicInformation } from './BasicInformation'
 
 export type InvoiceFormValues = {
 	sender: {
@@ -22,10 +24,11 @@ export type InvoiceFormValues = {
 		clientPostCode: string
 		clientCountry: string
 	}
+	invoiceDate: string
 }
 
 export const InvoiceForm = () => {
-	const { handleSubmit, control, formState } = useForm<InvoiceFormValues>({
+	const { handleSubmit, control, formState, register } = useForm<InvoiceFormValues>({
 		defaultValues: {
 			sender: {
 				city: '',
@@ -41,6 +44,7 @@ export const InvoiceForm = () => {
 				clientEmail: '',
 				clientPostCode: '',
 			},
+			invoiceDate: '',
 		},
 	})
 
@@ -62,6 +66,7 @@ export const InvoiceForm = () => {
 		>
 			<BillFromForm control={control} error={errors} />
 			<BillToForm control={control} error={errors} />
+			<BasicInformation control={control} error={errors} />
 			<ItemListForm />
 			<div className='shadow-topShadow absolute bottom-0 left-0 right-0 flex justify-between rounded-2xl bg-lightGray py-10 pl-40 pr-10 text-sm text-white dark:bg-lightDark'>
 				<div className='text-darkGray hover:bg-grayishWhite overflow-hidden rounded-3xl dark:bg-lightGray '>

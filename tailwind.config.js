@@ -4,12 +4,13 @@ module.exports = {
 		'./src/pages/**/*.{js,ts,jsx,tsx,mdx}',
 		'./src/components/**/*.{js,ts,jsx,tsx,mdx}',
 		'./src/app/**/*.{js,ts,jsx,tsx,mdx}',
+		'./node_modules/react-tailwindcss-datepicker/dist/index.esm.js',
 	],
 	darkMode: 'class',
 	theme: {
 		extend: {
 			boxShadow: {
-				'topShadow': '0px 0px 100px rgba(92, 92, 92, 0.25)',
+				topShadow: '0px 0px 100px rgba(92, 92, 92, 0.25)',
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
