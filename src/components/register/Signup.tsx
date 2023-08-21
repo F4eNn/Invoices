@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 
 import { ErrorMessage } from '../ui/Forms/ErrorMessage'
 import { InputWrapper } from '../ui/Forms/InputWrapper'
-import { emailValidation, nameValidation, passwordValidation } from '@/components/register/formValidation'
+import { emailValidation, nameValidation, passwordValidation } from '@/constants/formValidation'
 import { useAuth } from '@/hooks/useAuth'
 import { Input } from './Login'
 import { useDate } from '@/hooks/useDate'

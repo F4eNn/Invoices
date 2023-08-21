@@ -10,11 +10,31 @@ interface BasicInformationProps {
 	error: FieldErrors<InvoiceFormValues>
 }
 
-export const BasicInformation = ({control,error}:BasicInformationProps) => {
-    
-  return (
-    <div className='mt-12 mb-[120px]'>
-        <ControlInput as='date' control={control} error={error.invoiceDate} id='date' label='Invoice Date' name='invoiceDate' />
-    </div>
-  )
+export const BasicInformation = ({ control, error }: BasicInformationProps) => {
+	return (
+		<div className='mb-[120px] mt-12'>
+			<div className='  flex gap-10'>
+				<div className='w-full'>
+					<ControlInput
+						as='date'
+						control={control}
+						error={error.invoiceDate}
+						id='date'
+						label='Invoice Date'
+						name='invoiceDate'
+					/>
+				</div>
+				<div className='w-full '>
+					<ControlInput
+						as='select'
+						control={control}
+						error={error.paymentTerms}
+						id='terms'
+						label='Payment Terms'
+						name='paymentTerms'
+					/>
+				</div>
+			</div>
+		</div>
+	)
 }

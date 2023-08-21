@@ -7,7 +7,7 @@ import { shuffleAnimation } from '@/animations/animations'
 import { Input } from '../register/Login'
 import { InputWrapper } from '../ui/Forms/InputWrapper'
 import { ErrorMessage } from '../ui/Forms/ErrorMessage'
-import { emailValidation, passwordValidation } from '../register/formValidation'
+import { emailValidation, passwordValidation } from '../../constants/formValidation'
 import { useAuth } from '@/hooks/useAuth'
 import { SubmitButton } from '../ui/SubmitButton'
 

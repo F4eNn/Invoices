@@ -27,6 +27,8 @@ export const BillToForm = (props: BillToTypeProps) => {
 					{...props}
 					error={error?.clientEmail}
 					id='email'
+					type='email'
+					
 					label="Client's email"
 					name='receiver.clientEmail'
 				/>

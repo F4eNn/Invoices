@@ -1,6 +1,5 @@
 import React from 'react'
-import { Controller, useForm } from 'react-hook-form'
-import Datepicker from 'react-tailwindcss-datepicker'
+import { useForm } from 'react-hook-form'
 
 import { BillFromForm } from './BillFrom'
 import { BillToForm } from './BillTo'
@@ -25,10 +24,11 @@ export type InvoiceFormValues = {
 		clientCountry: string
 	}
 	invoiceDate: string
+	paymentTerms: string
 }
 
 export const InvoiceForm = () => {
-	const { handleSubmit, control, formState, register } = useForm<InvoiceFormValues>({
+	const { handleSubmit, control, formState } = useForm<InvoiceFormValues>({
 		defaultValues: {
 			sender: {
 				city: '',
@@ -45,6 +45,7 @@ export const InvoiceForm = () => {
 				clientPostCode: '',
 			},
 			invoiceDate: '',
+			paymentTerms: '30',
 		},
 	})
 
@@ -61,6 +62,7 @@ export const InvoiceForm = () => {
 
 	return (
 		<form
+			noValidate
 			onSubmit={handleSubmit(setInvoice)}
 			className='dark:form-scroll form-scroll-light light-scroll  h-full overflow-auto pr-5'
 		>
