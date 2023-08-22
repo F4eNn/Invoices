@@ -17,6 +17,7 @@ export default function Home() {
 	useEffect(() => {
 		if (!isAuthenticated) redirect(navigation.login.path)
 	}, [isAuthenticated])
+
 	return (
 		<main className='flex h-full flex-col lg:flex-row  '>
 			<InvoiceProvider>

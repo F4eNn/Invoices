@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import { AuthProvider } from '@/context/AuthProvider'
+import { InvoiceProvider } from '@/context/InvoiceProvider'
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] })
 

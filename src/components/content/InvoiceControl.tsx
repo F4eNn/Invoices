@@ -5,9 +5,11 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Filter } from './Filter'
+import { useInvoice } from '@/hooks/useInvoice'
 
 export const InvoiceControl = () => {
 	const targetReached = useMediaQuery('576')
+		const {toggleForm} = useInvoice()
 
 	return (
 		<div className='flex items-center justify-between dark:text-white'>
@@ -18,7 +20,7 @@ export const InvoiceControl = () => {
 			<div className='inline-flex items-center gap-5 sm:gap-10 bg-secondaryDark'>
 				<Filter />
 				<div className='rounded-[30px] bg-primary text-xl hover:bg-secondary overflow-hidden'>
-					<Button onClick={() => {}}>
+					<Button onClick={() => toggleForm()}>
 						<div className='inline-flex items-center gap-3 md:gap-4'>
 							<div className='flex h-8   w-8 items-center justify-center rounded-full bg-white'>
 								<Image alt='' src='./assets/icon-plus.svg' width={14} height={14} />

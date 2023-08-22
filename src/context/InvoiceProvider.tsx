@@ -1,15 +1,14 @@
-import React, { ReactNode } from 'react'
+import React, { type ReactNode } from 'react'
 
 import { InvoiceCtx } from './InvoiceCtx'
+import { useToggle } from '@/hooks/useToggle'
 
-export const InvoiceProvider = ({children}: {children: ReactNode}) => {
+export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
+	const [isOpenForm, toggleForm] = useToggle()
+	const invoiceValues = {
+		toggleForm,
+		isOpenForm,
+	}
 
-
-
-
-
-    const invoiceValues = {}
-
-
-  return <InvoiceCtx.Provider value={invoiceValues}>{children}</InvoiceCtx.Provider>
+	return <InvoiceCtx.Provider value={invoiceValues}>{children}</InvoiceCtx.Provider>
 }

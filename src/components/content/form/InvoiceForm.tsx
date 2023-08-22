@@ -7,6 +7,7 @@ import { ItemListForm } from './ItemList'
 import { SubmitButton } from '@/components/ui/SubmitButton'
 import { Button } from '@/components/ui/Button'
 import { BasicInformation } from './BasicInformation'
+import { useInvoice } from '@/hooks/useInvoice'
 
 export type InvoiceFormValues = {
 	sender: {
@@ -30,6 +31,7 @@ export type InvoiceFormValues = {
 }
 
 export const InvoiceForm = () => {
+	const {toggleForm} = useInvoice()
 	const { handleSubmit, control, formState } = useForm<InvoiceFormValues>({
 		defaultValues: {
 			sender: {
@@ -63,7 +65,6 @@ export const InvoiceForm = () => {
 
 	const setInvoice = (data: InvoiceFormValues, e: any) => {
 
-
 		const target = (e.nativeEvent as SubmitEvent).submitter?.id
 		if (target === 'save') {
 			console.log(data)
@@ -84,7 +85,7 @@ export const InvoiceForm = () => {
 			<ItemListForm control={control} error={errors} />
 			<div className='shadow-topShadow absolute bottom-0 left-0 right-0 flex justify-between rounded-2xl bg-lightGray py-10 pl-40 pr-10 text-sm text-white dark:bg-lightDark'>
 				<div className='text-darkGray hover:bg-grayishWhite overflow-hidden rounded-3xl dark:bg-lightGray '>
-					<Button padding='px-6' onClick={() => {}}>
+					<Button padding='px-6' onClick={toggleForm}>
 						Discard
 					</Button>
 				</div>

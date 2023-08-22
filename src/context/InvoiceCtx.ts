@@ -2,9 +2,15 @@
 
 import { createContext } from 'react'
 
-type InvoiceCtxProps = {}
+type InvoiceCtxProps = {
+    toggleForm: () => void
+    isOpenForm: boolean
+}
 
-const defaultValues: InvoiceCtxProps = {}
+const defaultValues: InvoiceCtxProps = {
+    toggleForm: () => {},
+    isOpenForm: false,
+}
 
 
 
