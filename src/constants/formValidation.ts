@@ -35,3 +35,15 @@ export const passwordValidation = {
 		hasSpecialChar: (password: string) => containsSpecialChar.test(password) || 'Atleast one special character.',
 	},
 }
+
+export const generalInvoiceValidation = {
+	// eslint-disable-next-line quotes
+	required: "Can't be empty",
+	validate: {
+		minLength: (value: string) => value.trim().length > 0 || 'Can\'t be empty',
+	},
+}
+export const numberValidation = {
+	required: true,
+	min: 1,
+}

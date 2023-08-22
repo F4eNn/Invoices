@@ -6,6 +6,12 @@
 	.invoice-input {
 		@apply w-full rounded-sm border-rose  p-3 caret-primary focus:border-secondary focus:ring-0  dark:border-secondaryDark dark:bg-primaryDark dark:focus:border-primary;
 	}
+	.remove-input-arrows::-webkit-inner-spin-button,
+	.remove-input-arrows::-webkit-outer-spin-button {
+		appearance: none;
+	
+
+	}
 	.form-scroll::-webkit-scrollbar,
 	.form-scroll-light::-webkit-scrollbar {
 		width: 10px;

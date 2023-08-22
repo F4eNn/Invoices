@@ -23,8 +23,10 @@ export type InvoiceFormValues = {
 		clientPostCode: string
 		clientCountry: string
 	}
-	invoiceDate: string
+	invoiceDate: string 
 	paymentTerms: string
+	projectDescription: string
+	items: { name: string; quantity: number | undefined; price: number | undefined }[]
 }
 
 export const InvoiceForm = () => {
@@ -46,12 +48,20 @@ export const InvoiceForm = () => {
 			},
 			invoiceDate: '',
 			paymentTerms: '30',
+			projectDescription: '',
+			items: [
+				{
+					name: '',
+					price: 0,
+					quantity: 0,
+				},
+			],
 		},
 	})
 
 	const { errors, isSubmitting } = formState
 
-	const setInvoice = (data: InvoiceFormValues, e: any) => {
+	const setInvoice = (data: InvoiceFormValues | string, e: any) => {
 		const target = (e.nativeEvent as SubmitEvent).submitter?.id
 		if (target === 'save') {
 			console.log(data)
@@ -69,7 +79,7 @@ export const InvoiceForm = () => {
 			<BillFromForm control={control} error={errors} />
 			<BillToForm control={control} error={errors} />
 			<BasicInformation control={control} error={errors} />
-			<ItemListForm />
+			<ItemListForm control={control} error={errors} />
 			<div className='shadow-topShadow absolute bottom-0 left-0 right-0 flex justify-between rounded-2xl bg-lightGray py-10 pl-40 pr-10 text-sm text-white dark:bg-lightDark'>
 				<div className='text-darkGray hover:bg-grayishWhite overflow-hidden rounded-3xl dark:bg-lightGray '>
 					<Button padding='px-6' onClick={() => {}}>

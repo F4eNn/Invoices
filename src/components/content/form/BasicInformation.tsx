@@ -12,7 +12,7 @@ interface BasicInformationProps {
 
 export const BasicInformation = ({ control, error }: BasicInformationProps) => {
 	return (
-		<div className='mb-[120px] mt-12'>
+		<div className='mt-12'>
 			<div className='  flex gap-10'>
 				<div className='w-full'>
 					<ControlInput
@@ -34,6 +34,16 @@ export const BasicInformation = ({ control, error }: BasicInformationProps) => {
 						name='paymentTerms'
 					/>
 				</div>
+			</div>
+			<div className='mt-6'>
+				<ControlInput
+					control={control}
+					error={error.projectDescription}
+					id='project'
+					label='Project Description'
+					name='projectDescription'
+					placeholder='e.g.Graphic Design Service'
+				/>
 			</div>
 		</div>
 	)

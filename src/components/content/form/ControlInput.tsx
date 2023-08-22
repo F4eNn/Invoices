@@ -1,11 +1,11 @@
-import React from 'react'
-import { Control, Controller, FieldError } from 'react-hook-form'
+import React, { useEffect, useState } from 'react'
+import { Control, Controller, FieldError, RegisterOptions } from 'react-hook-form'
 import Datepicker from 'react-tailwindcss-datepicker'
 
 import { ErrorMessage } from '@/components/ui/Forms/ErrorMessage'
 import { InputWrapper } from '@/components/ui/Forms/InputWrapper'
 import { InvoiceFormValues } from './InvoiceForm'
-import { emailValidation } from '@/constants/formValidation'
+import { emailValidation, generalInvoiceValidation, numberValidation } from '@/constants/formValidation'
 
 type FieldName =
 	| 'sender.streetAddress'
@@ -20,6 +20,10 @@ type FieldName =
 	| 'receiver.clientCountry'
 	| 'invoiceDate'
 	| 'paymentTerms'
+	| 'projectDescription'
+	| `items.${number}.name`
+	| `items.${number}.quantity`
+	| `items.${number}.price`
 
 type FieldLabel =
 	| 'Street Address'
@@ -32,15 +36,18 @@ type FieldLabel =
 	| "Client's email"
 	| 'Invoice Date'
 	| 'Payment Terms'
+	| 'Project Description'
 
 interface ControlInputTypeProps {
 	id: string
 	name: FieldName
 	control: Control<InvoiceFormValues>
 	error: FieldError | undefined
-	label: FieldLabel
-	type?: 'text' | 'date' | 'email'
+	label?: FieldLabel
+	placeholder?: string
+	type?: 'text' | 'date' | 'email' | 'number'
 	as?: 'input' | 'select' | 'date'
+	items?: boolean
 }
 
 export const ControlInput = ({
@@ -49,18 +56,37 @@ export const ControlInput = ({
 	name,
 	control,
 	label,
+	placeholder,
 	as = 'input',
 	type = 'text',
+	items = false,
 }: ControlInputTypeProps) => {
+	const [selectedRules, setSelectedRules] = useState<RegisterOptions>()
+
+	useEffect(() => {
+		switch (type) {
+			case 'number':
+				setSelectedRules({ ...numberValidation })
+				break
+			case 'email':
+				setSelectedRules({ ...emailValidation })
+				break
+			case 'text':
+				setSelectedRules({ required: true })
+				break
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [type])
+
 	return (
 		<InputWrapper>
 			<label htmlFor={id} className={`${error && 'text-red'} mb-2 flex items-center justify-between text-sm`}>
 				{label}
-				<ErrorMessage as='invoice' msg={error?.message} error={error} />
+				{!items && <ErrorMessage as='invoice' msg={error?.message} error={error} />}
 			</label>
 			<Controller
 				name={name}
-				rules={(type === 'email' ? {...emailValidation}: {required: true}) }
+				rules={selectedRules}
 				control={control}
 				render={({ field }) => {
 					if (as === 'input') {
@@ -68,7 +94,8 @@ export const ControlInput = ({
 							<input
 								id={id}
 								type={type}
-								className={`invoice-input form-input ${error && 'invoice-error-input'}  font-bold `}
+								placeholder={placeholder}
+								className={`invoice-input remove-input-arrows form-input ${error && 'invoice-error-input'}  font-bold `}
 								{...field}
 							/>
 						)
