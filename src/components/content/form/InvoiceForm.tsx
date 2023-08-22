@@ -61,7 +61,9 @@ export const InvoiceForm = () => {
 
 	const { errors, isSubmitting } = formState
 
-	const setInvoice = (data: InvoiceFormValues | string, e: any) => {
+	const setInvoice = (data: InvoiceFormValues, e: any) => {
+
+
 		const target = (e.nativeEvent as SubmitEvent).submitter?.id
 		if (target === 'save') {
 			console.log(data)
