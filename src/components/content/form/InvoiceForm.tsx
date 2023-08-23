@@ -32,7 +32,7 @@ export type InvoiceFormValues = {
 }
 
 export const InvoiceForm = () => {
-	const { toggleForm,handleSetDraft } = useInvoice()
+	const { toggleForm,handleSetDraft,handleSetInvoice } = useInvoice()
 
 	const { handleSubmit, control, formState, getValues, watch, reset } = useForm<InvoiceFormValues>({
 		defaultValues: {
@@ -70,8 +70,16 @@ export const InvoiceForm = () => {
 
 	const formId = lettersFormId + numbersFormId
 
-	const setInvoiceHandler = (data: InvoiceFormValues) => {
+	const setInvoiceHandler = async (data: InvoiceFormValues) => {
 		const formatedDate = new Intl.DateTimeFormat('en-US').format(data.invoiceDate as Date)
+
+		const updatedData = {
+			...data,
+			invoiceDate: formatedDate ,
+			formId,
+		}
+		await handleSetInvoice(updatedData)
+		reset()
 	}
 
 	const setDraftHandler = async () => {

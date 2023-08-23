@@ -9,32 +9,55 @@ import { useAuth } from '@/hooks/useAuth'
 export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 	const [isOpenForm, toggleForm] = useToggle()
 	const { user } = useAuth()
-
-	const handleSetDraft = async (data: InvoiceData) => {
+	
+	const handleSetDraft = async (formData: InvoiceData) => {
 		if (!user) return
-		
 		const draftRef = doc(db, 'drafts', user.email)
-
 		try {
 			const draftSnap = await getDoc(draftRef)
 
 			if (!draftSnap.exists()) {
-				await setDoc(draftRef, { draft: [{...data}] })
+				await setDoc(draftRef, { draft: [{...formData}] })
 				return
 			}
-			const existingData = draftSnap.data().draft
-			const mergeArr = [...existingData, data]
+			const existingDrafts = draftSnap.data().draft
+			const mergeDrafts = [...existingDrafts, formData]
 
-			await updateDoc(draftRef, { draft: mergeArr })
+			await updateDoc(draftRef, { draft: mergeDrafts })
 
 		} catch (error) {
-			console.error('Set draft failed:', error)
+			console.error('Failed set draft:', error)
 		}
 	}
+
+	const handleSetInvoice = async (formData: InvoiceData) => {
+		if(!user) return
+
+		const invoiceRef = doc(db, 'invoices', user.email)
+
+		try {
+				const invoiceSnap = await getDoc(invoiceRef)
+
+				if(!invoiceSnap.exists()){
+					setDoc(invoiceRef, {invoice: [{...formData}]})
+					return
+				}
+
+				const existingInvoices = invoiceSnap.data().invoice
+				const mergeInvoices = [...existingInvoices, formData]
+
+				await updateDoc(invoiceRef, {invoice : mergeInvoices})
+
+		} catch (error) {
+			console.error('Failed set invoice:', error)
+		}
+	}
+
 
 	const invoiceValues = {
 		toggleForm,
 		handleSetDraft,
+		handleSetInvoice,
 		isOpenForm,
 	}
 

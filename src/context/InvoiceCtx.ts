@@ -7,12 +7,14 @@ export type InvoiceData = InvoiceFormValues & { formId: string }
 type InvoiceCtxProps = {
 	toggleForm: () => void
 	handleSetDraft: (_data: InvoiceData) => Promise<void>
+	handleSetInvoice: (_data: InvoiceData) => Promise<void>
 	isOpenForm: boolean
 }
 
 const defaultValues: InvoiceCtxProps = {
 	toggleForm: () => {},
 	handleSetDraft: async (_data: InvoiceData) => {},
+	handleSetInvoice: async (_data: InvoiceData) => {},
 	isOpenForm: false,
 }
 
