@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import randomstring from 'randomstring'
 
 import { BillFromForm } from './BillFrom'
 import { BillToForm } from './BillTo'
@@ -63,6 +64,14 @@ export const InvoiceForm = () => {
 	})
 
 	const { errors, isSubmitting } = formState
+
+	const lettersFormId = randomstring.generate({length: 2, capitalization: 'uppercase', charset: 'alphabetic'})
+	const numbersFormId = randomstring.generate({length: 4, charset: 'numeric'})
+
+	const formId = lettersFormId + numbersFormId
+
+
+
 
 	const setInvoiceHandler = (data: InvoiceFormValues) => {
 		const formatedDate = new Intl.DateTimeFormat('en-US').format(data.invoiceDate)
