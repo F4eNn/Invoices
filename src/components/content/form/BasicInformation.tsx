@@ -13,7 +13,7 @@ interface BasicInformationProps {
 export const BasicInformation = ({ control, error }: BasicInformationProps) => {
 	return (
 		<div className='mt-12'>
-			<div className='  flex gap-10'>
+			<div className='  flex gap-10 flex-col sm:flex-row'>
 				<div className='w-full'>
 					<ControlInput
 						control={control}

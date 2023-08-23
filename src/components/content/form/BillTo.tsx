@@ -40,15 +40,17 @@ export const BillToForm = (props: BillToTypeProps) => {
 					name='receiver.clientStreetAddress'
 				/>
 			</div>
-			<div className='mt-6 flex gap-5'>
-				<ControlInput {...props} error={error?.clientCity} id='clientCity' label='City' name='receiver.clientCity' />
-				<ControlInput
-					{...props}
-					error={error?.clientPostCode}
-					id='clientPostCode'
-					label='Post Code'
-					name='receiver.clientPostCode'
-				/>
+			<div className='mt-6 flex flex-col gap-5 md:flex-row'>
+				<div className='flex gap-5 justify-between'>
+					<ControlInput {...props} error={error?.clientCity} id='clientCity' label='City' name='receiver.clientCity' />
+					<ControlInput
+						{...props}
+						error={error?.clientPostCode}
+						id='clientPostCode'
+						label='Post Code'
+						name='receiver.clientPostCode'
+					/>
+				</div>
 				<ControlInput
 					{...props}
 					error={error?.clientCountry}

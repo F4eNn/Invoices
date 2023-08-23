@@ -22,10 +22,14 @@ export const BillFromForm = (props: BillFromProps) => {
 				label='Street Address'
 				name='sender.streetAddress'
 			/>
-			<div className='mt-6 flex gap-5'>
-				<ControlInput {...props} error={error.city} id='city' name='sender.city' label='City' />
-				<ControlInput {...props} error={error.postCode} id='postCode' name='sender.postCode' label='Post Code' />
-				<ControlInput {...props} error={error.country} id='country' name='sender.country' label='Country' />
+			<div className='mt-6 flex gap-5 flex-col md:flex-row  '>
+				<div className='flex justify-between gap-5'>
+					<ControlInput {...props} error={error.city} id='city' name='sender.city' label='City' />
+					<ControlInput {...props} error={error.postCode} id='postCode' name='sender.postCode' label='Post Code' />
+				</div>
+				<div>
+					<ControlInput {...props} error={error.country} id='country' name='sender.country' label='Country' />
+				</div>
 			</div>
 		</div>
 	)

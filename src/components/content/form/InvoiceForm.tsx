@@ -66,7 +66,6 @@ export const InvoiceForm = () => {
 
 	const setInvoiceHandler = (data: InvoiceFormValues) => {
 		const formatedDate = new Intl.DateTimeFormat('en-US').format(data.invoiceDate)
-
 	}
 
 	const setDraftHandler = () => {
@@ -84,15 +83,17 @@ export const InvoiceForm = () => {
 			<BillToForm control={control} error={errors} />
 			<BasicInformation control={control} error={errors} />
 			<ItemListForm control={control} error={errors} />
-			<div className='absolute bottom-0 left-0 right-0 flex justify-between rounded-2xl bg-lightGray py-10 pl-40 pr-10 text-sm text-white shadow-topShadow dark:bg-lightDark'>
-				<div className='overflow-hidden rounded-3xl text-darkGray hover:bg-grayishWhite dark:bg-lightGray '>
-					<Button padding='px-6' onClick={toggleForm}>
+			<div className='absolute bottom-0 left-0 right-0 flex justify-between gap-2 rounded-2xl bg-lightGray px-3 py-6 sm:py-10 text-sm  text-white shadow-topShadow dark:bg-lightDark sm:px-10 lg:pl-40 lg:pr-10'>
+				<div className='overflow-hidden rounded-3xl text-darkGray hover:bg-grayishWhite dark:bg-lightGray min-w-max '>
+					<Button onClick={toggleForm}>
 						Discard
 					</Button>
 				</div>
 				<div className='inline-flex gap-5'>
 					<div className='w-max overflow-hidden rounded-3xl bg-darkGray hover:bg-secondaryDark'>
-						<Button padding='px-6' onClick={setDraftHandler}>Save as Draft</Button>
+						<Button onClick={setDraftHandler}>
+							Save as Draft
+						</Button>
 					</div>
 					<div className='w-max overflow-hidden rounded-3xl bg-primary hover:bg-secondary'>
 						<SubmitButton padding='p-3' isSubmitting={isSubmitting}>
