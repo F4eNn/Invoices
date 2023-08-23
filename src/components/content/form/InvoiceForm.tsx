@@ -24,7 +24,7 @@ export type InvoiceFormValues = {
 		clientPostCode: string
 		clientCountry: string
 	}
-	invoiceDate: Date 
+	invoiceDate: Date
 	paymentTerms: string
 	projectDescription: string
 	items: { name: string; quantity: number | undefined; price: number | undefined }[]
@@ -33,7 +33,7 @@ export type InvoiceFormValues = {
 export const InvoiceForm = () => {
 	const { toggleForm } = useInvoice()
 
-	const { handleSubmit, control, formState } = useForm<InvoiceFormValues>({
+	const { handleSubmit, control, formState, getValues } = useForm<InvoiceFormValues>({
 		defaultValues: {
 			sender: {
 				city: '',
@@ -49,7 +49,7 @@ export const InvoiceForm = () => {
 				clientEmail: '',
 				clientPostCode: '',
 			},
-			invoiceDate:  new Date(),
+			invoiceDate: new Date(),
 			paymentTerms: '30',
 			projectDescription: '',
 			items: [
@@ -64,21 +64,20 @@ export const InvoiceForm = () => {
 
 	const { errors, isSubmitting } = formState
 
-	const setInvoice = (data: InvoiceFormValues, e: any) => {
-		const target = (e.nativeEvent as SubmitEvent).submitter?.id
-		const formatedDate = new Intl.DateTimeFormat('en-US').format(data.invoiceDate )
+	const setInvoiceHandler = (data: InvoiceFormValues) => {
+		const formatedDate = new Intl.DateTimeFormat('en-US').format(data.invoiceDate)
 
-		if (target === 'save') {
-			console.log(data)
-		} else if (target === 'draft') {
-			console.log(data)
-		}
+	}
+
+	const setDraftHandler = () => {
+		const data = getValues()
+		const formatedDate = new Intl.DateTimeFormat('en-US').format(data.invoiceDate)
 	}
 
 	return (
 		<form
 			noValidate
-			onSubmit={handleSubmit(setInvoice)}
+			onSubmit={handleSubmit(setInvoiceHandler)}
 			className='dark:form-scroll form-scroll-light light-scroll  h-full overflow-auto pr-5'
 		>
 			<BillFromForm control={control} error={errors} />
@@ -93,12 +92,10 @@ export const InvoiceForm = () => {
 				</div>
 				<div className='inline-flex gap-5'>
 					<div className='w-max overflow-hidden rounded-3xl bg-darkGray hover:bg-secondaryDark'>
-						<SubmitButton id='draft' padding='p-3' isSubmitting={isSubmitting}>
-							Save as Draft
-						</SubmitButton>
+						<Button padding='px-6' onClick={setDraftHandler}>Save as Draft</Button>
 					</div>
 					<div className='w-max overflow-hidden rounded-3xl bg-primary hover:bg-secondary'>
-						<SubmitButton id='save' padding='p-3' isSubmitting={isSubmitting}>
+						<SubmitButton padding='p-3' isSubmitting={isSubmitting}>
 							Save & Send
 						</SubmitButton>
 					</div>
