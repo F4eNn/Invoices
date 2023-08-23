@@ -1,5 +1,5 @@
 import React from 'react'
-import { Control, FieldArrayWithId, FieldErrors, UseFieldArrayRemove } from 'react-hook-form'
+import { Control, FieldArrayWithId, FieldErrors, UseFieldArrayRemove, UseFormWatch } from 'react-hook-form'
 
 import { DeleteIcon } from '@/components/icons/Delete'
 import { ControlInput } from './ControlInput'
@@ -10,9 +10,18 @@ interface DynamicItemProps {
 	error: FieldErrors<InvoiceFormValues>
 	fields: FieldArrayWithId<InvoiceFormValues, 'items', 'id'>[]
 	remove: UseFieldArrayRemove
+	watch: UseFormWatch<InvoiceFormValues>
 }
 
-export const DynamicItem = ({ control, error, fields, remove }: DynamicItemProps) => {
+export const DynamicItem = ({ control, error, fields, remove, watch }: DynamicItemProps) => {
+
+
+	const totalSum = (idx: number) => {
+		const quantity = watch(`items.${idx}.quantity`) as number
+		const price = watch(`items.${idx}.price`) as number
+		const total = (price * quantity).toFixed(2)
+		return total
+	}
 	return (
 		<>
 			{fields.map((field, idx) => (
@@ -50,12 +59,12 @@ export const DynamicItem = ({ control, error, fields, remove }: DynamicItemProps
 								items={true}
 							/>
 						</div>
-						<div className=' relative flex h-full flex-col '>
+						<div className='flex  flex-col '>
 							<span className='absolute -top-3.5 left-1 lg:hidden '>Total</span>
-							<span className='mt-8'>186.54</span>
+							<span className='mt-8 w-[45px] lg:mt-3'>{totalSum(idx)}</span>
 						</div>
 						<div>
-							<button type='button' onClick={() => remove(idx)} className='group p-3 '>
+							<button type='button' onClick={() => remove(idx)} className='group p-3 mt-7 lg:mt-2.5'>
 								<DeleteIcon />
 							</button>
 						</div>

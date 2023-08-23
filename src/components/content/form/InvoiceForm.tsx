@@ -34,7 +34,7 @@ export type InvoiceFormValues = {
 export const InvoiceForm = () => {
 	const { toggleForm } = useInvoice()
 
-	const { handleSubmit, control, formState, getValues } = useForm<InvoiceFormValues>({
+	const { handleSubmit, control, formState, getValues, watch } = useForm<InvoiceFormValues>({
 		defaultValues: {
 			sender: {
 				city: '',
@@ -91,7 +91,7 @@ export const InvoiceForm = () => {
 			<BillFromForm control={control} error={errors} />
 			<BillToForm control={control} error={errors} />
 			<BasicInformation control={control} error={errors} />
-			<ItemListForm control={control} error={errors} />
+			<ItemListForm control={control} error={errors} watch={watch} />
 			<div className='absolute bottom-0 left-0 right-0 flex justify-between gap-2 rounded-2xl bg-lightGray px-3 py-6 sm:py-10 text-sm  text-white shadow-topShadow dark:bg-lightDark sm:px-10 lg:pl-40 lg:pr-10'>
 				<div className='overflow-hidden rounded-3xl text-darkGray hover:bg-grayishWhite dark:bg-lightGray min-w-max '>
 					<Button padding='sm:px-6' onClick={toggleForm}>
