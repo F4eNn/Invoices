@@ -17,21 +17,22 @@
 	.form-scroll::-webkit-scrollbar-track,
 	.form-scroll-light::-webkit-scrollbar-track {
 		background-color: transparent;
+
 	}
 	.form-scroll::-webkit-scrollbar-thumb {
 		background-color: #1e2139;
+		border-radius: 10px;
+		
 	}
 	.form-scroll-light::-webkit-scrollbar-thumb {
 		background-color: #dfe3fa;
+		border-radius: 10px;
 	}
 }
 @layer utilities {
 	.invoice-error-input {
 		@apply border-lightRed caret-red focus:border-red dark:border-lightRed dark:focus:border-red;
 	}
-}
-.test{
-	background-color: red !important;
 }
 *,
 ::after,

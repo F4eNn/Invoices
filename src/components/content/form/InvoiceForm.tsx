@@ -85,13 +85,13 @@ export const InvoiceForm = () => {
 			<ItemListForm control={control} error={errors} />
 			<div className='absolute bottom-0 left-0 right-0 flex justify-between gap-2 rounded-2xl bg-lightGray px-3 py-6 sm:py-10 text-sm  text-white shadow-topShadow dark:bg-lightDark sm:px-10 lg:pl-40 lg:pr-10'>
 				<div className='overflow-hidden rounded-3xl text-darkGray hover:bg-grayishWhite dark:bg-lightGray min-w-max '>
-					<Button onClick={toggleForm}>
+					<Button padding='sm:px-6' onClick={toggleForm}>
 						Discard
 					</Button>
 				</div>
 				<div className='inline-flex gap-5'>
 					<div className='w-max overflow-hidden rounded-3xl bg-darkGray hover:bg-secondaryDark'>
-						<Button onClick={setDraftHandler}>
+						<Button padding='sm:px-6' onClick={setDraftHandler}>
 							Save as Draft
 						</Button>
 					</div>

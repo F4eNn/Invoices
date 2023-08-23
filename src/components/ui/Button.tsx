@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react'
 type ButtonProps = {
 	children?: ReactNode
 	onClick: () => void
-	padding?: 'px-6' 
+	padding?: 'sm:px-6' 
 }
 
 export const Button = ({ children, onClick,padding }: ButtonProps) => {
