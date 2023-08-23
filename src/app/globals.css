@@ -9,8 +9,6 @@
 	.remove-input-arrows::-webkit-inner-spin-button,
 	.remove-input-arrows::-webkit-outer-spin-button {
 		appearance: none;
-	
-
 	}
 	.form-scroll::-webkit-scrollbar,
 	.form-scroll-light::-webkit-scrollbar {
@@ -32,7 +30,9 @@
 		@apply border-lightRed caret-red focus:border-red dark:border-lightRed dark:focus:border-red;
 	}
 }
-
+.test{
+	background-color: red !important;
+}
 *,
 ::after,
 ::before {

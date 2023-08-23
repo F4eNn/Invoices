@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Control, Controller, FieldError, RegisterOptions } from 'react-hook-form'
-import Datepicker from 'react-tailwindcss-datepicker'
+import ReactDatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 import { ErrorMessage } from '@/components/ui/Forms/ErrorMessage'
 import { InputWrapper } from '@/components/ui/Forms/InputWrapper'
@@ -45,7 +46,7 @@ interface ControlInputTypeProps {
 	error: FieldError | undefined
 	label?: FieldLabel
 	placeholder?: string
-	type?: 'text' | 'date' | 'email' | 'number'
+	type?: 'text' | 'email' | 'number'
 	as?: 'input' | 'select' | 'date'
 	items?: boolean
 }
@@ -72,8 +73,11 @@ export const ControlInput = ({
 				setSelectedRules({ ...emailValidation })
 				break
 			case 'text':
-				setSelectedRules({ required: true })
+				setSelectedRules({ ...generalInvoiceValidation })
 				break
+		}
+		if (as === 'date') {
+			setSelectedRules({ required: true })
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [type])
@@ -95,13 +99,21 @@ export const ControlInput = ({
 								id={id}
 								type={type}
 								placeholder={placeholder}
-								className={`invoice-input remove-input-arrows form-input ${error && 'invoice-error-input'}  font-bold `}
-								{...field}
+								className={`invoice-input remove-input-arrows form-input  ${
+									error && 'invoice-error-input'
+								}  font-bold `}
+								value={field.value as string}
+								onChange={e => field.onChange(e.target.value)}
 							/>
 						)
 					} else if (as === 'select') {
 						return (
-							<select id={type} className='invoice-input form-select' {...field}>
+							<select
+								id={type}
+								className='invoice-input form-select'
+								value={field.value as number}
+								onChange={e => field.onChange(e.target.value)}
+							>
 								<option value={30}>Net 30 Days</option>
 								<option value={14}>Net 14 Days</option>
 								<option value={7}>Net 7 Days</option>
@@ -109,17 +121,12 @@ export const ControlInput = ({
 							</select>
 						)
 					}
-
 					return (
-						<Datepicker
-							asSingle={true}
-							useRange={false}
+						<ReactDatePicker
+							onChange={(date) => field.onChange(date)}
+							selected={field.value as Date}
 							minDate={new Date()}
-							primaryColor='purple'
-							onChange={field.onChange}
-							//@ts-ignore
-							value={field.value}
-							inputClassName={`form-input invoice-input font-bold  ${error && 'invoice-error-input'} `}
+							className='invoice-input form-input'
 						/>
 					)
 				}}

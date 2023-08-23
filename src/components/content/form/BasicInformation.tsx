@@ -16,8 +16,8 @@ export const BasicInformation = ({ control, error }: BasicInformationProps) => {
 			<div className='  flex gap-10'>
 				<div className='w-full'>
 					<ControlInput
-						as='date'
 						control={control}
+						as='date'
 						error={error.invoiceDate}
 						id='date'
 						label='Invoice Date'

@@ -13,8 +13,6 @@ export const Create = () => {
 		if (e.target === overlayRef.current) toggleForm()
 	}
 
-	
-
 	return (
 		<AnimatePresence>
 			{isOpenForm && (
