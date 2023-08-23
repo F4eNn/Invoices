@@ -9,6 +9,7 @@ import { SubmitButton } from '@/components/ui/SubmitButton'
 import { Button } from '@/components/ui/Button'
 import { BasicInformation } from './BasicInformation'
 import { useInvoice } from '@/hooks/useInvoice'
+import { CollectionName } from '@/context/InvoiceCtx'
 
 export type InvoiceFormValues = {
 	sender: {
@@ -32,7 +33,7 @@ export type InvoiceFormValues = {
 }
 
 export const InvoiceForm = () => {
-	const { toggleForm,handleSetDraft,handleSetInvoice } = useInvoice()
+	const { toggleForm, handleCollectionData } = useInvoice()
 
 	const { handleSubmit, control, formState, getValues, watch, reset } = useForm<InvoiceFormValues>({
 		defaultValues: {
@@ -70,30 +71,16 @@ export const InvoiceForm = () => {
 
 	const formId = lettersFormId + numbersFormId
 
-	const setInvoiceHandler = async (data: InvoiceFormValues) => {
-		const formatedDate = new Intl.DateTimeFormat('en-US').format(data.invoiceDate as Date)
-
-		const updatedData = {
-			...data,
-			invoiceDate: formatedDate ,
-			formId,
-		}
-		await handleSetInvoice(updatedData)
+	const setInvoiceHandler = (data: InvoiceFormValues) => {
+		 handleCollectionData(data, CollectionName.Invoices, formId)
 		reset()
 	}
-
-	const setDraftHandler = async () => {
+	const setDraftHandler = () => {
 		const data = getValues()
-		const formatedDate = new Intl.DateTimeFormat('en-US').format(data.invoiceDate as Date) 
-
-		const updatedData = {
-			...data,
-			invoiceDate: formatedDate ,
-			formId,
-		}
-		await handleSetDraft(updatedData)
+		handleCollectionData(data, CollectionName.Drafts, formId)
 		reset()
 	}
+
 	return (
 		<form
 			noValidate
