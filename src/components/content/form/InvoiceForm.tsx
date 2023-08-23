@@ -25,16 +25,16 @@ export type InvoiceFormValues = {
 		clientPostCode: string
 		clientCountry: string
 	}
-	invoiceDate: Date
+	invoiceDate: Date | string
 	paymentTerms: string
 	projectDescription: string
 	items: { name: string; quantity: number | undefined; price: number | undefined }[]
 }
 
 export const InvoiceForm = () => {
-	const { toggleForm } = useInvoice()
+	const { toggleForm,handleSetDraft } = useInvoice()
 
-	const { handleSubmit, control, formState, getValues, watch } = useForm<InvoiceFormValues>({
+	const { handleSubmit, control, formState, getValues, watch, reset } = useForm<InvoiceFormValues>({
 		defaultValues: {
 			sender: {
 				city: '',
@@ -65,23 +65,27 @@ export const InvoiceForm = () => {
 
 	const { errors, isSubmitting } = formState
 
-	const lettersFormId = randomstring.generate({length: 2, capitalization: 'uppercase', charset: 'alphabetic'})
-	const numbersFormId = randomstring.generate({length: 4, charset: 'numeric'})
+	const lettersFormId = randomstring.generate({ length: 2, capitalization: 'uppercase', charset: 'alphabetic' })
+	const numbersFormId = randomstring.generate({ length: 4, charset: 'numeric' })
 
 	const formId = lettersFormId + numbersFormId
 
-
-
-
 	const setInvoiceHandler = (data: InvoiceFormValues) => {
-		const formatedDate = new Intl.DateTimeFormat('en-US').format(data.invoiceDate)
+		const formatedDate = new Intl.DateTimeFormat('en-US').format(data.invoiceDate as Date)
 	}
 
-	const setDraftHandler = () => {
+	const setDraftHandler = async () => {
 		const data = getValues()
-		const formatedDate = new Intl.DateTimeFormat('en-US').format(data.invoiceDate)
-	}
+		const formatedDate = new Intl.DateTimeFormat('en-US').format(data.invoiceDate as Date) 
 
+		const updatedData = {
+			...data,
+			invoiceDate: formatedDate ,
+			formId,
+		}
+		await handleSetDraft(updatedData)
+		reset()
+	}
 	return (
 		<form
 			noValidate
@@ -92,8 +96,8 @@ export const InvoiceForm = () => {
 			<BillToForm control={control} error={errors} />
 			<BasicInformation control={control} error={errors} />
 			<ItemListForm control={control} error={errors} watch={watch} />
-			<div className='absolute bottom-0 left-0 right-0 flex justify-between gap-2 rounded-2xl bg-lightGray px-3 py-6 sm:py-10 text-sm  text-white shadow-topShadow dark:bg-lightDark sm:px-10 lg:pl-40 lg:pr-10'>
-				<div className='overflow-hidden rounded-3xl text-darkGray hover:bg-grayishWhite dark:bg-lightGray min-w-max '>
+			<div className='absolute bottom-0 left-0 right-0 flex justify-between gap-2 rounded-2xl bg-lightGray px-3 py-6 text-sm text-white  shadow-topShadow dark:bg-lightDark sm:px-10 sm:py-10 lg:pl-40 lg:pr-10'>
+				<div className='min-w-max overflow-hidden rounded-3xl text-darkGray hover:bg-grayishWhite dark:bg-lightGray '>
 					<Button padding='sm:px-6' onClick={toggleForm}>
 						Discard
 					</Button>
