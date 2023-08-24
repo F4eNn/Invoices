@@ -3,11 +3,11 @@ import Link from 'next/link'
 
 import { Status } from '../ui/Status'
 import { ArrowRightIcon } from '../icons/ArrowRight'
-import { InvoiceData } from '@/context/formCtx'
+import { type InvoiceDataProvider } from '@/context/InvoiceProvider'
 
-type InvoiceItemProps = Partial<InvoiceData>
+type InvoiceItemProps = Partial<InvoiceDataProvider>
 
-export const InvoiceItem = ({ formId, receiver, invoiceDate, totalPrice }: InvoiceItemProps) => {
+export const InvoiceItem = ({ formId, receiver, invoiceDate, totalPrice, as }: InvoiceItemProps) => {
 	return (
 		<Link
 			href='Invoice'
@@ -16,17 +16,21 @@ export const InvoiceItem = ({ formId, receiver, invoiceDate, totalPrice }: Invoi
 			{/* desktop */}
 			<div className='hidden w-full items-center justify-between p-5 md:inline-flex '>
 				<div className='flex items-center justify-stretch gap-5 md:gap-10 lg:gap-16'>
-					<p className='font-bold w-[75px]'>
+					<p className='w-[75px] font-bold'>
 						<span className='text-gray'>#</span>
 						{formId}
 					</p>
-					<span className=':order-none order-2 font-[500] w-max text-center text-gray dark:text-rose'>Due {invoiceDate as string}</span>
-					<span className=' font-[500]  w-[100px] text-grayPurple dark:text-grayishWhite text-center '>{receiver?.clientName === '' ? '~' : receiver?.clientName}</span>
+					<span className=':order-none order-2 w-max text-center font-[500] text-gray dark:text-rose'>
+						Due {invoiceDate as string}
+					</span>
+					<span className=' w-[100px]  text-center font-[500] text-grayPurple dark:text-grayishWhite '>
+						{receiver?.clientName === '' ? '~' : receiver?.clientName}
+					</span>
 				</div>
 				<div className='flex items-center justify-between gap-5 md:gap-10 lg:gap-20'>
 					<span className='font-bold'>£ {totalPrice}</span>
 					<div className='flex items-center gap-5'>
-						<Status as='paid'>Paid</Status>
+						<Status as={as}/>
 						<ArrowRightIcon />
 					</div>
 				</div>
@@ -45,7 +49,7 @@ export const InvoiceItem = ({ formId, receiver, invoiceDate, totalPrice }: Invoi
 						<span className='font-[500] text-gray dark:text-rose'>Due {invoiceDate as string}</span>
 						<span className='text-lg font-bold'>£ {totalPrice}</span>
 					</div>
-					<Status as='paid'>Paid</Status>
+					<Status as={as} />
 				</div>
 			</div>
 		</Link>

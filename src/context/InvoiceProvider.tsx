@@ -6,9 +6,11 @@ import { useAuth } from '@/hooks/useAuth'
 import { db } from '@/config/firebase'
 import { InvoiceData } from './formCtx'
 
+export type InvoiceDataProvider = InvoiceData & { as: 'paid' | 'pending' | 'draft'; totalPrice: number }
+
 export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 	const { user } = useAuth()
-	const [invoiceData, setInvoiceData] = useState<InvoiceData[]>([])
+	const [invoiceData, setInvoiceData] = useState<InvoiceDataProvider[]>([])
 
 	useEffect(() => {
 		if (!user) return
@@ -32,7 +34,6 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 		})
 		return () => subscribeInvoiceData()
 	}, [])
-
 	const values = {
 		invoiceData,
 	}
