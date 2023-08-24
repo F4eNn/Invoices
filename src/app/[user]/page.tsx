@@ -6,10 +6,10 @@ import { Pannel } from '@/components/pannel/Pannel'
 
 const UserPage = () => {
 	return (
-		<main className='h-full flex flex-col lg:flex-row  '>
+		<div className='h-full flex flex-col lg:flex-row  '>
 			<Pannel />
 			<User />
-		</main>
+		</div>
 	)
 }
 

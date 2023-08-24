@@ -4,13 +4,15 @@ import Link from 'next/link'
 import { Status } from '../ui/Status'
 import { ArrowRightIcon } from '../icons/ArrowRight'
 import { type InvoiceDataProvider } from '@/context/InvoiceProvider'
+import { navigation } from '@/constants/navigation_paths'
 
 type InvoiceItemProps = Partial<InvoiceDataProvider>
 
 export const InvoiceItem = ({ formId, receiver, invoiceDate, totalPrice, as }: InvoiceItemProps) => {
 	return (
 		<Link
-			href='Invoice'
+			href={navigation.invoice.path}
+			aria-label={navigation.invoice.label}
 			className='mt-7  flex  rounded-lg  border-2 border-white bg-white   text-lightDark shadow-md  duration-300  hover:border-primary dark:border-secondaryDark dark:bg-secondaryDark dark:text-white hover:dark:border-primary'
 		>
 			{/* desktop */}

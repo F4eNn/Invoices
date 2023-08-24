@@ -20,5 +20,9 @@ export const navigation = {
 	},
 	userAccount: {
 		path: '?settings=account'
+	},
+	invoice: {
+		path: 'invoice',
+		label: 'menage invoice'
 	}
 } as const satisfies Record<PropertyKey, NavigationItem>
