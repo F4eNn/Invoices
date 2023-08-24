@@ -11,7 +11,7 @@ type InvoiceItemProps = Partial<InvoiceDataProvider>
 export const InvoiceItem = ({ formId, receiver, invoiceDate, totalPrice, as }: InvoiceItemProps) => {
 	return (
 		<Link
-			href={navigation.invoice.path}
+			href={navigation.invoice.path + formId}
 			aria-label={navigation.invoice.label}
 			className='mt-7  flex  rounded-lg  border-2 border-white bg-white   text-lightDark shadow-md  duration-300  hover:border-primary dark:border-secondaryDark dark:bg-secondaryDark dark:text-white hover:dark:border-primary'
 		>
@@ -32,7 +32,7 @@ export const InvoiceItem = ({ formId, receiver, invoiceDate, totalPrice, as }: I
 				<div className='flex items-center justify-between gap-5 md:gap-10 lg:gap-20'>
 					<span className='font-bold'>£ {totalPrice}</span>
 					<div className='flex items-center gap-5'>
-						<Status as={as}/>
+						<Status as={as} />
 						<ArrowRightIcon />
 					</div>
 				</div>

@@ -33,9 +33,15 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 			setInvoiceData(updatedInvoiceData)
 		})
 		return () => subscribeInvoiceData()
-	}, [])
+	}, [user])
+
+	const getCurrentInvoice = (id: InvoiceDataProvider['formId']) => {
+		return invoiceData.find(invoice => invoice.formId === id)
+	}
+
 	const values = {
 		invoiceData,
+		getCurrentInvoice
 	}
 	return <InvoiceCtx.Provider value={values}>{children}</InvoiceCtx.Provider>
 }
