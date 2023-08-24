@@ -17,7 +17,7 @@ export const InvoiceControl = () => {
 				<h1 className='text-headingM lg:text-headingL '>Invoices</h1>
 				<p className='text-[.7em] '>{targetReached ? 'There are 7 total invoices' : '7 invoices '}</p>
 			</div>
-			<div className='inline-flex items-center gap-5 bg-secondaryDark sm:gap-10'>
+			<div className='inline-flex items-center gap-5 sm:gap-10'>
 				<Filter />
 				<div className='overflow-hidden rounded-[30px] bg-primary text-xl hover:bg-secondary'>
 					<Button onClick={() => toggleForm()}>
