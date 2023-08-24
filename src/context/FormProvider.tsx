@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react'
+import React, {type ReactNode } from 'react'
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 
 import { CollectionName, FormCtx, InvoiceData } from './formCtx'
@@ -9,6 +9,7 @@ import { InvoiceFormValues } from '@/components/content/form/InvoiceForm'
 
 export const FormProvider = ({ children }: { children: ReactNode }) => {
 	const [isOpenForm, toggleForm] = useToggle()
+
 	const { user } = useAuth()
 
 	const handleAddInvoice = async (formData: InvoiceData) => {
@@ -29,7 +30,6 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
 			console.error(`Failed set invoices:`, error)
 		}
 	}
-
 	const handleCollectionData = async (data: InvoiceFormValues, collectionName: CollectionName, formId: string) => {
 		try {
 			const formatedDate = new Intl.DateTimeFormat('en-US').format(data.invoiceDate as Date)

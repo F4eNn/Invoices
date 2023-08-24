@@ -2,7 +2,7 @@ import { createContext } from 'react'
 
 import { InvoiceFormValues } from '@/components/content/form/InvoiceForm'
 
-export type InvoiceData = InvoiceFormValues & { formId: string }
+export type InvoiceData = InvoiceFormValues & { formId: string, totalPrice?:number }
 
 export enum CollectionName {
 	Drafts = 'drafts',

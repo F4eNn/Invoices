@@ -22,6 +22,7 @@ export const DynamicItem = ({ control, error, fields, remove, watch }: DynamicIt
 		const total = (price * quantity).toFixed(2)
 		return total
 	}
+	
 	return (
 		<>
 			{fields.map((field, idx) => (
