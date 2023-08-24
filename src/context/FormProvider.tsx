@@ -11,22 +11,22 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
 	const [isOpenForm, toggleForm] = useToggle()
 	const { user } = useAuth()
 
-	const handleAddInvoice = async (formData: InvoiceData, collectionName: CollectionName) => {
+	const handleAddInvoice = async (formData: InvoiceData) => {
 		if (!user) return
-		const InvoiceRef = doc(db, collectionName, user.email)
+		const InvoiceRef = doc(db, 'invoices', user.email)
 		try {
 			const InvoiceSnap = await getDoc(InvoiceRef)
 
 			if (!InvoiceSnap.exists()) {
-				await setDoc(InvoiceRef, { [collectionName]: [{ ...formData }] })
+				await setDoc(InvoiceRef, { invoices: [{ ...formData }] })
 				return
 			}
-			const existingInvoices = InvoiceSnap.data()[collectionName]
+			const existingInvoices = InvoiceSnap.data().invoices
 			const mergeInvoices = [...existingInvoices, formData]
 
-			await updateDoc(InvoiceRef, { [collectionName]: mergeInvoices })
+			await updateDoc(InvoiceRef, { invoices: mergeInvoices })
 		} catch (error) {
-			console.error(`Failed set ${collectionName}:`, error)
+			console.error(`Failed set invoices:`, error)
 		}
 	}
 
@@ -39,7 +39,7 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
 				formId,
 				as: collectionName === 'invoices' ? 'pending' : 'draft',
 			}
-			handleAddInvoice(updatedData, collectionName)
+			handleAddInvoice(updatedData)
 		} catch (error) {
 			console.error(error)
 		}

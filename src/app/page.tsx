@@ -10,6 +10,7 @@ import { navigation } from '@/constants/navigation_paths'
 import { InvoiceBody } from '@/components/content/InvoiceBody'
 import { Create } from '@/components/content/Create'
 import { FormProvider } from '@/context/FormProvider'
+import { InvoiceProvider } from '@/context/InvoiceProvider'
 
 export default function Home() {
 	const { isAuthenticated } = useAuth()
@@ -27,7 +28,9 @@ export default function Home() {
 						<InvoiceControl />
 						<Create />
 					</FormProvider>
-					<InvoiceBody />
+					<InvoiceProvider>
+						<InvoiceBody />
+					</InvoiceProvider>
 				</div>
 			</ContentWrapper>
 		</main>
