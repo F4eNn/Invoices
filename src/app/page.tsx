@@ -19,10 +19,10 @@ export default function Home() {
 	}, [isAuthenticated])
 
 	return (
-		<main className='flex h-full flex-col lg:flex-row  '>
+		<main className='flex h-full flex-col lg:flex-row'>
 			<Pannel />
 			<ContentWrapper>
-				<div className='flex h-full flex-col'>
+				<div className='flex  h-full flex-col '>
 					<FormProvider>
 						<InvoiceControl />
 						<Create />
