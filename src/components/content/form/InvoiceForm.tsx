@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import randomstring from 'randomstring'
+import PulseLoader from 'react-spinners/PulseLoader'
 
 import { BillFromForm } from './BillFrom'
 import { BillToForm } from './BillTo'
@@ -8,8 +9,8 @@ import { ItemListForm } from './ItemList'
 import { SubmitButton } from '@/components/ui/SubmitButton'
 import { Button } from '@/components/ui/Button'
 import { BasicInformation } from './BasicInformation'
-import { useInvoice } from '@/hooks/useInvoice'
-import { CollectionName } from '@/context/InvoiceCtx'
+import { CollectionName } from '@/context/formCtx'
+import { useInvoiceForm } from '@/hooks/useInvoiceForm'
 
 export type InvoiceFormValues = {
 	sender: {
@@ -33,7 +34,7 @@ export type InvoiceFormValues = {
 }
 
 export const InvoiceForm = () => {
-	const { toggleForm, handleCollectionData } = useInvoice()
+	const { toggleForm, handleCollectionData } = useInvoiceForm()
 
 	const { handleSubmit, control, formState, getValues, watch, reset } = useForm<InvoiceFormValues>({
 		defaultValues: {
@@ -71,14 +72,22 @@ export const InvoiceForm = () => {
 
 	const formId = lettersFormId + numbersFormId
 
-	const setInvoiceHandler = (data: InvoiceFormValues) => {
-		 handleCollectionData(data, CollectionName.Invoices, formId)
-		reset()
+	const setInvoiceHandler = async (data: InvoiceFormValues) => {
+		try {
+			await handleCollectionData(data, CollectionName.Invoices, formId)
+			reset()
+		} catch (error) {
+			console.error(`Failed add ${CollectionName.Invoices} to firestore:`, error)
+		}
 	}
-	const setDraftHandler = () => {
+	const setDraftHandler = async () => {
 		const data = getValues()
-		handleCollectionData(data, CollectionName.Drafts, formId)
-		reset()
+		try {
+			await handleCollectionData(data, CollectionName.Drafts, formId)
+			reset()
+		} catch (error) {
+			console.error(`Failed add ${CollectionName.Drafts} to firestore:`, error)
+		}
 	}
 
 	return (
@@ -100,7 +109,7 @@ export const InvoiceForm = () => {
 				<div className='inline-flex gap-5'>
 					<div className='w-max overflow-hidden rounded-3xl bg-darkGray hover:bg-secondaryDark'>
 						<Button padding='sm:px-6' onClick={setDraftHandler}>
-							Save as Draft
+							{isSubmitting ? <PulseLoader color='#fff' size={10} /> : 'Save as Draft'}
 						</Button>
 					</div>
 					<div className='w-max overflow-hidden rounded-3xl bg-primary hover:bg-secondary'>

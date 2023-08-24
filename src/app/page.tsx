@@ -9,7 +9,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { navigation } from '@/constants/navigation_paths'
 import { InvoiceBody } from '@/components/content/InvoiceBody'
 import { Create } from '@/components/content/Create'
-import { InvoiceProvider } from '@/context/InvoiceProvider'
+import { FormProvider } from '@/context/FormProvider'
 
 export default function Home() {
 	const { isAuthenticated } = useAuth()
@@ -20,16 +20,16 @@ export default function Home() {
 
 	return (
 		<main className='flex h-full flex-col lg:flex-row  '>
-			<InvoiceProvider>
-				<Pannel />
-				<Create />
-				<ContentWrapper>
-					<div className='flex h-full flex-col'>
+			<Pannel />
+			<ContentWrapper>
+				<div className='flex h-full flex-col'>
+					<FormProvider>
 						<InvoiceControl />
-						<InvoiceBody />
-					</div>
-				</ContentWrapper>
-			</InvoiceProvider>
+						<Create />
+					</FormProvider>
+					<InvoiceBody />
+				</div>
+			</ContentWrapper>
 		</main>
 	)
 }

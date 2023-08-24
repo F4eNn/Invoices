@@ -12,15 +12,15 @@ export enum CollectionName {
 type InvoiceCtxProps = {
 	toggleForm: () => void
 	handleAddInvoice: (_data: InvoiceData, _collectionName: CollectionName) => Promise<void>
-    handleCollectionData: (_data: InvoiceFormValues, _collectionName: CollectionName, _formId: string) => void
+	handleCollectionData: (_data: InvoiceFormValues, _collectionName: CollectionName, _formId: string) => Promise<void>
 	isOpenForm: boolean
 }
 
 const defaultValues: InvoiceCtxProps = {
 	toggleForm: () => {},
 	handleAddInvoice: async (_data: InvoiceData, _collectionName: CollectionName) => {},
-    handleCollectionData: (_data: InvoiceFormValues, _collectionName: CollectionName, _formId: string) => {},
+	handleCollectionData: async (_data: InvoiceFormValues, _collectionName: CollectionName, _formId: string) => {},
 	isOpenForm: false,
 }
 
-export const InvoiceCtx = createContext<InvoiceCtxProps>(defaultValues)
+export const FormCtx = createContext<InvoiceCtxProps>(defaultValues)
