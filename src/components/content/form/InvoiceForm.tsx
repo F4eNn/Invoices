@@ -10,11 +10,11 @@ import { SubmitButton } from '@/components/ui/SubmitButton'
 import { Button } from '@/components/ui/Button'
 import { BasicInformation } from './BasicInformation'
 import { CollectionName } from '@/context/FormCtx'
-import { useMenageForm } from '@/hooks/useMenageForm'
+import { useForm } from '@/hooks/useForm'
 import { type InvoiceFormValues } from '@/context/FormProviders'
 
 export const InvoiceForm = () => {
-	const { toggleForm, handleCollectionData } = useMenageForm()
+	const { toggleForm, handleCollectionData } = useForm()
 
 	const { handleSubmit, control, formState, getValues, reset } = useFormContext<InvoiceFormValues>()
 

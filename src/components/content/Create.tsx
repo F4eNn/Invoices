@@ -1,12 +1,13 @@
+'use client'
 import React, { MouseEvent, useRef } from 'react'
 
 import { InvoiceForm } from './form/InvoiceForm'
-import { useMenageForm } from '@/hooks/useMenageForm'
+import { useForm } from '@/hooks/useForm'
 import { AnimatePresence, motion } from '@/lib/motion'
 import { animateForm } from '@/animations/animations'
 
 export const Create = () => {
-	const { toggleForm, isOpenForm } = useMenageForm()
+	const { toggleForm, isOpenForm } = useForm()
 	const overlayRef = useRef<HTMLDivElement>(null)
 
 	const handleOverlayClick = (e: MouseEvent<HTMLDivElement>) => {
