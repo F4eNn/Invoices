@@ -5,8 +5,8 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 import { ErrorMessage } from '@/components/ui/Forms/ErrorMessage'
 import { InputWrapper } from '@/components/ui/Forms/InputWrapper'
-import { InvoiceFormValues } from './InvoiceForm'
 import { emailValidation, generalInvoiceValidation, numberValidation } from '@/constants/formValidation'
+import { InvoiceFormValues } from '@/context/FormProviders'
 
 type FieldName =
 	| 'sender.streetAddress'

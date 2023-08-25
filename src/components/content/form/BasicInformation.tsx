@@ -1,8 +1,8 @@
 import React from 'react'
 import { Control, FieldErrors } from 'react-hook-form'
 
-import { InvoiceFormValues } from './InvoiceForm'
 import { ControlInput } from './ControlInput'
+import { InvoiceFormValues } from '@/context/FormProviders'
 
 interface BasicInformationProps {
 	control: Control<InvoiceFormValues>

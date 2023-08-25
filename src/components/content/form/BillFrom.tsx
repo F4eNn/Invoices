@@ -1,9 +1,9 @@
 import React from 'react'
 import { type Control, type FieldErrors } from 'react-hook-form'
 
-import { InvoiceFormValues } from './InvoiceForm'
 import { ControlInput } from './ControlInput'
 import { InvoiceTitle } from '@/components/ui/InvoiceForm/Title'
+import { InvoiceFormValues } from '@/context/FormProviders'
 
 interface BillFromProps {
 	control: Control<InvoiceFormValues>

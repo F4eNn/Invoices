@@ -1,5 +1,5 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import randomstring from 'randomstring'
 import PulseLoader from 'react-spinners/PulseLoader'
 
@@ -9,61 +9,14 @@ import { ItemListForm } from './ItemList'
 import { SubmitButton } from '@/components/ui/SubmitButton'
 import { Button } from '@/components/ui/Button'
 import { BasicInformation } from './BasicInformation'
-import { CollectionName } from '@/context/ManageFormCtx'
+import { CollectionName } from '@/context/FormCtx'
 import { useMenageForm } from '@/hooks/useMenageForm'
-
-export type InvoiceFormValues = {
-	sender: {
-		streetAddress: string
-		city: string
-		postCode: string
-		country: string
-	}
-	receiver: {
-		clientName: string
-		clientEmail: string
-		clientStreetAddress: string
-		clientCity: string
-		clientPostCode: string
-		clientCountry: string
-	}
-	invoiceDate: Date | string
-	paymentTerms: string
-	projectDescription: string
-	items: { name: string; quantity: number | undefined; price: number | undefined }[]
-}
+import { type InvoiceFormValues } from '@/context/FormProviders'
 
 export const InvoiceForm = () => {
 	const { toggleForm, handleCollectionData } = useMenageForm()
 
-	const { handleSubmit, control, formState, getValues, watch, reset } = useForm<InvoiceFormValues>({
-		defaultValues: {
-			sender: {
-				city: '',
-				country: '',
-				postCode: '',
-				streetAddress: '',
-			},
-			receiver: {
-				clientStreetAddress: '',
-				clientName: '',
-				clientCity: '',
-				clientCountry: '',
-				clientEmail: '',
-				clientPostCode: '',
-			},
-			invoiceDate: new Date(),
-			paymentTerms: '30',
-			projectDescription: '',
-			items: [
-				{
-					name: '',
-					price: 0,
-					quantity: 0,
-				},
-			],
-		},
-	})
+	const { handleSubmit, control, formState, getValues, reset } = useFormContext<InvoiceFormValues>()
 
 	const { errors, isSubmitting } = formState
 
@@ -99,7 +52,7 @@ export const InvoiceForm = () => {
 			<BillFromForm control={control} error={errors} />
 			<BillToForm control={control} error={errors} />
 			<BasicInformation control={control} error={errors} />
-			<ItemListForm control={control} error={errors} watch={watch} />
+			<ItemListForm control={control} error={errors} />
 			<div className='absolute bottom-0 left-0 right-0 flex justify-between gap-2 rounded-2xl bg-lightGray px-3 py-6 text-sm text-white  shadow-topShadow dark:bg-lightDark sm:px-10 sm:py-10 lg:pl-40 lg:pr-10'>
 				<div className='min-w-max overflow-hidden rounded-3xl text-darkGray hover:bg-grayishWhite dark:bg-lightGray '>
 					<Button padding='sm:px-6' onClick={toggleForm}>

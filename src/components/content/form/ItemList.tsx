@@ -1,17 +1,16 @@
 import React from 'react'
-import { Control, FieldErrors, UseFormWatch, useFieldArray } from 'react-hook-form'
+import { Control, FieldErrors, useFieldArray } from 'react-hook-form'
 
 import { Button } from '@/components/ui/Button'
-import { InvoiceFormValues } from './InvoiceForm'
 import { DynamicItem } from './DynamicItem'
+import { InvoiceFormValues } from '@/context/FormProviders'
 
 interface ItemList {
 	control: Control<InvoiceFormValues>
 	error: FieldErrors<InvoiceFormValues>
-	watch: UseFormWatch<InvoiceFormValues>
 }
 
-export const ItemListForm = ({ control, error, watch }: ItemList) => {
+export const ItemListForm = ({ control, error }: ItemList) => {
 	const { fields, append, remove } = useFieldArray({
 		name: 'items',
 		control,
@@ -29,7 +28,7 @@ export const ItemListForm = ({ control, error, watch }: ItemList) => {
 					<span className=''></span>
 				</div>
 				<div>
-					<DynamicItem control={control} error={error} remove={remove} fields={fields} watch={watch} />
+					<DynamicItem control={control} error={error} remove={remove} fields={fields} />
 				</div>
 			</div>
 			<div className='mt-3 overflow-hidden rounded-3xl bg-secondaryDark  text-white hover:bg-darkGray'>

@@ -1,10 +1,10 @@
 import React, { ReactNode, useEffect, useState } from 'react'
 import { doc, onSnapshot } from 'firebase/firestore'
 
-import { InvoiceCtx } from './InvoiceCts'
+import { InvoiceCtx } from './InvoiceCtx'
 import { useAuth } from '@/hooks/useAuth'
 import { db } from '@/config/firebase'
-import { InvoiceData } from './ManageFormCtx'
+import { InvoiceData } from './FormCtx'
 
 export type InvoiceDataProvider = InvoiceData & { as: 'paid' | 'pending' | 'draft'; totalPrice: number }
 

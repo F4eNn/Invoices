@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-import { InvoiceData } from './ManageFormCtx'
+import { InvoiceData } from './FormCtx'
 import { InvoiceDataProvider } from './InvoiceProvider'
 
 type InvoiceCtxTypes = {

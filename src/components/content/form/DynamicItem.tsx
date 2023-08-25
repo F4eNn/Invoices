@@ -1,20 +1,19 @@
 import React from 'react'
-import { Control, FieldArrayWithId, FieldErrors, UseFieldArrayRemove, UseFormWatch } from 'react-hook-form'
+import { Control, FieldArrayWithId, FieldErrors, UseFieldArrayRemove, useFormContext } from 'react-hook-form'
 
 import { DeleteIcon } from '@/components/icons/Delete'
 import { ControlInput } from './ControlInput'
-import { InvoiceFormValues } from './InvoiceForm'
+import { InvoiceFormValues } from '@/context/FormProviders'
 
 interface DynamicItemProps {
 	control: Control<InvoiceFormValues>
 	error: FieldErrors<InvoiceFormValues>
 	fields: FieldArrayWithId<InvoiceFormValues, 'items', 'id'>[]
 	remove: UseFieldArrayRemove
-	watch: UseFormWatch<InvoiceFormValues>
 }
 
-export const DynamicItem = ({ control, error, fields, remove, watch }: DynamicItemProps) => {
-
+export const DynamicItem = ({ control, error, fields, remove }: DynamicItemProps) => {
+	const { watch } = useFormContext<InvoiceFormValues>()
 
 	const totalSum = (idx: number) => {
 		const quantity = watch(`items.${idx}.quantity`) as number
@@ -22,7 +21,7 @@ export const DynamicItem = ({ control, error, fields, remove, watch }: DynamicIt
 		const total = (price * quantity).toFixed(2)
 		return total
 	}
-	
+
 	return (
 		<>
 			{fields.map((field, idx) => (
@@ -65,7 +64,7 @@ export const DynamicItem = ({ control, error, fields, remove, watch }: DynamicIt
 							<span className='mt-8 w-[45px] lg:mt-3'>{totalSum(idx)}</span>
 						</div>
 						<div>
-							<button type='button' onClick={() => remove(idx)} className='group p-3 mt-7 lg:mt-2.5'>
+							<button type='button' onClick={() => remove(idx)} className='group mt-7 p-3 lg:mt-2.5'>
 								<DeleteIcon />
 							</button>
 						</div>

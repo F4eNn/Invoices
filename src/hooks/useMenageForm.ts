@@ -1,5 +1,5 @@
 import { useContext } from 'react'
 
-import { MenageFormCtx } from '@/context/ManageFormCtx'
+import { FormCtx } from '@/context/FormCtx'
 
-export const useMenageForm = () => useContext(MenageFormCtx)
+export const useMenageForm = () => useContext(FormCtx)

@@ -2,8 +2,8 @@ import React from 'react'
 import { Control, type FieldErrors } from 'react-hook-form'
 
 import { InvoiceTitle } from '@/components/ui/InvoiceForm/Title'
-import { InvoiceFormValues } from './InvoiceForm'
 import { ControlInput } from './ControlInput'
+import { InvoiceFormValues } from '@/context/FormProviders'
 
 interface BillToTypeProps {
 	control: Control<InvoiceFormValues>

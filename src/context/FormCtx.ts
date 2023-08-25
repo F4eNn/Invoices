@@ -1,11 +1,13 @@
 import { createContext } from 'react'
 
-import { InvoiceFormValues } from '@/components/content/form/InvoiceForm'
+import { InvoiceFormValues } from './FormProviders';
 
 export type InvoiceData = InvoiceFormValues & { formId: string;}
 
 export enum CollectionName {
+	// eslint-disable-next-line no-unused-vars
 	Drafts = 'drafts',
+	// eslint-disable-next-line no-unused-vars
 	Invoices = 'invoices',
 }
 
@@ -23,4 +25,4 @@ const defaultValues: InvoiceCtxProps = {
 	isOpenForm: false,
 }
 
-export const MenageFormCtx = createContext<InvoiceCtxProps>(defaultValues)
+export const FormCtx = createContext<InvoiceCtxProps>(defaultValues)
