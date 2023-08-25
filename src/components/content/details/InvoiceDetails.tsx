@@ -21,12 +21,13 @@ export const InvoiceDetails = () => {
 	const handleEditInvoice = () => {
 		toggleForm()
 	}
+	if(!invoice) return
 	return (
 		<div className='flex flex-1 flex-col '>
 			<ContentWrapper mt='lg:mt-10'>
 				<GoBack />
-				<ControlPannelDetails />
-				<DetailsBody />
+				<ControlPannelDetails as={invoice.as} />
+				<DetailsBody {...invoice}/>
 			</ContentWrapper>
 		</div>
 	)

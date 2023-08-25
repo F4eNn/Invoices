@@ -6,11 +6,15 @@ import { useAuth } from '@/hooks/useAuth'
 import { db } from '@/config/firebase'
 import { InvoiceData } from './FormCtx'
 
-export type InvoiceDataProvider = InvoiceData & { as: 'paid' | 'pending' | 'draft'; totalPrice: number }
+export type InvoiceDataProviderType = InvoiceData & {
+	as: 'paid' | 'pending' | 'draft'
+	totalPrice: number
+	paymentDue: Date
+}
 
 export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 	const { user } = useAuth()
-	const [invoiceData, setInvoiceData] = useState<InvoiceDataProvider[]>([])
+	const [invoiceData, setInvoiceData] = useState<InvoiceDataProviderType[]>([])
 
 	useEffect(() => {
 		if (!user) return
@@ -24,10 +28,13 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 					const totalItemPrice = item.price! * item.quantity!
 					return acc + totalItemPrice
 				}, 0)
-
+				const newDate = new Date(invoice.invoiceDate)
+				const paymentTime = newDate.setDate(newDate.getDate() + parseInt(invoice.paymentTerms))
+				const paymentDue = new Date(paymentTime)
 				return {
 					...invoice,
 					totalPrice,
+					paymentDue,
 				}
 			})
 			setInvoiceData(updatedInvoiceData)
@@ -35,7 +42,7 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 		return () => subscribeInvoiceData()
 	}, [user])
 
-	const getCurrentInvoice = (id: InvoiceDataProvider['formId']) => {
+	const getCurrentInvoice = (id: InvoiceDataProviderType['formId']) => {
 		return invoiceData.find(invoice => invoice.formId === id)
 	}
 

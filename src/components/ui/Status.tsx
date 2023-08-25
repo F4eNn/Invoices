@@ -20,7 +20,7 @@ const getStatusColors = (as: StatusProps['as']) => {
 			}
 		case 'draft':
 			return {
-				bg: 'bg-gray/30',
+				bg: 'bg-gray/10',
 				text: 'text-darkGray dark:text-grayishWhite',
 				circle: 'bg-darkGray dark:bg-grayishWhite',
 			}

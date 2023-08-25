@@ -54,7 +54,7 @@ export const MenageFormProvider = ({ children }: { children: ReactNode }) => {
 	}
 	const handleCollectionData = async (data: InvoiceFormValues, collectionName: CollectionName, formId: string) => {
 		try {
-			const formatedDate = new Intl.DateTimeFormat('en-US').format(data.invoiceDate as Date)
+			const formatedDate = new Intl.DateTimeFormat('en-Gb', { dateStyle: 'medium' }).format(data.invoiceDate as Date)
 			const updatedData = {
 				...data,
 				invoiceDate: formatedDate,
