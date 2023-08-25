@@ -9,8 +9,8 @@ import { ItemListForm } from './ItemList'
 import { SubmitButton } from '@/components/ui/SubmitButton'
 import { Button } from '@/components/ui/Button'
 import { BasicInformation } from './BasicInformation'
-import { CollectionName } from '@/context/formCtx'
-import { useInvoiceForm } from '@/hooks/useInvoiceForm'
+import { CollectionName } from '@/context/ManageFormCtx'
+import { useMenageForm } from '@/hooks/useMenageForm'
 
 export type InvoiceFormValues = {
 	sender: {
@@ -34,7 +34,7 @@ export type InvoiceFormValues = {
 }
 
 export const InvoiceForm = () => {
-	const { toggleForm, handleCollectionData } = useInvoiceForm()
+	const { toggleForm, handleCollectionData } = useMenageForm()
 
 	const { handleSubmit, control, formState, getValues, watch, reset } = useForm<InvoiceFormValues>({
 		defaultValues: {

@@ -11,6 +11,5 @@ export const InvoiceDetails = () => {
 	if (!invoiceId) return
 
 	const invoice = getCurrentInvoice(invoiceId)
-    console.log(invoice);
 	return <div>InvoiceDetails</div>
 }

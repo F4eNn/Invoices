@@ -4,7 +4,7 @@ import { doc, onSnapshot } from 'firebase/firestore'
 import { InvoiceCtx } from './InvoiceCts'
 import { useAuth } from '@/hooks/useAuth'
 import { db } from '@/config/firebase'
-import { InvoiceData } from './formCtx'
+import { InvoiceData } from './ManageFormCtx'
 
 export type InvoiceDataProvider = InvoiceData & { as: 'paid' | 'pending' | 'draft'; totalPrice: number }
 
@@ -41,7 +41,7 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 
 	const values = {
 		invoiceData,
-		getCurrentInvoice
+		getCurrentInvoice,
 	}
 	return <InvoiceCtx.Provider value={values}>{children}</InvoiceCtx.Provider>
 }

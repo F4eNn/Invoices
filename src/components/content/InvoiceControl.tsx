@@ -5,11 +5,11 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Filter } from './Filter'
-import { useInvoiceForm } from '@/hooks/useInvoiceForm'
+import { useMenageForm } from '@/hooks/useMenageForm'
 
 export const InvoiceControl = () => {
 	const targetReached = useMediaQuery('576')
-	const { toggleForm } = useInvoiceForm()
+	const { toggleForm } = useMenageForm()
 
 	return (
 		<div className='flex items-center justify-between dark:text-white'>

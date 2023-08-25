@@ -1,17 +1,16 @@
 import { createContext } from 'react'
 
-import { InvoiceData } from './formCtx'
+import { InvoiceData } from './ManageFormCtx'
 import { InvoiceDataProvider } from './InvoiceProvider'
 
-
 type InvoiceCtxTypes = {
-    invoiceData: InvoiceData[] 
-    getCurrentInvoice: (_id: InvoiceDataProvider['formId']) => InvoiceDataProvider | undefined
+	invoiceData: InvoiceData[]
+	getCurrentInvoice: (_id: InvoiceDataProvider['formId']) => InvoiceDataProvider | undefined
 }
 
 const defaultValue: InvoiceCtxTypes = {
-    invoiceData: [],
-    getCurrentInvoice: (_id: InvoiceDataProvider['formId']) => undefined
+	invoiceData: [],
+	getCurrentInvoice: (_id: InvoiceDataProvider['formId']) => undefined,
 }
 
 export const InvoiceCtx = createContext<InvoiceCtxTypes>(defaultValue)

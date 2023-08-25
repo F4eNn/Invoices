@@ -9,7 +9,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { navigation } from '@/constants/navigation_paths'
 import { InvoiceBody } from '@/components/content/InvoiceBody'
 import { Create } from '@/components/content/Create'
-import { FormProvider } from '@/context/FormProvider'
+import { MenageFormProvider } from '@/context/MenageFormProvider'
 import { InvoiceProvider } from '@/context/InvoiceProvider'
 
 export default function Home() {
@@ -24,10 +24,10 @@ export default function Home() {
 			<Pannel />
 			<ContentWrapper>
 				<div className='flex  h-full flex-col '>
-					<FormProvider>
+					<MenageFormProvider>
 						<InvoiceControl />
 						<Create />
-					</FormProvider>
+					</MenageFormProvider>
 					<InvoiceProvider>
 						<InvoiceBody />
 					</InvoiceProvider>

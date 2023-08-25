@@ -23,4 +23,4 @@ const defaultValues: InvoiceCtxProps = {
 	isOpenForm: false,
 }
 
-export const FormCtx = createContext<InvoiceCtxProps>(defaultValues)
+export const MenageFormCtx = createContext<InvoiceCtxProps>(defaultValues)
