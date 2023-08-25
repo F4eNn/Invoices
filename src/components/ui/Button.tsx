@@ -11,7 +11,7 @@ export const Button = ({ children, onClick,padding }: ButtonProps) => {
 		<button
 		type='button'
 			onClick={onClick}
-			className={`${padding} w-full  bg-inherit p-3   font-[500] tracking-wide text-inherit transition-all hover:scale-[1.1] hover:bg-inherit`}
+			className={`${padding} w-full  bg-inherit px-4  py-3  font-[500] tracking-wide text-inherit transition-all hover:scale-[1.1] hover:bg-inherit`}
 		>
 			{children}
 		</button>

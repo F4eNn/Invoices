@@ -22,7 +22,7 @@ export default function Home() {
 			<Pannel />
 			<ContentWrapper>
 				<div className='flex  h-full flex-col '>
-						<InvoiceControl />
+					<InvoiceControl />
 					<InvoiceProvider>
 						<InvoiceBody />
 					</InvoiceProvider>

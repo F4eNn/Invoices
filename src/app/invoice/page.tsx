@@ -2,7 +2,7 @@
 import React from 'react'
 
 import { Pannel } from '@/components/pannel/Pannel'
-import { InvoiceDetails } from '@/components/content/InvoiceDetails'
+import { InvoiceDetails } from '@/components/content/details/InvoiceDetails'
 import { InvoiceProvider } from '@/context/InvoiceProvider'
 const InvoicePage = () => {
 	return (
