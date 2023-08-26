@@ -3,10 +3,10 @@ import Link from 'next/link'
 
 import { Status } from '../ui/Status'
 import { ArrowRightIcon } from '../icons/ArrowRight'
-import { type InvoiceDataProvider } from '@/context/InvoiceProvider'
+import { type InvoiceDataProviderType } from '@/context/InvoiceProvider'
 import { navigation } from '@/constants/navigation_paths'
 
-type InvoiceItemProps = Partial<InvoiceDataProvider>
+type InvoiceItemProps = Partial<InvoiceDataProviderType>
 
 export const InvoiceItem = ({ formId, receiver, invoiceDate, totalPrice, as }: InvoiceItemProps) => {
 	return (

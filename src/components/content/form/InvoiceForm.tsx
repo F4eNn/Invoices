@@ -2,6 +2,7 @@ import React from 'react'
 import { useFormContext } from 'react-hook-form'
 import randomstring from 'randomstring'
 import PulseLoader from 'react-spinners/PulseLoader'
+import { useSearchParams } from 'next/navigation'
 
 import { BillFromForm } from './BillFrom'
 import { BillToForm } from './BillTo'
@@ -17,13 +18,14 @@ export const InvoiceForm = () => {
 	const { toggleForm, handleCollectionData } = useForm()
 
 	const { handleSubmit, control, formState, getValues, reset } = useFormContext<InvoiceFormValues>()
-
 	const { errors, isSubmitting } = formState
 
 	const lettersFormId = randomstring.generate({ length: 2, capitalization: 'uppercase', charset: 'alphabetic' })
 	const numbersFormId = randomstring.generate({ length: 4, charset: 'numeric' })
-
 	const formId = lettersFormId + numbersFormId
+
+	const params = useSearchParams()
+	const invoiceId = params.get('invoiceId')
 
 	const setInvoiceHandler = async (data: InvoiceFormValues) => {
 		try {
@@ -53,21 +55,25 @@ export const InvoiceForm = () => {
 			<BillToForm control={control} error={errors} />
 			<BasicInformation control={control} error={errors} />
 			<ItemListForm control={control} error={errors} />
-			<div className='absolute bottom-0 left-0 right-0 flex justify-between gap-2 rounded-2xl bg-lightGray px-3 py-6 text-sm text-white  shadow-topShadow dark:bg-lightDark sm:px-10 sm:py-10 lg:pl-40 lg:pr-10'>
+			<div
+				className={`absolute bottom-0 left-0 right-0 flex ${invoiceId ? 'justify-end' : 'justify-between'} gap-2 rounded-2xl bg-lightGray px-3 py-6 text-sm text-white  shadow-topShadow dark:bg-lightDark sm:px-10 sm:py-10 lg:pl-40 lg:pr-10`}
+			>
 				<div className='min-w-max overflow-hidden rounded-3xl text-darkGray hover:bg-grayishWhite dark:bg-lightGray '>
 					<Button padding='sm:px-6' onClick={toggleForm}>
-						Discard
+						{invoiceId ? 'Cancel' : 'Discard'}
 					</Button>
 				</div>
 				<div className='inline-flex gap-5'>
-					<div className='w-max overflow-hidden rounded-3xl bg-darkGray hover:bg-secondaryDark'>
-						<Button padding='sm:px-6' onClick={setDraftHandler}>
-							{isSubmitting ? <PulseLoader color='#fff' size={10} /> : 'Save as Draft'}
-						</Button>
-					</div>
+					{!invoiceId && (
+						<div className='w-max overflow-hidden rounded-3xl bg-darkGray hover:bg-secondaryDark'>
+							<Button padding='sm:px-6' onClick={setDraftHandler}>
+								{isSubmitting ? <PulseLoader color='#fff' size={10} /> : 'Save as Draft'}
+							</Button>
+						</div>
+					)}
 					<div className='w-max overflow-hidden rounded-3xl bg-primary hover:bg-secondary'>
 						<SubmitButton padding='p-3' isSubmitting={isSubmitting}>
-							Save & Send
+							{invoiceId ? 'Save Changes' : 'Save & Send'}
 						</SubmitButton>
 					</div>
 				</div>

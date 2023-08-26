@@ -6,11 +6,11 @@ export const DynamicDetails = ({ items }: Pick<InvoiceDataProviderType, 'items'>
 	return (
 		<div className='font-bold text-grayPurple dark:text-rose'>
 			{/* desktop */}
-			{items.map(({ name, price, quantity }) => (
-				<>
+			{items.map(({ name, price, quantity }, idx) => (
+				<div key={idx}>
 					<div className='hidden flex-1 justify-between md:flex'>
 						<div className=' flex-1 dark:text-white'>
-							<span className='text-lg text-primaryDark dark:text-white'>{name}</span>
+			 				<span className='text-lg text-primaryDark dark:text-white'>{name}</span>
 						</div>
 						<div className='flex flex-1 justify-between'>
 							<span className='w-[30px] text-center'>{quantity} </span>
@@ -27,7 +27,7 @@ export const DynamicDetails = ({ items }: Pick<InvoiceDataProviderType, 'items'>
 						</div>
 						<span className='text-xl'>£ {(price as number) * (quantity as number)}</span>
 					</div>
-				</>
+				</div>
 			))}
 		</div>
 	)
