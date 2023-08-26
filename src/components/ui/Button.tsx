@@ -3,15 +3,34 @@ import React, { ReactNode } from 'react'
 type ButtonProps = {
 	children?: ReactNode
 	onClick: () => void
-	padding?: 'sm:px-6' 
+	padding?: 'sm:px-6'
+	bg?: string
+	textColor?: string
+	bgHover?: string
+	bgHoverDark?: string
+	textColorDark?: string
+	textHover?: string
+	bgDark?: string
 }
 
-export const Button = ({ children, onClick,padding }: ButtonProps) => {
+export const Button = ({
+	children,
+	onClick,
+	padding,
+	bg,
+	textColor,
+	bgHover,
+	bgHoverDark,
+	textColorDark,
+	textHover,
+	bgDark,
+}: ButtonProps) => {
 	return (
 		<button
-		type='button'
+			type='button'
 			onClick={onClick}
-			className={`${padding} w-full  bg-inherit px-4  py-3  font-[500] tracking-wide text-inherit transition-all hover:scale-[1.1] hover:bg-inherit`}
+			className={`${padding} ${bgDark} ${textHover} ${bgHoverDark}  ${textColorDark} w-max rounded-[30px] ${bg} px-4  py-3
+			 			font-[500] tracking-wide ${textColor} transition-colors duration-300 ${bgHover}`}
 		>
 			{children}
 		</button>

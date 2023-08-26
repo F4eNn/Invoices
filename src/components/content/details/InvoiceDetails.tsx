@@ -12,7 +12,7 @@ import { type InvoiceDataProviderType } from '@/context/InvoiceProvider'
 
 export const InvoiceDetails = () => {
 	const { getCurrentInvoice } = useInvoice()
-	const { toggleForm, isOpenForm } = useForm()
+	const { toggleForm } = useForm()
 	const { reset } = useFormContext<InvoiceFormValues>()
 
 	const params = useSearchParams()

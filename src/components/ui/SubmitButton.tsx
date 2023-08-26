@@ -6,14 +6,29 @@ interface SubmitButtonProps {
 	isSubmitting: boolean
 	id?: 'save' | 'draft'
 	padding?: 'p-2' | 'p-3'
+	bg?: string
+	textColor?: string
+	bgHover?: string
+	width?: 'w-max' |'w-full'
+	rounded?: string
 }
 
-export const SubmitButton = ({ children, isSubmitting, id, padding = 'p-2' }: SubmitButtonProps) => {
+export const SubmitButton = ({
+	children,
+	isSubmitting,
+	id,
+	padding = 'p-2',
+	bg,
+	textColor,
+	bgHover,
+	width = 'w-full',
+	rounded 
+}: SubmitButtonProps) => {
 	return (
 		<button
 			id={id}
 			type='submit'
-			className={`${padding} w-full bg-inherit sm:px-6 text-inherit transition-all hover:scale-[1.1] duration-300 hover:bg-inherit`}
+			className={`${padding} ${width} ${bg} ${rounded} sm:px-6 ${textColor} transition-color ${bgHover} duration-300 `}
 		>
 			{isSubmitting ? <PulseLoader color='#fff' size={10} /> : children}
 		</button>

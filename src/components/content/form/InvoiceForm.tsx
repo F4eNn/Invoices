@@ -29,12 +29,12 @@ export const InvoiceForm = () => {
 
 	const params = useSearchParams()
 	const invoiceId = params.get('invoiceId')
-	
+
 	const setInvoiceHandler = async (data: InvoiceFormValues) => {
-		if (invoiceId ) {
-			await updateSelectedInvoice( invoiceId, 'pending', data,)
-			notify('Invoice updated')
+		if (invoiceId) {
+			await updateSelectedInvoice(invoiceId, 'pending', data)
 			reset()
+			notify('Invoice updated')
 			return
 		}
 		try {
@@ -69,24 +69,31 @@ export const InvoiceForm = () => {
 					invoiceId ? 'justify-end' : 'justify-between'
 				} gap-2 rounded-2xl bg-lightGray px-3 py-6 text-sm text-white  shadow-topShadow dark:bg-lightDark sm:px-10 sm:py-10 lg:pl-40 lg:pr-10`}
 			>
-				<div className='min-w-max overflow-hidden rounded-3xl text-darkGray hover:bg-grayishWhite dark:bg-lightGray '>
-					<Button padding='sm:px-6' onClick={toggleForm}>
-						{invoiceId ? 'Cancel' : 'Discard'}
-					</Button>
-				</div>
+				<Button
+					bg='bg-lightGray'
+					bgHover='hover:bg-grayishWhite'
+					textColor='text-darkGray'
+					padding='sm:px-6'
+					onClick={toggleForm}
+				>
+					{invoiceId ? 'Cancel' : 'Discard'}
+				</Button>
 				<div className='inline-flex gap-5'>
 					{!invoiceId && (
-						<div className='w-max overflow-hidden rounded-3xl bg-darkGray hover:bg-secondaryDark'>
-							<Button padding='sm:px-6' onClick={setDraftHandler}>
-								{isSubmitting ? <PulseLoader color='#fff' size={10} /> : 'Save as Draft'}
-							</Button>
-						</div>
+						<Button bg='bg-darkGray' bgHover='hover:bg-secondaryDark' padding='sm:px-6' onClick={setDraftHandler}>
+							{isSubmitting ? <PulseLoader color='#fff' size={10} /> : 'Save as Draft'}
+						</Button>
 					)}
-					<div className='w-max overflow-hidden rounded-3xl bg-primary hover:bg-secondary'>
-						<SubmitButton padding='p-3' isSubmitting={isSubmitting}>
-							{invoiceId ? 'Save Changes' : 'Save & Send'}
-						</SubmitButton>
-					</div>
+					<SubmitButton
+						bgHover='hover:bg-secondary'
+						width='w-max'
+						bg='bg-primary'
+						rounded='rounded-[30px]'
+						padding='p-3'
+						isSubmitting={isSubmitting}
+					>
+						{invoiceId ? 'Save Changes' : 'Save & Send'}
+					</SubmitButton>
 				</div>
 			</div>
 		</form>

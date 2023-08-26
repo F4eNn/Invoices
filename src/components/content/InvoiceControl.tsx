@@ -56,16 +56,17 @@ export const InvoiceControl = () => {
 			</div>
 			<div className='inline-flex items-center gap-5 sm:gap-10'>
 				<Filter />
-				<div className='overflow-hidden rounded-[30px] bg-primary text-xl hover:bg-secondary'>
-					<button className='py-3 pl-2 pr-3' onClick={showForm}>
-						<div className='inline-flex items-center gap-3 md:gap-4'>
-							<div className='flex h-8   w-8 items-center justify-center rounded-full bg-white'>
-								<Image alt='' src='./assets/icon-plus.svg' width={14} height={14} />
-							</div>
-							<span className='mr-2 h-5 text-base'>{targetReached ? 'New Invoice' : 'New'}</span>
+				<button
+					className='rounded-[30px] bg-primary p-2 py-2.5 text-xl transition-colors duration-300 hover:bg-secondary'
+					onClick={showForm}
+				>
+					<div className='inline-flex items-center gap-3 md:gap-4'>
+						<div className='flex h-8   w-8 items-center justify-center rounded-full bg-white'>
+							<Image alt='' src='./assets/icon-plus.svg' width={16} height={16} />
 						</div>
-					</button>
-				</div>
+						<span className='mr-2 h-5 text-base'>{targetReached ? 'New Invoice' : 'New'}</span>
+					</div>
+				</button>
 			</div>
 		</div>
 	)
