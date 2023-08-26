@@ -27,7 +27,9 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 		if (!user) return
 		const invoiceRef = doc(db, 'invoices', user.email)
 		const subscribeInvoiceData = onSnapshot(invoiceRef, doc => {
-			if (!doc.exists()) return
+			if (!doc.exists()) {
+				return setInvoiceData([])
+			}
 			const invoiceArr = doc.data().invoices
 
 			const updatedInvoiceData: InvoiceDataProviderType[] = invoiceArr.map((invoice: InvoiceData, idx: number) => {
@@ -45,13 +47,13 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 					index: idx,
 				}
 			})
-
-			setInvoiceData(updatedInvoiceData)
+			return setInvoiceData(updatedInvoiceData)
 		})
 		return () => subscribeInvoiceData()
 	}, [user])
 
 	useEffect(() => {
+		if (!user) return
 		const filteredArr = invoiceData.filter(item => {
 			if (!checkedItems.draft && !checkedItems.pending && !checkedItems.paid) {
 				return invoiceData
@@ -65,6 +67,7 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 			)
 		})
 		setFilteredInvoiceData(filteredArr)
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [invoiceData, checkedItems.draft, checkedItems.paid, checkedItems.pending])
 
 	const getCurrentInvoice = (id: InvoiceDataProviderType['formId']) => {
