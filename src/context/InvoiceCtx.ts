@@ -16,6 +16,7 @@ type InvoiceCtxTypes = {
 	setCheckedItems: Dispatch<SetStateAction<{ pending: boolean, paid: boolean, draft: boolean }>>
 	checkedItems: { pending: boolean, paid: boolean, draft: boolean }
 	numberOfInvoices: number
+	fetching: boolean
 }
 
 const defaultValue: InvoiceCtxTypes = {
@@ -29,7 +30,8 @@ const defaultValue: InvoiceCtxTypes = {
 	deleteInvoice: async (_formId: InvoiceDataProviderType['formId']) => {},
 	setCheckedItems: () => {},
 	checkedItems: { pending: false, paid: false, draft: false },
-	numberOfInvoices: 0
+	numberOfInvoices: 0,
+	fetching: false
 }
 
 export const InvoiceCtx = createContext<InvoiceCtxTypes>(defaultValue)

@@ -11,8 +11,8 @@ import { type InvoiceFormValues } from '@/context/FormProviders'
 import { type InvoiceDataProviderType } from '@/context/InvoiceProvider'
 
 export const InvoiceDetails = () => {
-	const { getCurrentInvoice} = useInvoice()
-	const { toggleForm } = useForm()
+	const { getCurrentInvoice } = useInvoice()
+	const { toggleForm, isOpenForm } = useForm()
 	const { reset } = useFormContext<InvoiceFormValues>()
 
 	const params = useSearchParams()
@@ -27,7 +27,7 @@ export const InvoiceDetails = () => {
 		const formatDate = new Date(invoice.invoiceDate)
 		reset({
 			...invoice,
-			invoiceDate: formatDate
+			invoiceDate: formatDate,
 		})
 	}
 	if (!invoice) return

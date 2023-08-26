@@ -21,10 +21,13 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 	const [invoiceData, setInvoiceData] = useState<InvoiceDataProviderType[]>([])
 	const [filteredInvoiceData, setFilteredInvoiceData] = useState<InvoiceDataProviderType[]>([])
 	const [checkedItems, setCheckedItems] = useState({ pending: false, paid: false, draft: false })
+	const [fetching, setIsFetching] = useState(false)
+
 	const numberOfInvoices = filteredInvoiceData.length
 	const router = useRouter()
 	useEffect(() => {
 		if (!user) return
+		setIsFetching(true)
 		const invoiceRef = doc(db, 'invoices', user.email)
 		const subscribeInvoiceData = onSnapshot(invoiceRef, doc => {
 			if (!doc.exists()) {
@@ -47,7 +50,8 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 					index: idx,
 				}
 			})
-			return setInvoiceData(updatedInvoiceData)
+			setInvoiceData(updatedInvoiceData)
+			setIsFetching(false)
 		})
 		return () => subscribeInvoiceData()
 	}, [user])
@@ -67,7 +71,7 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 			)
 		})
 		setFilteredInvoiceData(filteredArr)
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [invoiceData, checkedItems.draft, checkedItems.paid, checkedItems.pending])
 
 	const getCurrentInvoice = (id: InvoiceDataProviderType['formId']) => {
@@ -122,6 +126,7 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 	const values = {
 		filteredInvoiceData,
 		checkedItems,
+		fetching,
 		numberOfInvoices,
 		getCurrentInvoice,
 		updateSelectedInvoice,

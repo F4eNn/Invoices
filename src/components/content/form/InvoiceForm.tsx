@@ -14,6 +14,7 @@ import { CollectionName } from '@/context/FormCtx'
 import { useForm } from '@/hooks/useForm'
 import { useInvoice } from '@/hooks/useInvoice'
 import { type InvoiceFormValues } from '@/context/FormProviders'
+import { notify } from '@/constants/notify'
 
 export const InvoiceForm = () => {
 	const { toggleForm, handleCollectionData } = useForm()
@@ -32,6 +33,8 @@ export const InvoiceForm = () => {
 	const setInvoiceHandler = async (data: InvoiceFormValues) => {
 		if (invoiceId ) {
 			await updateSelectedInvoice( invoiceId, 'pending', data,)
+			notify('Invoice updated')
+			reset()
 			return
 		}
 		try {
