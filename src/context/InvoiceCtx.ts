@@ -1,11 +1,11 @@
-import { createContext } from 'react'
+import { Dispatch, SetStateAction, createContext } from 'react'
 
 import { InvoiceData } from './FormCtx'
 import { InvoiceDataProviderType } from './InvoiceProvider'
 import { InvoiceFormValues } from './FormProviders'
 
 type InvoiceCtxTypes = {
-	invoiceData: InvoiceData[]
+	filteredInvoiceData: InvoiceData[]
 	getCurrentInvoice: (_id: InvoiceDataProviderType['formId']) => InvoiceDataProviderType | undefined
 	updateSelectedInvoice: (
 		_formId: InvoiceDataProviderType['formId'],
@@ -13,10 +13,13 @@ type InvoiceCtxTypes = {
 		_data?: InvoiceFormValues,
 	) => Promise<void>
 	deleteInvoice: (_formId: InvoiceDataProviderType['formId']) => Promise<void>
+	setCheckedItems: Dispatch<SetStateAction<{ pending: boolean, paid: boolean, draft: boolean }>>
+	checkedItems: { pending: boolean, paid: boolean, draft: boolean }
+	numberOfInvoices: number
 }
 
 const defaultValue: InvoiceCtxTypes = {
-	invoiceData: [],
+	filteredInvoiceData: [],
 	getCurrentInvoice: (_id: InvoiceDataProviderType['formId']) => undefined,
 	updateSelectedInvoice: async (
 		_formId: InvoiceDataProviderType['formId'],
@@ -24,6 +27,9 @@ const defaultValue: InvoiceCtxTypes = {
 		_data?: InvoiceFormValues,
 	) => {},
 	deleteInvoice: async (_formId: InvoiceDataProviderType['formId']) => {},
+	setCheckedItems: () => {},
+	checkedItems: { pending: false, paid: false, draft: false },
+	numberOfInvoices: 0
 }
 
 export const InvoiceCtx = createContext<InvoiceCtxTypes>(defaultValue)

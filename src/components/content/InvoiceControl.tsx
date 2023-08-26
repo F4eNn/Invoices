@@ -6,16 +6,17 @@ import { Button } from '@/components/ui/Button'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Filter } from './Filter'
 import { useForm } from '@/hooks/useForm'
+import { useInvoice } from '@/hooks/useInvoice'
 
 export const InvoiceControl = () => {
 	const targetReached = useMediaQuery('576')
+	const {numberOfInvoices} = useInvoice()
 	const { toggleForm } = useForm()
-
 	return (
 		<div className='flex items-center justify-between dark:text-white'>
 			<div className='flex flex-col'>
 				<h1 className='text-headingM lg:text-headingL '>Invoices</h1>
-				<p className='text-[.7em] '>{targetReached ? 'There are 7 total invoices' : '7 invoices '}</p>
+				<p className='text-[.7em] '>{targetReached ? `There are ${numberOfInvoices} total invoices` : `${numberOfInvoices} invoices `}</p>
 			</div>
 			<div className='inline-flex items-center gap-5 sm:gap-10'>
 				<Filter />

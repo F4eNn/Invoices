@@ -4,12 +4,13 @@ import { useAuth } from '@/hooks/useAuth'
 import { motion } from '@/lib/motion'
 import { shuffleAnimation } from '@/animations/animations'
 import { GeneralInfoForm } from './GeneralInfoForm'
+import { useInvoice } from '@/hooks/useInvoice'
 
 export const GeneralInfo = () => {
 	const { user } = useAuth()
-
+	const {numberOfInvoices} = useInvoice()
 	const userProfile = [
-		['Total Invoices:', 27],
+		['Total Invoices:', numberOfInvoices],
 		['Email:', user?.email],
 		['created at:', user?.created],
 	]

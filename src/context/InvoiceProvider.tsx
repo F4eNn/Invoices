@@ -19,8 +19,10 @@ export type InvoiceDataProviderType = InvoiceData & {
 export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 	const { user } = useAuth()
 	const [invoiceData, setInvoiceData] = useState<InvoiceDataProviderType[]>([])
+	const [filteredInvoiceData, setFilteredInvoiceData] = useState<InvoiceDataProviderType[]>([])
+	const [checkedItems, setCheckedItems] = useState({ pending: false, paid: false, draft: false })
+	const numberOfInvoices = filteredInvoiceData.length
 	const router = useRouter()
-
 	useEffect(() => {
 		if (!user) return
 		const invoiceRef = doc(db, 'invoices', user.email)
@@ -28,7 +30,7 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 			if (!doc.exists()) return
 			const invoiceArr = doc.data().invoices
 
-			const updatedInvoiceData = invoiceArr.map((invoice: InvoiceData, idx: number) => {
+			const updatedInvoiceData: InvoiceDataProviderType[] = invoiceArr.map((invoice: InvoiceData, idx: number) => {
 				const totalPrice = invoice.items.reduce((acc, item) => {
 					const totalItemPrice = item.price! * item.quantity!
 					return acc + totalItemPrice
@@ -43,10 +45,27 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 					index: idx,
 				}
 			})
+
 			setInvoiceData(updatedInvoiceData)
 		})
 		return () => subscribeInvoiceData()
 	}, [user])
+
+	useEffect(() => {
+		const filteredArr = invoiceData.filter(item => {
+			if (!checkedItems.draft && !checkedItems.pending && !checkedItems.paid) {
+				return invoiceData
+			} else if (checkedItems.draft && checkedItems.pending && checkedItems.paid) {
+				return item.as === 'pending' || item.as === 'draft' || item.as === 'paid'
+			}
+			return (
+				(checkedItems.draft && item.as === 'draft') ||
+				(checkedItems.pending && item.as === 'pending') ||
+				(checkedItems.paid && item.as === 'paid')
+			)
+		})
+		setFilteredInvoiceData(filteredArr)
+	}, [invoiceData, checkedItems.draft, checkedItems.paid, checkedItems.pending])
 
 	const getCurrentInvoice = (id: InvoiceDataProviderType['formId']) => {
 		return invoiceData.find(invoice => invoice.formId === id)
@@ -98,9 +117,12 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 	}
 
 	const values = {
-		invoiceData,
+		filteredInvoiceData,
+		checkedItems,
+		numberOfInvoices,
 		getCurrentInvoice,
 		updateSelectedInvoice,
+		setCheckedItems,
 		deleteInvoice,
 	}
 	return <InvoiceCtx.Provider value={values}>{children}</InvoiceCtx.Provider>
