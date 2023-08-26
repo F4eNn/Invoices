@@ -11,7 +11,7 @@ import { type InvoiceFormValues } from '@/context/FormProviders'
 import { type InvoiceDataProviderType } from '@/context/InvoiceProvider'
 
 export const InvoiceDetails = () => {
-	const { getCurrentInvoice } = useInvoice()
+	const { getCurrentInvoice} = useInvoice()
 	const { toggleForm } = useForm()
 	const { reset } = useFormContext<InvoiceFormValues>()
 
@@ -20,7 +20,7 @@ export const InvoiceDetails = () => {
 
 	if (!invoiceId) return
 
-	const invoice:InvoiceDataProviderType = getCurrentInvoice(invoiceId)
+	const invoice = getCurrentInvoice(invoiceId) as InvoiceDataProviderType
 
 	const handleEditInvoice = () => {
 		toggleForm()

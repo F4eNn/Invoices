@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { AuthProvider } from '@/context/AuthProvider'
 import { FormProvider, MenageFormProvider } from '@/context/FormProviders'
 import { Create } from '@/components/content/Create'
+import { InvoiceProvider } from '@/context/InvoiceProvider'
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] })
 
@@ -25,12 +26,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body className={`${leagueSpartan.className} duration-250 bg-lightGray transition-colors dark:bg-black `}>
 				<ToastContainer />
 				<AuthProvider>
-					<FormProvider>
-						<MenageFormProvider>
-							<Create />
-							{children}
-						</MenageFormProvider>
-					</FormProvider>
+					<InvoiceProvider>
+						<FormProvider>
+							<MenageFormProvider>
+								<Create />
+								{children}
+							</MenageFormProvider>
+						</FormProvider>
+					</InvoiceProvider>
 				</AuthProvider>
 			</body>
 		</html>

@@ -1,8 +1,10 @@
 import React from 'react'
+import { useSearchParams } from 'next/navigation'
 
 import { Button } from '@/components/ui/Button'
 import { Status } from '@/components/ui/Status'
 import { InvoiceDataProviderType } from '@/context/InvoiceProvider'
+import { useInvoice } from '@/hooks/useInvoice'
 
 type ControlPannelProps = {
 	as: InvoiceDataProviderType['as']
@@ -10,6 +12,15 @@ type ControlPannelProps = {
 }
 
 export const ControlPannelDetails = ({ as, onEdit }: ControlPannelProps) => {
+	const { updateSelectedInvoice, deleteInvoice: deleteDoc } = useInvoice()
+
+	const params = useSearchParams()
+	const invoiceId = params.get('invoiceId')
+	if (!invoiceId) return
+
+	const markAsPaid = () => updateSelectedInvoice(invoiceId, 'paid')
+	const deleteInvoice = () => deleteDoc(invoiceId)
+
 	return (
 		<div className='mt-10 flex w-full items-center justify-between rounded-lg bg-white p-6 shadow-sm dark:bg-primaryDark'>
 			<div className='flex w-full items-center justify-between gap-5 md:w-auto'>
@@ -24,12 +35,12 @@ export const ControlPannelDetails = ({ as, onEdit }: ControlPannelProps) => {
 				</div>
 				<div className='flex gap-3'>
 					<div className='overflow-hidden rounded-[30px] bg-red text-white'>
-						<Button padding='sm:px-6' onClick={() => {}}>
+						<Button padding='sm:px-6' onClick={deleteInvoice}>
 							Delete
 						</Button>
 					</div>
 					<div className='overflow-hidden rounded-[30px] bg-primary text-white'>
-						<Button padding='sm:px-6' onClick={() => {}}>
+						<Button padding='sm:px-6' onClick={markAsPaid}>
 							Mark as Paid
 						</Button>
 					</div>
