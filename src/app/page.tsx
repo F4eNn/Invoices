@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { InvoiceControl } from '@/components/content/InvoiceControl'
 import { Pannel } from '@/components/pannel/Pannel'
 import { ContentWrapper } from '@/components/ui/ContentWrapper'
@@ -9,7 +11,7 @@ import { AuthGuard } from '@/constants/AuthGuard'
 
 export default function Home() {
 	return (
-		<main className='flex h-full flex-col lg:flex-row'>
+		<main className='flex flex-col lg:flex-row h-full '>
 			<Pannel />
 			<ContentWrapper>
 				<AuthGuard>

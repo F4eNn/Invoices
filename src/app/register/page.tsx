@@ -18,7 +18,7 @@ const RegisterPage = () => {
 	const path = isLogin ? navigation.signUp.path : navigation.login.path
 
 	return (
-		<div className='h-full bg-secondary px-3 pt-20'>
+		<div className='h-screen bg-secondary px-3 pt-20'>
 			<AuthGuard>
 				<FormContainer>
 					<div className='mb-10 flex items-center gap-3  '>

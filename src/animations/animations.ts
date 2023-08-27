@@ -31,3 +31,12 @@ export const animateModal: Variants = {
 	animate: { scale: 1, opacity: 1, transition: { duration: 0.2 } },
 	exit: { scale: 0.5, opacity: 0, transition: { duration: 0.2 } },
 }
+
+export const pageTransition: Variants = {
+	initial: { opacity: 0, clipPath: 'polygon(50% 0, 50% 100%, 50% 100%, 50% 0)' },
+	animate: {
+		opacity: 1,
+		clipPath: 'polygon(100% 0, 100% 100%, 0 100%, 0 0)',
+		transition: { opacity: { duration: 1.5 }, clipPath: { duration: 0.9 } },
+	},
+}

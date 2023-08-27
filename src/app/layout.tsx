@@ -6,6 +6,8 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import { AuthProvider } from '@/context/AuthProvider'
 import { InvoiceProvider } from '@/context/InvoiceProvider'
+import { PageTransition } from '@/components/ui/PageTransition'
+// import { Loading } from '@/components/ui/Loading'
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] })
 
@@ -27,7 +29,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<InvoiceProvider>
 						<div id='modal' />
 						<div id='form' />
-						{children}
+						{/* <Loading /> */}
+						<PageTransition>{children}</PageTransition>
 					</InvoiceProvider>
 				</AuthProvider>
 			</body>
