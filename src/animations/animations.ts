@@ -37,6 +37,6 @@ export const pageTransition: Variants = {
 	animate: {
 		opacity: 1,
 		clipPath: 'polygon(100% 0, 100% 100%, 0 100%, 0 0)',
-		transition: { opacity: { duration: 1.5 }, clipPath: { duration: 0.9 } },
+		transition: { opacity: { duration: 1.5 }, clipPath: { duration: 0.75 } },
 	},
 }

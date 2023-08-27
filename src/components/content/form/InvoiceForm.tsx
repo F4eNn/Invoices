@@ -17,7 +17,7 @@ import { type InvoiceFormValues } from '@/context/FormProviders'
 import { notify } from '@/constants/notify'
 
 export const InvoiceForm = () => {
-	const { toggleForm, handleCollectionData } = useForm()
+	const { toggleForm, handleCollectionData, } = useForm()
 	const { updateSelectedInvoice } = useInvoice()
 
 	const { handleSubmit, control, formState, getValues, reset } = useFormContext<InvoiceFormValues>()
@@ -34,11 +34,13 @@ export const InvoiceForm = () => {
 		if (invoiceId) {
 			await updateSelectedInvoice(invoiceId, 'pending', data)
 			reset()
+			toggleForm()
 			notify('Invoice updated')
 			return
 		}
 		try {
 			await handleCollectionData(data, CollectionName.Invoices, formId)
+			toggleForm()
 			reset()
 		} catch (error) {
 			console.error(`Failed add ${CollectionName.Invoices} to firestore:`, error)
@@ -48,6 +50,7 @@ export const InvoiceForm = () => {
 		const data = getValues()
 		try {
 			await handleCollectionData(data, CollectionName.Drafts, formId)
+			toggleForm()
 			reset()
 		} catch (error) {
 			console.error(`Failed add ${CollectionName.Drafts} to firestore:`, error)
