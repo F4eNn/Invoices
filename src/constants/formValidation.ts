@@ -35,7 +35,6 @@ export const passwordValidation = {
 		hasSpecialChar: (password: string) => containsSpecialChar.test(password) || 'Atleast one special character.',
 	},
 }
-
 export const generalInvoiceValidation = {
 	// eslint-disable-next-line quotes
 	required: "Can't be empty",

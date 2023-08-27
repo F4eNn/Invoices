@@ -3,7 +3,6 @@ import React from 'react'
 import Image from 'next/image'
 import { useFormContext } from 'react-hook-form'
 
-import { Button } from '@/components/ui/Button'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Filter } from './Filter'
 import { useForm } from '@/hooks/useForm'

@@ -1,3 +1,4 @@
+'use client'
 import { useRef } from 'react'
 import { Tooltip, IconButton } from '@mui/material'
 

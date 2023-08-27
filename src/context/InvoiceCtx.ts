@@ -1,3 +1,4 @@
+'use client'
 import { Dispatch, SetStateAction, createContext } from 'react'
 
 import { InvoiceData } from './FormCtx'

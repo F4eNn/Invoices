@@ -19,10 +19,10 @@ export const navigation = {
 		path: '?settings=profile',
 	},
 	userAccount: {
-		path: '?settings=account'
+		path: '?settings=account',
 	},
 	invoice: {
 		path: 'invoice?invoiceId=',
-		label: 'menage invoice'
-	}
+		label: 'menage invoice',
+	},
 } as const satisfies Record<PropertyKey, NavigationItem>
