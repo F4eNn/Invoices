@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSearchParams } from 'next/navigation'
 
 import { Button } from '@/components/ui/Button'

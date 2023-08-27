@@ -19,8 +19,15 @@ export const formAnimation: Variants = {
 	animate: { opacity: 1, y: 0 },
 	exit: { opacity: 0, y: 50 },
 }
+
 export const animateForm: Variants = {
 	initial: { x: '-100%', opacity: 0 },
 	animate: { x: 0, transition: { duration: 0.3 }, opacity: 1 },
 	exit: { x: '-100%', transition: { duration: 0.3 }, opacity: 0 },
+}
+
+export const animateModal: Variants = {
+	initial: { scale: 0.5, opacity: 0 },
+	animate: { scale: 1, opacity: 1, transition: { duration: 0.2 } },
+	exit: { scale: 0.5, opacity: 0, transition: { duration: 0.2 } },
 }
