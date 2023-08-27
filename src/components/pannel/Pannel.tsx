@@ -13,7 +13,7 @@ export const Pannel = () => {
 	const menuRef = useRef<HTMLElement>(null)
 	const { isOpen, toggleState } = useOutsideClick(menuRef)
 	return (
-		<div className='relative z-30 h-24 w-24 '>
+		<div className='relative z-[9999] h-24 w-24 '>
 			<div className='fixed left-0  top-0 flex h-24 w-full  justify-between bg-secondaryDark lg:h-full lg:w-24 lg:flex-col lg:rounded-r-3xl'>
 				<Logo />
 				<div className='flex lg:flex-col '>

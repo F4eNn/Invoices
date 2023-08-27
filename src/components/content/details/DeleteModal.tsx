@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { navigation } from '@/constants/navigation_paths'
 import { AnimatePresence, motion } from '@/lib/motion'
 import { animateModal } from '@/animations/animations'
+import { notify } from '@/constants/notify'
 
 type DeleteModalProps = {
 	formId: string
@@ -24,6 +25,8 @@ export const DeleteModal = ({ formId, isOpenModal, delete: deleteDoc, closeModal
 	const handleDeleteInvoice = async () => {
 		await deleteDoc(formId)
 		replace(navigation.home.path)
+			notify(`Deleted successfully`)
+
 	}
 
 	return (

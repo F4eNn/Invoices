@@ -41,6 +41,7 @@ export const InvoiceForm = () => {
 		try {
 			await handleCollectionData(data, CollectionName.Invoices, formId)
 			toggleForm()
+			notify('Invoice Created')
 			reset()
 		} catch (error) {
 			console.error(`Failed add ${CollectionName.Invoices} to firestore:`, error)
@@ -50,6 +51,7 @@ export const InvoiceForm = () => {
 		const data = getValues()
 		try {
 			await handleCollectionData(data, CollectionName.Drafts, formId)
+			notify(`Draft is created`)
 			toggleForm()
 			reset()
 		} catch (error) {

@@ -5,7 +5,6 @@ import { Pannel } from '@/components/pannel/Pannel'
 import { ContentWrapper } from '@/components/ui/ContentWrapper'
 import { InvoiceBody } from '@/components/content/InvoiceBody'
 import { FormProvider, MenageFormProvider } from '@/context/FormProviders'
-import { Portal } from '@/constants/Portal'
 import { Create } from '@/components/content/Create'
 import { AuthGuard } from '@/constants/AuthGuard'
 
@@ -19,9 +18,7 @@ export default function Home() {
 						<FormProvider>
 							<MenageFormProvider>
 								<InvoiceControl />
-								<Portal selector='#form'>
 									<Create />
-								</Portal>
 							</MenageFormProvider>
 						</FormProvider>
 						<InvoiceBody />

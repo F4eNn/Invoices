@@ -11,6 +11,7 @@ type ButtonProps = {
 	textColorDark?: string
 	textHover?: string
 	bgDark?: string
+	width?: 'w-max' | 'w-full'
 }
 
 export const Button = ({
@@ -24,12 +25,13 @@ export const Button = ({
 	textColorDark,
 	textHover,
 	bgDark,
+	width = 'w-max',
 }: ButtonProps) => {
 	return (
 		<button
 			type='button'
 			onClick={onClick}
-			className={`${padding} ${bgDark} ${textHover} ${bgHoverDark}  ${textColorDark} w-max rounded-[30px] ${bg} px-4  py-3
+			className={`${padding} ${bgDark} ${textHover} ${bgHoverDark}  ${textColorDark} ${width} rounded-[30px] ${bg} px-4  py-3
 			 			font-[500] tracking-wide ${textColor} transition-colors duration-300 ${bgHover}`}
 		>
 			{children}

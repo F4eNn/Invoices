@@ -31,19 +31,21 @@ export const ItemListForm = ({ control, error }: ItemList) => {
 					<DynamicItem control={control} error={error} remove={remove} fields={fields} />
 				</div>
 			</div>
-			<div className='mt-3 overflow-hidden rounded-3xl bg-secondaryDark  text-white hover:bg-darkGray'>
-				<Button
-					onClick={() =>
-						append({
-							name: '',
-							price: 0,
-							quantity: 0,
-						})
-					}
-				>
-					+ Add New Item
-				</Button>
-			</div>
+			<Button
+				bg='bg-secondaryDark'
+				textColor='text-white'
+				bgHover='hover:bg-darkGray'
+				width='w-full'
+				onClick={() =>
+					append({
+						name: '',
+						price: 0,
+						quantity: 0,
+					})
+				}
+			>
+				+ Add New Item
+			</Button>
 			{(error.receiver ||
 				error.sender ||
 				error.invoiceDate ||
