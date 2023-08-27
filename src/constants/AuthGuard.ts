@@ -14,6 +14,7 @@ export const AuthGuard = ({ children }: { children: ReactNode }) => {
 	useEffect(() => {
 		if (!isAuthenticated && isProtectedRoutes) replace(navigation.login.path)
 		if (isAuthenticated && !isProtectedRoutes) replace(navigation.home.path)
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isAuthenticated, params])
 
 	return children

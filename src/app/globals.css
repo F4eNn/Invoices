@@ -12,7 +12,7 @@
 	}
 	.form-scroll::-webkit-scrollbar,
 	.form-scroll-light::-webkit-scrollbar {
-		width: 10px;
+		width: 14px;
 	}
 	.form-scroll::-webkit-scrollbar-track,
 	.form-scroll-light::-webkit-scrollbar-track {
@@ -21,12 +21,12 @@
 	}
 	.form-scroll::-webkit-scrollbar-thumb {
 		background-color: #1e2139;
-		border-radius: 10px;
+		border-radius: 12px;
 		
 	}
 	.form-scroll-light::-webkit-scrollbar-thumb {
 		background-color: #dfe3fa;
-		border-radius: 10px;
+		border-radius: 12px;
 	}
 }
 @layer utilities {
@@ -34,6 +34,7 @@
 		@apply border-lightRed caret-red focus:border-red dark:border-lightRed dark:focus:border-red;
 	}
 }
+
 *,
 ::after,
 ::before {

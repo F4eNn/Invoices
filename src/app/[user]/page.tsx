@@ -6,7 +6,7 @@ import { Pannel } from '@/components/pannel/Pannel'
 
 const UserPage = () => {
 	return (
-		<div className='h-full flex flex-col lg:flex-row  '>
+		<div className='h-screen flex flex-col lg:flex-row  '>
 			<Pannel />
 			<User />
 		</div>

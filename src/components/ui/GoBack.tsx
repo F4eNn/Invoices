@@ -8,7 +8,7 @@ export const GoBack = () => {
 	return (
 		<Link
 			href={navigation.home.path}
-			className='flex w-max items-center gap-6 p-4 text-secondaryDark transition-all hover:scale-110 hover:text-grayPurple dark:text-lightGray hover:dark:text-grayPurple '
+			className='flex w-max items-center gap-6 p-4 text-secondaryDark transition-colors  hover:text-grayPurple dark:text-lightGray hover:dark:text-grayPurple '
 		>
 			<ArrowLeftIcon /> <span className='h-5 font-bold '>Go back</span>
 		</Link>

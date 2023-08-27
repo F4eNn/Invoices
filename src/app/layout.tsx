@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import { AuthProvider } from '@/context/AuthProvider'
 import { InvoiceProvider } from '@/context/InvoiceProvider'
 import { PageTransition } from '@/components/ui/PageTransition'
-// import { Loading } from '@/components/ui/Loading'
 
 const leagueSpartan = League_Spartan({ subsets: ['latin'] })
 
@@ -23,13 +22,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='en'>
-			<body className={`${leagueSpartan.className} duration-250 bg-lightGray transition-colors dark:bg-black `}>
+			<body className={`${leagueSpartan.className} duration-250 bg-lightGray transition-colors dark:bg-black form-scroll-light dark:form-scroll `}>
 				<ToastContainer />
 				<AuthProvider>
 					<InvoiceProvider>
 						<div id='modal' />
-						<div id='form' />
-						{/* <Loading /> */}
 						<PageTransition>{children}</PageTransition>
 					</InvoiceProvider>
 				</AuthProvider>
