@@ -10,9 +10,10 @@ export const AuthGuard = ({ children }: { children: ReactNode }) => {
 	const { isAuthenticated } = useAuth()
 	const params = useSearchParams()
 	const isProtectedRoutes = params.toString() !== ('mode=login' || 'mode=signup')
+	const isRegister = params.toString() === ('mode=login' || 'mode=signup')
     
 	useEffect(() => {
-		if (!isAuthenticated && isProtectedRoutes) replace(navigation.login.path)
+		if (!isAuthenticated && isRegister) replace(navigation.login.path)
 		if (isAuthenticated && !isProtectedRoutes) replace(navigation.home.path)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isAuthenticated, params])

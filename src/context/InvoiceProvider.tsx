@@ -31,6 +31,7 @@ export const InvoiceProvider = ({ children }: { children: ReactNode }) => {
 		const invoiceRef = doc(db, 'invoices', user.email)
 		const subscribeInvoiceData = onSnapshot(invoiceRef, doc => {
 			if (!doc.exists()) {
+				setIsFetching(false)
 				return setInvoiceData([])
 			}
 			const invoiceArr = doc.data().invoices

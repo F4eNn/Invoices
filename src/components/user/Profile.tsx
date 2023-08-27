@@ -40,7 +40,7 @@ export const Profile = () => {
 					aria-label='upload profile picture'
 				>
 					<input hidden accept='image/*' type='file' onChange={e => setUrl(e.target.files![0])} />
-					<div className='  text-inherit'>
+					<div className='text-inherit'>
 						<IoCamera size='1.3em' />
 					</div>
 				</IconButton>

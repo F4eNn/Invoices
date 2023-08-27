@@ -3,7 +3,7 @@ import React from 'react'
 
 export const NoInvoices = () => {
 	return (
-		<div className='mt-12 flex flex-1 flex-col items-center justify-center gap-7 text-white sm:mt-16 sm:gap-10 md:mt-24 lg:mt-0 lg:gap-12'>
+		<div className='mt-12 flex  flex-col items-center justify-center gap-7 text-white sm:mt-16 sm:gap-10 md:mt-24 lg:mt-24  lg:gap-12'>
 			<div className='relative  aspect-square w-full max-w-[300px] object-cover  lg:max-w-[350px]'>
 				<Image src='./assets/illustration-empty.svg' alt='' fill className=' object-contain' />
 			</div>

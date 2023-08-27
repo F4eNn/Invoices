@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSearchParams } from 'next/navigation'
-import Link from 'next/link'
 
 import { ContentWrapper } from '../ui/ContentWrapper'
 import { Profile } from './Profile'
@@ -9,7 +8,6 @@ import { GeneralInfo } from './GeneralInfo'
 import { Account } from './Account'
 import { LinkButton } from '../ui/LinkButton'
 import { navigation } from '@/constants/navigation_paths'
-import { ArrowLeftIcon } from '../icons/ArrowLeft'
 import { GoBack } from '../ui/GoBack'
 
 export const User = () => {

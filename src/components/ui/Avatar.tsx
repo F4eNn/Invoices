@@ -19,14 +19,15 @@ export const Avatar = ({ height = 60, width = 60, size = '1.4em' }: AvatarProps)
 				<Image
 					src={user.image}
 					alt='User'
-					onLoad={() => <div>hm</div>}
 					quality={100}
 					width={width}
 					height={height}
 					className='aspect-square rounded-full border-2 border-primary'
 				/>
 			) : (
-				<BiSolidUser size={size} color='#fff' />
+				<div className='bg-primary p-3 rounded-full'>
+					<BiSolidUser size={size} color='#fff' />
+				</div>
 			)}
 		</>
 	)
