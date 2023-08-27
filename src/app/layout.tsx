@@ -29,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<InvoiceProvider>
 						<FormProvider>
 							<MenageFormProvider>
+								<div id='modal'/>
 								<Create />
 								{children}
 							</MenageFormProvider>

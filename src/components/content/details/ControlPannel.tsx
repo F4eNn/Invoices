@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 
 import { Button } from '@/components/ui/Button'
 import { Status } from '@/components/ui/Status'
 import { InvoiceDataProviderType } from '@/context/InvoiceProvider'
 import { useInvoice } from '@/hooks/useInvoice'
+import { DeleteModal } from './DeleteModal'
+import { useToggle } from '@/hooks/useToggle'
 
 type ControlPannelProps = {
 	as: InvoiceDataProviderType['as']
@@ -12,14 +14,14 @@ type ControlPannelProps = {
 }
 
 export const ControlPannelDetails = ({ as, onEdit }: ControlPannelProps) => {
-	const { updateSelectedInvoice, deleteInvoice: deleteDoc } = useInvoice()
-
+	const { updateSelectedInvoice, deleteInvoice } = useInvoice()
+	const [isOpenModal, toggleModal] =useToggle()
 	const params = useSearchParams()
 	const invoiceId = params.get('invoiceId')
 	if (!invoiceId) return
 
 	const markAsPaid = () => updateSelectedInvoice(invoiceId, 'paid')
-	const deleteInvoice = () => deleteDoc(invoiceId)
+	const handleOpenModal = () => toggleModal()
 
 	return (
 		<div className='mt-10 flex w-full items-center justify-between rounded-lg bg-white p-6 shadow-sm dark:bg-primaryDark'>
@@ -27,7 +29,7 @@ export const ControlPannelDetails = ({ as, onEdit }: ControlPannelProps) => {
 				<span className='text-gray'>status</span>
 				<Status as={as} />
 			</div>
-			<div className='fixed  bottom-0 left-0 z-40 sm:z-0 shadow-lg sm:shadow-none bg-white dark:bg-primaryDark flex w-full justify-around gap-3 bg-none px-2 py-6  sm:justify-end sm:gap-6  sm:px-10  md:static md:p-0'>
+			<div className='fixed  bottom-0 left-0 z-40 flex w-full justify-around gap-3 bg-white bg-none px-2 py-6 shadow-lg dark:bg-primaryDark sm:z-0 sm:justify-end  sm:gap-6 sm:px-10  sm:shadow-none  md:static md:p-0'>
 				<Button
 					bgDark='dark:bg-secondaryDark'
 					bg='bg-lightGray'
@@ -47,7 +49,7 @@ export const ControlPannelDetails = ({ as, onEdit }: ControlPannelProps) => {
 						bgHover='hover:bg-lightRed'
 						textColor='text-white'
 						padding='sm:px-6'
-						onClick={deleteInvoice}
+						onClick={handleOpenModal}
 					>
 						Delete
 					</Button>
@@ -62,6 +64,7 @@ export const ControlPannelDetails = ({ as, onEdit }: ControlPannelProps) => {
 					</Button>
 				</div>
 			</div>
+			<DeleteModal delete={deleteInvoice} isOpenModal={isOpenModal} formId={invoiceId} closeModal={toggleModal} />
 		</div>
 	)
 }

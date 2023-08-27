@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSearchParams } from 'next/navigation'
-import { BiArrowBack } from 'react-icons/bi'
+import Link from 'next/link'
 
 import { ContentWrapper } from '../ui/ContentWrapper'
 import { Profile } from './Profile'
@@ -9,6 +9,7 @@ import { GeneralInfo } from './GeneralInfo'
 import { Account } from './Account'
 import { LinkButton } from '../ui/LinkButton'
 import { navigation } from '@/constants/navigation_paths'
+import { ArrowLeftIcon } from '../icons/ArrowLeft'
 
 export const User = () => {
 	const searchParams = useSearchParams()
@@ -16,9 +17,12 @@ export const User = () => {
 	return (
 		<ContentWrapper>
 			<div className='w-max md:mt-0 '>
-				<LinkButton url='/'>
-					<BiArrowBack size='2em' />
-				</LinkButton>
+				<Link
+					href={navigation.home.path}
+					className='transitin-colors flex items-center gap-3 p-3.5 font-bold text-white duration-300 hover:text-grayPurple'
+				>
+					<ArrowLeftIcon /> <span className='h-5'>Go back</span>
+				</Link>
 			</div>
 			<div className='w-full rounded-lg p-3 dark:text-white md:inline-flex '>
 				<div className='m-8 flex flex-col gap-5 md:ml-0 lg:m-8'>
