@@ -30,7 +30,7 @@ export const InvoiceItem = ({ formId, receiver, invoiceDate, totalPrice, as }: I
 					</span>
 				</div>
 				<div className='flex items-center justify-between gap-5 md:gap-10 lg:gap-20'>
-					<span className='font-bold'>£ {totalPrice}</span>
+					<span className='font-bold text-xl'>£ {totalPrice}</span>
 					<div className='flex items-center gap-5'>
 						<Status as={as} />
 						<ArrowRightIcon />
@@ -49,7 +49,7 @@ export const InvoiceItem = ({ formId, receiver, invoiceDate, totalPrice, as }: I
 				<div className='flex items-center justify-between'>
 					<div className='flex flex-col gap-2 '>
 						<span className='font-[500] text-gray dark:text-rose'>Due {invoiceDate as string}</span>
-						<span className='text-lg font-bold'>£ {totalPrice}</span>
+						<span className='text-lg font-bold '>£ {totalPrice}</span>
 					</div>
 					<Status as={as} />
 				</div>
