@@ -10,7 +10,7 @@ export const InvoiceBody = () => {
 	const { filteredInvoiceData, fetching } = useInvoice()
 	const isInvoice = filteredInvoiceData.length > 0
 	return (
-		<div className='mb-10 flex min-h-screen flex-col lg:mb-16'>
+		<div className='mb-10 flex flex-col lg:mb-16'>
 			{fetching ? (
 				<div className='mt-40 flex aspect-square justify-center'>
 					<PulseLoader color='#7C5DFA' size={25} speedMultiplier={0.8} />
@@ -20,7 +20,7 @@ export const InvoiceBody = () => {
 					{!isInvoice ? (
 						<NoInvoices />
 					) : (
-						<div className='mt-10 pr-3'>
+						<div className='mt-10 pr-3  '>
 							{filteredInvoiceData.map((item, idx) => {
 								return <InvoiceItem key={item.formId + idx} {...item} />
 							})}

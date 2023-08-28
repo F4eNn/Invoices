@@ -12,10 +12,10 @@ import { pageTransition } from '@/animations/animations'
 
 export default function Home() {
 	return (
-		<motion.main key='main' {...pageTransition} className='flex h-full flex-col lg:flex-row '>
+		<motion.main key='main' {...pageTransition} className='flex min-h-screen flex-col lg:flex-row '>
 			<Pannel />
 			<ContentWrapper>
-				<div className='flex  h-full flex-col '>
+				<div className='flex  flex-1 h-full flex-col '>
 					<FormProvider>
 						<MenageFormProvider>
 							<InvoiceControl />
