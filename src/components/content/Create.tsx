@@ -29,7 +29,7 @@ export const Create = () => {
 				>
 					<div
 						className=' relative z-[999] h-[100dvh] overflow-hidden rounded-xl bg-white py-16 
-									pl-5 pr-3 dark:bg-lightDark dark:text-lightGray sm:w-full sm:pl-14 sm:pr-9 md:w-3/4 lg:w-full lg:max-w-[750px] lg:pl-40'
+									pl-5 pr-3 dark:bg-lightDark dark:text-lightGray sm:w-full sm:pl-14 sm:pr-9 md:w-3/4 lg:w-full lg:max-w-[900px] lg:pl-40'
 					>
 						<h2 className='font-500 text-headingS'>{invoiceId ? <span>Edit <span className='text-gray'>#</span>{invoiceId}</span> : 'New Invoice'}</h2>
 						<InvoiceForm />
