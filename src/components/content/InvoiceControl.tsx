@@ -56,7 +56,7 @@ export const InvoiceControl = () => {
 			<div className='inline-flex items-center gap-5 sm:gap-10'>
 				<Filter />
 				<button
-					className='rounded-[30px] bg-primary p-2 py-2.5 text-xl transition-colors duration-300 hover:bg-secondary'
+					className='rounded-[30px] bg-primary p-2 py-2.5 text-xl text-white transition-colors duration-300 hover:bg-secondary'
 					onClick={showForm}
 				>
 					<div className='inline-flex items-center gap-3 md:gap-4'>

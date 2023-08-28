@@ -35,7 +35,7 @@ export const Profile = () => {
 			<div className='relative w-max'>
 				<Avatar height={225} width={225} text='7xl' size='7em' />
 				<IconButton
-					className='!absolute !-bottom-1 !right-3 !bg-black/90 text-lightGray !transition-colors hover:!text-secondary'
+					className='!absolute !-bottom-3 !right-2 !bg-black/90 text-lightGray !transition-colors hover:!text-secondary'
 					component='label'
 					aria-label='upload profile picture'
 				>

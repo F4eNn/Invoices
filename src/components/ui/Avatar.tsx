@@ -22,7 +22,7 @@ export const Avatar = ({ height = 60, width = 60, size = '1.4em' }: AvatarProps)
 					quality={100}
 					width={width}
 					height={height}
-					className='aspect-square rounded-full border-2 border-primary'
+					className='aspect-square rounded-xl border-2 border-primary'
 				/>
 			) : (
 				<div className='bg-primary p-3 rounded-full'>

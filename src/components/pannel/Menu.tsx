@@ -28,8 +28,9 @@ export const Menu = () => {
 	return (
 		<motion.menu
 			{...menuAnimation}
-			className='absolute  -left-[175px] top-[100px] z-50 inline-block w-[275px]  gap-5 rounded-md bg-slate-100 p-1 shadow-md   lg:left-[110px] lg:top-[-80px] '
+			className='absolute  -left-[175px] top-[95px] z-50 inline-block w-[275px]  gap-5 rounded-md bg-slate-100 p-1 shadow-md   lg:left-[110px] lg:top-[-80px] '
 		>
+			<div className='absolute -top-1.5 right-9 -z-10 h-3  w-3 rotate-45 bg-slate-100 content-[""] lg:hidden' />
 			{menuValues.map(([icon, title, url], index) => (
 				<li key={index}>
 					<Link
