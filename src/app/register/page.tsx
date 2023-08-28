@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 import { Login } from '@/components/register/Login'
 import { Signup } from '@/components/register/Signup'
-import { FormContainer } from '@/components/register/ui/FormContainer'
+import { FormContainer } from '@/components/register/FormContainer'
 import { navigation } from '@/constants/navigation_paths'
 import { AuthGuard } from '@/constants/AuthGuard'
 

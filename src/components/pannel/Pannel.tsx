@@ -5,9 +5,10 @@ import { Tooltip, IconButton } from '@mui/material'
 import { useOutsideClick } from '@/hooks/useOutsideClick'
 import { SwitchModeBtn } from './SwitchModeBtn'
 import { Logo } from './Logo'
-import { AnimatePresence } from '@/lib/motion'
+import { AnimatePresence, motion } from '@/lib/motion'
 import { Menu } from './Menu'
 import { Avatar } from '../ui/Avatar'
+import { pulseAnimation } from '@/animations/animations'
 
 export const Pannel = () => {
 	const menuRef = useRef<HTMLElement>(null)
@@ -28,7 +29,14 @@ export const Pannel = () => {
 								<Avatar />
 							</IconButton>
 						</Tooltip>
-						<span className='absolute right-1 top-5 rounded-2xl bg-secondary px-2 text-sm text-white '>New!</span>
+						<motion.span
+							variants={pulseAnimation}
+							initial='hidden'
+							animate='visible'
+							className='absolute right-1 top-5 rounded-2xl bg-secondary px-2 text-sm text-white '
+						>
+							New!
+						</motion.span>
 						<AnimatePresence>{isOpen && <Menu />}</AnimatePresence>
 					</div>
 				</div>

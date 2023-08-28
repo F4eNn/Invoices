@@ -1,3 +1,4 @@
+'use client'
 import { useSearchParams } from 'next/navigation'
 import { useFormContext } from 'react-hook-form'
 
