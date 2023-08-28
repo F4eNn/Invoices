@@ -42,7 +42,7 @@ export const SwitchModeBtn = () => {
 	}
 
 	return (
-		<button onClick={setTheme} className='group my-auto mr-5 w-max p-3  sm:mr-10 lg:mx-auto lg:mb-5  '>
+		<button aria-label='change theme' onClick={setTheme} className='group my-auto mr-5 w-max p-3  sm:mr-10 lg:mx-auto lg:mb-5  '>
 			{theme ? <IconMoon /> : <IconSun />}
 		</button>
 	)
