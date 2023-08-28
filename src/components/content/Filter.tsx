@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useRef, useState } from 'react'
+import React, { ChangeEvent, useRef } from 'react'
 
 import { TransparentButton } from '../ui/TransparentButton'
 import { ArrowDownIcon } from '../icons/ArrowDown'
@@ -8,10 +8,9 @@ import { AnimatePresence, motion } from '@/lib/motion'
 import { menuAnimation } from '@/animations/animations'
 import { useInvoice } from '@/hooks/useInvoice'
 
-
 export const Filter = () => {
 	const targetReached = useMediaQuery('576')
-	const {setCheckedItems,checkedItems} = useInvoice()
+	const { setCheckedItems, checkedItems } = useInvoice()
 
 	const menuRef = useRef<HTMLMenuElement>(null)
 	const { isOpen, toggleState } = useOutsideClick(menuRef, false)
@@ -20,7 +19,7 @@ export const Filter = () => {
 		const { id, checked } = e.target
 		setCheckedItems(prev => ({ ...prev, [id]: checked }))
 	}
-	
+
 	return (
 		<div className='relative'>
 			<TransparentButton onClickHandler={toggleState}>
