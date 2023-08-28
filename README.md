@@ -3,7 +3,7 @@
 <img src='./.github/preview.jpg' alt='Ink Wise home page banner' width='100%' height="700px" />
 
 <h1 align="center">Live🎮</h1>
-<p align='center'><a target='_blank' href='https://ink-wise.vercel.app/' align='center' >🎈 Invoices 🎈</a></p>
+<p align='center'><a target="_blank" href='https://invoices-eight.vercel.app/' align='center' >🎈 Invoices 🎈</a></p>
 
 </br>
 
