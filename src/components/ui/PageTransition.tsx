@@ -1,17 +1,12 @@
 'use client'
 import React, { ReactNode } from 'react'
-import { usePathname } from 'next/navigation'
 
-import { AnimatePresence, motion } from '@/lib/motion'
-import { pageTransition } from '@/animations/animations'
+import { AnimatePresence } from '@/lib/motion'
 
 export const PageTransition = ({ children }: { children: ReactNode }) => {
-	const pathname = usePathname()
 	return (
 		<AnimatePresence mode='wait' initial={false}>
-			<motion.div key={pathname} {...pageTransition}>
-				{children}
-			</motion.div>
+			{children}
 		</AnimatePresence>
 	)
 }

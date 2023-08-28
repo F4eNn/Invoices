@@ -1,15 +1,16 @@
+'use client'
 import React from 'react'
 
 import { Pannel } from '@/components/pannel/Pannel'
 import { InvoiceDetails } from '@/components/content/details/InvoiceDetails'
 import { FormProvider, MenageFormProvider } from '@/context/FormProviders'
 import { Create } from '@/components/content/Create'
-import { AuthGuard } from '@/constants/AuthGuard'
+import { motion } from '@/lib/motion'
+import { pageTransition } from '@/animations/animations'
 
 const InvoicePage = () => {
 	return (
-		<div className='flex h-full flex-col lg:flex-row  '>
-			<AuthGuard>
+		<motion.div {...pageTransition} className='flex min-h-screen flex-col lg:flex-row  '>
 				<Pannel />
 				<FormProvider>
 					<MenageFormProvider>
@@ -17,8 +18,7 @@ const InvoicePage = () => {
 						<Create />
 					</MenageFormProvider>
 				</FormProvider>
-			</AuthGuard>
-		</div>
+		</motion.div>
 	)
 }
 

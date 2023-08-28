@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 
 import { InvoiceControl } from '@/components/content/InvoiceControl'
@@ -6,25 +7,24 @@ import { ContentWrapper } from '@/components/ui/ContentWrapper'
 import { InvoiceBody } from '@/components/content/InvoiceBody'
 import { FormProvider, MenageFormProvider } from '@/context/FormProviders'
 import { Create } from '@/components/content/Create'
-import { AuthGuard } from '@/constants/AuthGuard'
+import { motion } from '@/lib/motion'
+import { pageTransition } from '@/animations/animations'
 
 export default function Home() {
 	return (
-		<main className='flex flex-col lg:flex-row h-full '>
+		<motion.main key='main' {...pageTransition} className='flex h-full flex-col lg:flex-row '>
 			<Pannel />
 			<ContentWrapper>
-				<AuthGuard>
-					<div className='flex  h-full flex-col '>
-						<FormProvider>
-							<MenageFormProvider>
-								<InvoiceControl />
-									<Create />
-							</MenageFormProvider>
-						</FormProvider>
-						<InvoiceBody />
-					</div>
-				</AuthGuard>
+				<div className='flex  h-full flex-col '>
+					<FormProvider>
+						<MenageFormProvider>
+							<InvoiceControl />
+							<Create />
+						</MenageFormProvider>
+					</FormProvider>
+					<InvoiceBody />
+				</div>
 			</ContentWrapper>
-		</main>
+		</motion.main>
 	)
 }

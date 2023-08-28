@@ -10,7 +10,7 @@ import {
 	updateEmail,
 	updatePassword,
 } from 'firebase/auth'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { doc, onSnapshot, setDoc } from 'firebase/firestore'
 
 import { auth, db } from '@/config/firebase'
@@ -116,10 +116,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		}
 	}, [authUser])
 
+	const pathname = usePathname()
 	useEffect(() => {
-		const unsubscribe = onAuthStateChanged(auth, setAuthUser)
+		const unsubscribe = onAuthStateChanged(auth, user => {
+			if (!user) {
+				setAuthUser(null)
+				if (pathname !== '/register') {
+					router.replace('/register?mode=login')
+				}
+			} else if (user) {
+				setAuthUser(user)
+				if (pathname === '/register') {
+					router.replace('/')
+				}
+			}
+		})
 		return () => unsubscribe()
-	}, [authUser])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	const value = {
 		createUser,
