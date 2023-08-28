@@ -70,7 +70,7 @@ export const InvoiceForm = () => {
 			<BasicInformation control={control} error={errors} />
 			<ItemListForm control={control} error={errors} />
 			<div
-				className={`absolute bottom-0 left-0 right-0 flex ${
+				className={`absolute bottom-0 left-0 right-0 flex z-[99] ${
 					invoiceId ? 'justify-end' : 'justify-between'
 				} gap-2 rounded-2xl bg-lightGray px-3 py-6 text-sm text-white  shadow-topShadow dark:bg-lightDark sm:px-10 sm:py-10 lg:pl-40 lg:pr-10`}
 			>

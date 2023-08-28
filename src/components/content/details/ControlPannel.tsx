@@ -29,7 +29,7 @@ export const ControlPannelDetails = ({ as, onEdit }: ControlPannelProps) => {
 				<span className='text-gray'>status</span>
 				<Status as={as} />
 			</div>
-			<div className='fixed  bottom-0 left-0 z-40 flex w-full justify-around gap-3 bg-white bg-none px-2 py-6 shadow-lg dark:bg-primaryDark sm:z-0 sm:justify-end  sm:gap-6 sm:px-10  sm:shadow-none  md:static md:p-0'>
+			<div className='fixed bottom-0 left-0 z-10  flex w-full justify-around gap-3 bg-white bg-none px-2 py-6 shadow-lg dark:bg-primaryDark md:z-0 sm:justify-end  sm:gap-6 sm:px-10  sm:shadow-none  md:static md:p-0'>
 				<Button
 					bgDark='dark:bg-secondaryDark'
 					bg='bg-lightGray'
