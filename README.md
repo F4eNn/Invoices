@@ -19,6 +19,7 @@
 - Edit general info e.g. profile image, name
 - Filter invoices by status (draft/pending/paid)
 - Toggle light and dark mode
+- Print invoices
 
 </br>
 
